@@ -10,4 +10,12 @@
     tools:showIn="@layout/activity_enrollment"
     tools:context="android.app.rgs.com.raidergrader.activities.EnrollmentActivity">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enroll in a Class"
+        android:id="@+id/textView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
 </RelativeLayout>
