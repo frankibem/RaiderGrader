@@ -1,11 +1,16 @@
 <resources>
     <string name="app_name">RaiderGrader</string>
     <string name="title_activity_login">LoginActivity</string>
-    <string name="title_activity_enrollment">EnrollmentActivity</string>
+    <string name="title_activity_enrollment">Enroll in a Class</string>
     <string name="title_activity_registration">RegistrationActivity</string>
     <string name="title_activity_activity_selector">ActivitySelector</string>
 
     <string name="selector_login">Login</string>
     <string name="selector_enroll">Enrollment</string>
     <string name="selector_register">Registration</string>
+    <string name="submit_text">Submit</string>
+    <string name="class_id">Class ID</string>
+    <string name="title_activity_enrollment_confirmation">Confirm Enrollment</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

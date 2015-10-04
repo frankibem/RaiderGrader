@@ -33,6 +33,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".EnrollmentConfirmationActivity"
+            android:label="@string/title_activity_enrollment_confirmation" >
+        </activity>
     </application>
 
 </manifest>

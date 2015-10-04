@@ -10,12 +10,24 @@
     tools:showIn="@layout/activity_enrollment"
     tools:context="android.app.rgs.com.raidergrader.activities.EnrollmentActivity">
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enroll in a Class"
-        android:id="@+id/textView"
+        android:inputType="number"
+        android:ems="10"
+        android:hint="@string/class_id"
+        android:id="@+id/classID_text"
+        android:layout_marginTop="84dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textSize="25dp" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/submit_text"
+        android:id="@+id/submit_btn"
+        android:onClick="onClickSubmit"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
