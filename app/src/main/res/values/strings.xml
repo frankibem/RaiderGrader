@@ -3,4 +3,17 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_enrollment">EnrollmentActivity</string>
     <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="Firstname_txt">First name:</string>
+    <string name="Lastname_txt">Last name:</string>
+    <string name="firstname_hint">first name</string>
+    <string name="lastname_hint">last name</string>
+    <string name="email_txt">Email address:</string>
+    <string name="email_hint">email address</string>
+    <string name="password_txt">Password:</string>
+    <string name="password_hint">password</string>
+    <string name="confirmpass_txt">Confirm Password:</string>
+    <string name="confirmpass_hint">confirm password</string>
+    <string name="Iam_txt">I am......</string>
+    <string name="submit_txt">Submit</string>
+
 </resources>
