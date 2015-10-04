@@ -1,5 +1,6 @@
-package android.app.rgs.com.raidergrader;
+package android.app.rgs.com.raidergrader.activities;
 
+import android.app.rgs.com.raidergrader.R;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;

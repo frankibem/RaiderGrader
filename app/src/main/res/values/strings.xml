@@ -3,4 +3,9 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_enrollment">EnrollmentActivity</string>
     <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="title_activity_activity_selector">ActivitySelector</string>
+
+    <string name="selector_login">Login</string>
+    <string name="selector_enroll">Enrollment</string>
+    <string name="selector_register">Registration</string>
 </resources>
