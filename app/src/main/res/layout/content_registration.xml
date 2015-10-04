@@ -149,7 +149,8 @@
         android:text="@string/submit_txt"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
-        android:id="@+id/submittxt"/>
+        android:id="@+id/submittxt"
+        android:onClick="onClick"/>
 
 
 
