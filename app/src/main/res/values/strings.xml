@@ -10,6 +10,7 @@
     <string name="selector_register">Registration</string>
     <string name="submit_text">Submit</string>
     <string name="class_id">Class ID</string>
+    <string name="confirm_btn">Confirm</string>
     <string name="title_activity_enrollment_confirmation">Confirm Enrollment</string>
 
     <string name="action_settings">Settings</string>
