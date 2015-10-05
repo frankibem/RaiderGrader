@@ -7,12 +7,14 @@ import android.app.rgs.com.raidergrader.data_access.Repository;
 import android.app.rgs.com.raidergrader.data_access.RestTask;
 import android.app.rgs.com.raidergrader.data_access.RestUtil;
 import android.app.rgs.com.raidergrader.view_models.ClassViewModel;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -36,13 +38,21 @@ public class StudentClassListActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         listView = (ListView) findViewById(R.id.listView);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                Intent intent = new Intent(getApplicationContext(), StudentClassDetailActivity.class);
+//                intent.putExtra(StudentClassDetailActivity.CLASS_INDEX, position);
+//                startActivity(intent);
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(getApplicationContext(), EnrollmentActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -78,6 +88,7 @@ public class StudentClassListActivity extends AppCompatActivity
         }.getType();
         Gson gson = new Gson();
         List<ClassViewModel> cvms = gson.fromJson(response, listType);
+        Repository.studentClasses = cvms;
 
         ClassListAdapter adapter = new ClassListAdapter(getApplicationContext(), cvms);
         listView.setAdapter(adapter);
