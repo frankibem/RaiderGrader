@@ -11,6 +11,7 @@
     <string name="selector_login">Login</string>s
     <string name="selector_enroll">Enrollment</string>
     <string name="selector_register">Registration</string>
+    <string name="selector_std_classlist">Student class list</string>
 
     <!-- Login Page-->
     <string name="hint_email">Email</string>
@@ -27,5 +28,5 @@
     <string name="btn_register">Register</string>
     <string name="text_register">New to raider grader? Register Here</string>
 
-</resources>    <string name="action_settings">Settings</string>
+    <string name="action_settings">Settings</string>
 </resources>

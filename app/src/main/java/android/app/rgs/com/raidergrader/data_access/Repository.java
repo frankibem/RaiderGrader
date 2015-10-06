@@ -12,4 +12,5 @@ public class Repository {
     public static String ACCESS_TOKEN = null;
 
     public static List<ClassViewModel> studentClasses;
+    public static ClassViewModel selectedEnrollClass;
 }
