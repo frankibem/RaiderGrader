@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="android.app.rgs.com.raidergrader.EnrollmentConfirmationActivity">
+    tools:context="android.app.rgs.com.raidergrader.activities.EnrollmentConfirmationActivity">
 
     <TextView
         android:id="@+id/enrollconfirm"
@@ -21,6 +21,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="113dp"
         android:onClick="onClickConfirm"
-        android:text="@string/confirm_btn" />
+        android:text="@string/btn_confirm" />
 
 </RelativeLayout>

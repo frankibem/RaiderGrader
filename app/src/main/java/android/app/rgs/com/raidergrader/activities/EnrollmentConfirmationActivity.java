@@ -1,5 +1,6 @@
-package android.app.rgs.com.raidergrader;
+package android.app.rgs.com.raidergrader.activities;
 
+import android.app.rgs.com.raidergrader.R;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

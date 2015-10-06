@@ -4,14 +4,15 @@
     <string name="title_activity_enrollment">Enroll in a Class</string>
     <string name="title_activity_registration">RegistrationActivity</string>
     <string name="title_activity_activity_selector">ActivitySelector</string>
+    <string name="title_activity_enrollment_confirmation">Confirm Enrollment</string>
 
     <string name="selector_login">Login</string>
     <string name="selector_enroll">Enrollment</string>
     <string name="selector_register">Registration</string>
-    <string name="submit_text">Submit</string>
-    <string name="class_id">Class ID</string>
-    <string name="confirm_btn">Confirm</string>
-    <string name="title_activity_enrollment_confirmation">Confirm Enrollment</string>
+
+    <string name="btn_submit">Submit</string>
+    <string name="hint_classid">Class ID</string>
+    <string name="btn_confirm">Confirm</string>
 
     <string name="action_settings">Settings</string>
 </resources>

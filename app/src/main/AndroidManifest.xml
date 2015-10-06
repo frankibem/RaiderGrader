@@ -34,7 +34,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".EnrollmentConfirmationActivity"
+            android:name=".activities.EnrollmentConfirmationActivity"
             android:label="@string/title_activity_enrollment_confirmation" >
         </activity>
     </application>
