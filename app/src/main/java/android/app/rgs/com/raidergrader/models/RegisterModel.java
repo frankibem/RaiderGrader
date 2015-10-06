@@ -5,5 +5,6 @@ public class RegisterModel {
     public String LastName;
     public String Email;
     public String Password;
+    public String ConfirmPassword;
     public String Role;
 }

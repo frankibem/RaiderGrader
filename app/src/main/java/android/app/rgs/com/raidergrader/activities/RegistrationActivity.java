@@ -45,7 +45,7 @@ public class RegistrationActivity extends AppCompatActivity
         LoadReferences();
         SetValidators();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, roles);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, roles);
         spinnerRole.setAdapter(adapter);
     }
 
@@ -80,42 +80,39 @@ public class RegistrationActivity extends AppCompatActivity
     }
 
     /**
-     * Validates all input fields
-     *
-     * @return
+     * Returns true if all input fields pass validation
      */
     private boolean ValidateFields() {
-        boolean foundError = false;
+        boolean noErrors = true;
 
         if (!Validators.validateNonEmptyText(inputFirstName.getText().toString())) {
-            foundError = true;
+            noErrors = false;
             inputLayoutFName.setError("First name should not be empty");
         }
         if (!Validators.validateNonEmptyText(inputLastName.getText().toString())) {
-            foundError = true;
+            noErrors = false;
             inputLayoutLName.setError("Last name should not be empty");
         }
         if (!Validators.validateEmail(inputEmail.getText().toString())) {
-            foundError = true;
+            noErrors = false;
             inputLayoutEmail.setError("Email is not valid");
         }
         if (!Validators.validateNonEmptyText(inputPassword.getText().toString())) {
-            foundError = true;
+            noErrors = false;
             inputLayoutPassword.setError("Password is not valid");
         }
         if (!Validators.validateTextEquality(inputPassword.getText().toString(), inputConfirmPwd.getText().toString())) {
-            foundError = true;
+            noErrors = false;
             inputLayoutConfirmPwd.setError("Passwords do not match");
         }
 
-        return foundError;
+        return noErrors;
     }
 
     /**
      * Returns true if input associated input control has no error
      *
-     * @param til
-     * @return
+     * @param til TextInputLayout to validate
      */
     private boolean HasError(TextInputLayout til) {
         return til.getError() == "";
@@ -123,6 +120,7 @@ public class RegistrationActivity extends AppCompatActivity
 
     public void onClick(View v) {
         if (!ValidateFields()) {
+            Toast.makeText(this, "Review your input", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -132,6 +130,7 @@ public class RegistrationActivity extends AppCompatActivity
             registerModel.LastName = inputLastName.getText().toString();
             registerModel.Email = inputEmail.getText().toString();
             registerModel.Password = inputPassword.getText().toString();
+            registerModel.ConfirmPassword = inputConfirmPwd.getText().toString();
             //returns an object that is typecast to string
             registerModel.Role = (String) spinnerRole.getSelectedItem();
 
@@ -144,8 +143,9 @@ public class RegistrationActivity extends AppCompatActivity
             task.setResponseCallback(this);
             task.execute();
 
-            mProgress=ProgressDialog.show(this, "Loading", "Creating your account", true);
+            mProgress = ProgressDialog.show(this, "Loading", "Creating your account", true);
         } catch (Exception e) {
+            onRequestError(e);
         }
     }
 
@@ -156,6 +156,10 @@ public class RegistrationActivity extends AppCompatActivity
 
     @Override
     public void onRequestSuccess(String response) {
+        if (mProgress != null) {
+            mProgress.dismiss();
+        }
+
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
 
@@ -164,6 +168,10 @@ public class RegistrationActivity extends AppCompatActivity
 
     @Override
     public void onRequestError(Exception error) {
+        if (mProgress != null) {
+            mProgress.dismiss();
+        }
 
+        Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
     }
 }
