@@ -1,13 +1,17 @@
 package android.app.rgs.com.raidergrader.activities;
 
+import android.app.ProgressDialog;
 import android.app.rgs.com.raidergrader.R;
+import android.app.rgs.com.raidergrader.data_access.Repository;
 import android.app.rgs.com.raidergrader.data_access.RestTask;
+import android.app.rgs.com.raidergrader.data_access.RestUtil;
 import android.app.rgs.com.raidergrader.helpers.RgsTextWatcher;
 import android.app.rgs.com.raidergrader.helpers.ValidateConstant;
 import android.app.rgs.com.raidergrader.helpers.Validators;
 import android.app.rgs.com.raidergrader.models.RegisterModel;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,16 +20,18 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
 public class RegistrationActivity extends AppCompatActivity
-implements RestTask.ResponseCallback, RestTask.ProgressCallback{
+        implements RestTask.ResponseCallback, RestTask.ProgressCallback {
     private EditText inputFirstName, inputLastName, inputEmail, inputPassword, inputConfirmPwd;
     private TextInputLayout inputLayoutFName, inputLayoutLName, inputLayoutEmail, inputLayoutPassword,
             inputLayoutConfirmPwd;
     private Spinner spinnerRole;
     private Button btnRegister;
+    private ProgressDialog mProgress;
 
     private String[] roles = {"Teacher", "Student"};
 
@@ -132,6 +138,13 @@ implements RestTask.ResponseCallback, RestTask.ProgressCallback{
             Gson gson = new Gson();
             //sent to server
             String entity = gson.toJson(registerModel);
+
+            RestTask task = RestUtil.obtainJSONPostTask(Repository.baseUrl + "api/Account/Register", entity);
+            task.setProgressCallback(this);
+            task.setResponseCallback(this);
+            task.execute();
+
+            mProgress=ProgressDialog.show(this, "Loading", "Creating your account", true);
         } catch (Exception e) {
         }
     }
@@ -143,7 +156,10 @@ implements RestTask.ResponseCallback, RestTask.ProgressCallback{
 
     @Override
     public void onRequestSuccess(String response) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
 
+        Toast.makeText(this, "Account created", Toast.LENGTH_SHORT).show();
     }
 
     @Override
