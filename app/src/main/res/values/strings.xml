@@ -7,13 +7,25 @@
     <string name="title_activity_student_class_list">StudentClassListActivity</string>
     <string name="title_activity_enrollment_confirmation">Confirm Enrollment</string>
 
+    <!-- Selector Page -->
     <string name="selector_login">Login</string>s
     <string name="selector_enroll">Enrollment</string>
     <string name="selector_register">Registration</string>
 
+    <!-- Login Page-->
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
     <string name="btn_submit">Submit</string>
     <string name="hint_classid">Class ID</string>
     <string name="btn_confirm">Confirm</string>
 
-    <string name="action_settings">Settings</string>
+    <!-- Registration Page -->
+    <string name="title_activity_register">Register</string>
+    <string name="hint_firstName">First Name</string>
+    <string name="hint_lastName">Last Name</string>
+    <string name="hint_confirmPwd">Confirm Password</string>
+    <string name="btn_register">Register</string>
+    <string name="text_register">New to raider grader? Register Here</string>
+
+</resources>    <string name="action_settings">Settings</string>
 </resources>
