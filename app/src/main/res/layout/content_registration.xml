@@ -4,154 +4,99 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin"
     android:orientation="vertical"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="android.app.rgs.com.raidergrader.activities.RegistrationActivity"
     tools:showIn="@layout/activity_registration">
 
-    <GridLayout
-        android:layout_width="395dp"
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_fName"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/input_fName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_row="0"
-            android:text="@string/Firstname_txt"
-            android:textColor="@android:color/black"
-            android:textSize="20dp"
-            android:textStyle="normal"
-            android:id="@+id/firstnametxt"/>
+            android:hint="@string/hint_firstName" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_lName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <EditText
-            android:layout_width="wrap_content"
+            android:id="@+id/input_lName"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_column="0"
-            android:layout_row="1"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="1dp"
-            android:inputType="textPersonName"
-            android:hint="@string/firstname_hint"
-            android:textStyle="italic"
-            android:textSize="20dp"
-            android:id="@+id/firstnamehnt"/>
+            android:hint="@string/hint_lastName" />
 
-        <TextView
-            android:layout_width="157dp"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_row="0"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="10dp"
-            android:text="@string/Lastname_txt"
-            android:textColor="@android:color/black"
-            android:textSize="20dp"
-            android:textStyle="normal"
-            android:id="@+id/lastnametxt"/>
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
         <EditText
-            android:layout_width="174dp"
+            android:id="@+id/input_email"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_row="1"
-            android:layout_margin="10dp"
-            android:layout_marginTop="1dp"
-            android:inputType="textPersonName"
-            android:hint="@string/lastname_hint"
-            android:textStyle="italic"
-            android:textSize="20dp"
-            android:id="@+id/lastnamehnt"/>
+            android:hint="@string/hint_email"
+            android:inputType="textEmailAddress" />
 
-    </GridLayout>
+    </android.support.design.widget.TextInputLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/email_txt"
-        android:textColor="@android:color/black"
-        android:textSize="20dp"
-        android:textStyle="normal"
-        android:id="@+id/emailtxt"/>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:layout_width="364dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="1dp"
-        android:inputType="textEmailAddress"
-        android:hint="@string/email_hint"
-        android:textStyle="italic"
-        android:textSize="20dp"
-        android:id="@+id/emailhnt"/>
+        <EditText
+            android:id="@+id/input_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_password"
+            android:inputType="textPassword"
+            android:singleLine="true" />
+    </android.support.design.widget.TextInputLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/password_txt"
-        android:textColor="@android:color/black"
-        android:textSize="20dp"
-        android:textStyle="normal"
-        android:id="@+id/passtxt"/>
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/input_layout_confirmPwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <EditText
-        android:layout_width="364dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="1dp"
-        android:inputType="textPassword"
-        android:hint="@string/password_hint"
-        android:textStyle="italic"
-        android:textSize="20dp"
-        android:id="@+id/passhnt"/>
+        <EditText
+            android:id="@+id/input_confirmPwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_confirmPwd"
+            android:inputType="textPassword"
+            android:singleLine="true" />
+    </android.support.design.widget.TextInputLayout>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/confirmpass_txt"
-        android:textColor="@android:color/black"
-        android:textSize="20dp"
-        android:textStyle="normal"
-        android:id="@+id/cpasstxt"/>
-    <EditText
-        android:layout_width="364dp"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="1dp"
-        android:inputType="textPassword"
-        android:hint="@string/confirmpass_hint"
-        android:textStyle="italic"
-        android:textSize="20dp"
-        android:id="@+id/cpasshnt"/>
+        android:layout_marginTop="5dp"
+        android:text="I am a:"
+        android:textSize="@dimen/font_size_medium" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:text="@string/Iam_txt"
-        android:textColor="@android:color/black"
-        android:textSize="20dp"
-        android:textStyle="normal"
-        android:id="@+id/Iamtxt"/>
+    <Spinner
+        android:id="@+id/spinner_roles"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
     <Button
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_login"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/submit_txt"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
-        android:id="@+id/submittxt"
-        android:onClick="onClick"/>
-
-
+        android:layout_marginTop="40dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/btn_register"
+        android:textColor="@android:color/white" />
 
 </LinearLayout>
