@@ -34,6 +34,10 @@ public class ActivitySelector extends AppCompatActivity {
                 Intent intent3 = new Intent(getApplicationContext(), RegistrationActivity.class);
                 startActivity(intent3);
                 break;
+            case R.id.btn_std_classlist:
+                Intent intent4 = new Intent(getApplicationContext(), RegistrationActivity.class);
+                startActivity(intent4);
+                break;
             default:
                 Toast.makeText(this, "Not implemented", Toast.LENGTH_SHORT).show();
                 break;
