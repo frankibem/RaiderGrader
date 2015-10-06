@@ -31,4 +31,14 @@ public class Validators {
     public static boolean validateNonEmptyText(String inputText) {
         return !inputText.isEmpty();
     }
+
+    /**
+     * Returns true if the two strings are equal
+     * @param first
+     * @param second
+     * @return
+     */
+    public static boolean validateTextEquality(String first, String second){
+        return first.equals(second);
+    }
 }
