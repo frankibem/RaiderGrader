@@ -31,4 +31,18 @@ public class Validators {
     public static boolean validateNonEmptyText(String inputText) {
         return !inputText.isEmpty();
     }
+
+    /**
+     * Returns true if the input string is a valid integer
+     * @param inputNumber
+     * @return
+     */
+    public static boolean validateInteger(String inputNumber) {
+        try {
+            int result = Integer.parseInt(inputNumber);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
 }

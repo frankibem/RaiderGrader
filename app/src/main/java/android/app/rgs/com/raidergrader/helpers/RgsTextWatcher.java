@@ -43,6 +43,7 @@ public class RgsTextWatcher implements TextWatcher {
                     textInputLayout.setError("Enter a valid email address");
                     requestFocus(view);
                 } else {
+                    textInputLayout.setError("");
                     textInputLayout.setErrorEnabled(false);
                 }
                 break;
@@ -51,8 +52,31 @@ public class RgsTextWatcher implements TextWatcher {
                     textInputLayout.setError("Enter the password");
                     requestFocus(view);
                 } else {
+                    textInputLayout.setError("");
                     textInputLayout.setErrorEnabled(false);
                 }
+                break;
+            case NON_EMPTY_TEXT:
+                if (!Validators.validateNonEmptyText(view.getText().toString())) {
+                    textInputLayout.setError("Value must not be empty");
+                    requestFocus(view);
+                } else {
+                    textInputLayout.setError("");
+                    textInputLayout.setErrorEnabled(false);
+                }
+                break;
+            case INTEGER:
+                if (!Validators.validateInteger(view.getText().toString())) {
+                    textInputLayout.setError("Enter a valid integer");
+                    requestFocus(view);
+                } else {
+                    textInputLayout.setError("");
+                    textInputLayout.setErrorEnabled(false);
+                }
+                break;
+            default:
+                textInputLayout.setError("Cannot validte input");
+                requestFocus(view);
                 break;
         }
     }
