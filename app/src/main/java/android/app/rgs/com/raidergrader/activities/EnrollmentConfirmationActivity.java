@@ -14,6 +14,11 @@ import android.widget.TextView;
 public class EnrollmentConfirmationActivity extends AppCompatActivity {
 
     TextView outputEdit;
+    TextView className;
+    TextView courseNumber;
+    TextView teacherName;
+    TextView startDate;
+    TextView endDate;
     ClassViewModel cvm;
 
 
@@ -32,7 +37,16 @@ public class EnrollmentConfirmationActivity extends AppCompatActivity {
     }
 
     private void setTextValues(){
-
+        className = (TextView) findViewById(R.id.className);
+        className.setText(cvm.Title);
+        courseNumber = (TextView) findViewById(R.id.courseNumber);
+        courseNumber.setText(cvm.Prefix + " " + cvm.CourseNumber + "-" + cvm.Section);
+        teacherName = (TextView) findViewById(R.id.teacherName);
+        teacherName.setText(cvm.TeacherName);
+//        startDate = (TextView) findViewById(R.id.startDate);
+//        startDate.setText(cvm.StartDate);
+//        endDate = (TextView) findViewById(R.id.endDate);
+//        endDate.setText(cvm.EndDate);
     }
 
     public void onClickConfirm(View v) {
