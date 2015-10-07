@@ -74,7 +74,7 @@ public class RegistrationActivity extends AppCompatActivity
         inputEmail.addTextChangedListener(new RgsTextWatcher(getWindow(), inputEmail,
                 inputLayoutEmail, ValidateConstant.EMAIL));
         inputPassword.addTextChangedListener(new RgsTextWatcher(getWindow(), inputPassword,
-                inputLayoutConfirmPwd, ValidateConstant.NON_EMPTY_TEXT));
+                inputLayoutPassword, ValidateConstant.NON_EMPTY_TEXT));
         inputConfirmPwd.addTextChangedListener(new RgsTextWatcher(getWindow(), inputConfirmPwd,
                 inputLayoutConfirmPwd, ValidateConstant.NON_EMPTY_TEXT));
     }

@@ -10,16 +10,10 @@
     tools:context="android.app.rgs.com.raidergrader.activities.EnrollmentConfirmationActivity">
 
     <TextView
-        android:id="@+id/enrollconfirm"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/font_size_medium" />
-
-    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/text_class"
-        android:textSize="@dimen/font_size_medium"
+        android:textSize="@dimen/font_size_small"
         android:textStyle="bold" />
 
     <TextView
@@ -31,8 +25,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_margin_medium"
         android:text="@string/text_courseNumber"
-        android:textSize="@dimen/font_size_medium"
+        android:textSize="@dimen/font_size_small"
         android:textStyle="bold" />
 
     <TextView
@@ -43,9 +38,11 @@
 
     <TextView
         android:layout_width="wrap_content"
+
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/text_margin_medium"
         android:text="@string/text_teacher"
-        android:textSize="@dimen/font_size_medium"
+        android:textSize="@dimen/font_size_small"
         android:textStyle="bold" />
 
     <TextView
@@ -54,47 +51,48 @@
         android:layout_height="wrap_content"
         android:textSize="@dimen/font_size_medium" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_startDate"
-        android:textSize="@dimen/font_size_medium"
-        android:textStyle="bold" />
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="@string/text_startDate"-->
+    <!--android:textSize="@dimen/font_size_medium"-->
+    <!--android:textStyle="bold" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/startDate"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:textSize="@dimen/font_size_medium" />-->
+
+    <!--<TextView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="@string/text_endDate"-->
+    <!--android:textSize="@dimen/font_size_medium"-->
+    <!--android:textStyle="bold" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/endDate"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:textSize="@dimen/font_size_medium" />-->
 
     <TextView
-        android:id="@+id/startDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/font_size_medium" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_endDate"
-        android:textSize="@dimen/font_size_medium"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/endDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/font_size_medium" />
-
-    <TextView
-        android:text="Are you sure you want to join the class?"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="@dimen/font_size_medium"
+        android:layout_marginTop="50dp"
+        android:text="@string/text_confirm_enroll"
         android:textStyle="italic" />
 
     <Button
         android:id="@+id/confirmbtn"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="25dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/colorPrimary"
         android:onClick="onClickConfirm"
-        android:text="@string/btn_confirm" />
+        android:text="@string/btn_register"
+        android:textColor="@android:color/white" />
+
 
 </LinearLayout>

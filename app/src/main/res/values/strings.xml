@@ -34,6 +34,7 @@
     <string name="text_startDate">Start Date: </string>
     <string name="text_endDate">End Date: </string>
     <string name="btn_submit">Submit</string>
+    <string name="text_confirm_enroll">Are you sure you want to join this class?</string>
 
     <string name="action_settings">Settings</string>
 </resources>
