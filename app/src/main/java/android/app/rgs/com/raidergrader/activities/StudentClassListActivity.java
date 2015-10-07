@@ -62,7 +62,7 @@ public class StudentClassListActivity extends AppCompatActivity
         super.onResume();
 
         try {
-            RestTask task = RestUtil.obtainGetTask(Repository.baseUrl + "api/classes");
+            RestTask task = RestUtil.obtainGetTask(Repository.baseUrl + "api/classes?userName=" + Repository.USERNAME);
             task.setProgressCallback(this);
             task.setResponseCallback(this);
 

@@ -12,7 +12,7 @@ public class Repository {
     public static String ACCESS_TOKEN = null;
 
     public static String USERNAME_KEY = "USERNAME";
-    public static String USERNAME = null;
+    public static String USERNAME = "";
 
     public static List<ClassViewModel> studentClasses;
     public static ClassViewModel selectedEnrollClass;
