@@ -11,6 +11,9 @@ public class Repository {
     public static String ACCESS_TOKEN_KEY = "ACCESS_TOKEN";
     public static String ACCESS_TOKEN = null;
 
+    public static String USERNAME_KEY = "USERNAME";
+    public static String USERNAME = null;
+
     public static List<ClassViewModel> studentClasses;
     public static ClassViewModel selectedEnrollClass;
 }

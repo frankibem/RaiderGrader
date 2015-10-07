@@ -16,9 +16,9 @@
     <!-- Login Page-->
     <string name="hint_email">Email</string>
     <string name="hint_password">Password</string>
-    <string name="btn_submit">Submit</string>
     <string name="hint_classid">Class ID</string>
     <string name="btn_confirm">Confirm</string>
+    <string name="btn_login">Log In</string>
 
     <!-- Registration Page -->
     <string name="title_activity_register">Register</string>
@@ -33,6 +33,7 @@
     <string name="text_teacher">Teacher: </string>
     <string name="text_startDate">Start Date: </string>
     <string name="text_endDate">End Date: </string>
+    <string name="btn_submit">Submit</string>
 
     <string name="action_settings">Settings</string>
 </resources>
