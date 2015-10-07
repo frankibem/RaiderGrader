@@ -1,27 +1,40 @@
 <resources>
     <string name="app_name">RaiderGrader</string>
-    <string name="title_activity_login">LoginActivity</string>
-    <string name="title_activity_enrollment">EnrollmentActivity</string>
-    <string name="title_activity_registration">RegistrationActivity</string>
-    <string name="title_activity_activity_selector">ActivitySelector</string>
-    <string name="title_activity_student_class_list">StudentClassListActivity</string>
+    <string name="title_activity_login">Log In</string>
+    <string name="title_activity_enrollment">Enroll in a Class</string>
+    <string name="title_activity_registration">Register</string>
+    <string name="title_activity_activity_selector">Choose an Activity</string>
+    <string name="title_activity_student_class_list">My Classes</string>
+    <string name="title_activity_enrollment_confirmation">Confirm Enrollment</string>
 
+    <!-- Selector Page -->
     <string name="selector_login">Login</string>s
     <string name="selector_enroll">Enrollment</string>
     <string name="selector_register">Registration</string>
     <string name="selector_std_classlist">Student class list</string>
 
-    <string name="Firstname_txt">First name:</string>
-    <string name="Lastname_txt">Last name:</string>
-    <string name="firstname_hint">first name</string>
-    <string name="lastname_hint">last name</string>
-    <string name="email_txt">Email address:</string>
-    <string name="email_hint">email address</string>
-    <string name="password_txt">Password:</string>
-    <string name="password_hint">password</string>
-    <string name="confirmpass_txt">Confirm Password:</string>
-    <string name="confirmpass_hint">confirm password</string>
-    <string name="Iam_txt">I am......</string>
-    <string name="submit_txt">Submit</string>
+    <!-- Login Page-->
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_classid">Class ID</string>
+    <string name="btn_confirm">Confirm</string>
+    <string name="btn_login">Log In</string>
 
+    <!-- Registration Page -->
+    <string name="title_activity_register">Register</string>
+    <string name="hint_firstName">First Name</string>
+    <string name="hint_lastName">Last Name</string>
+    <string name="hint_confirmPwd">Confirm Password</string>
+    <string name="btn_register">Register</string>
+    <string name="text_register">New to raider grader? Register Here</string>
+
+    <string name="text_class">Class: </string>
+    <string name="text_courseNumber">Course Number: </string>
+    <string name="text_teacher">Teacher: </string>
+    <string name="text_startDate">Start Date: </string>
+    <string name="text_endDate">End Date: </string>
+    <string name="btn_submit">Submit</string>
+    <string name="text_confirm_enroll">Are you sure you want to join this class?</string>
+
+    <string name="action_settings">Settings</string>
 </resources>

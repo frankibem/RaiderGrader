@@ -35,7 +35,7 @@ public class ActivitySelector extends AppCompatActivity {
                 startActivity(intent3);
                 break;
             case R.id.btn_std_classlist:
-                Intent intent4 = new Intent(getApplicationContext(), RegistrationActivity.class);
+                Intent intent4 = new Intent(getApplicationContext(), StudentClassListActivity.class);
                 startActivity(intent4);
                 break;
             default:

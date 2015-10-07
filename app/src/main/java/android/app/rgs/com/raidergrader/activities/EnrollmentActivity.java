@@ -1,14 +1,35 @@
 package android.app.rgs.com.raidergrader.activities;
 
+import android.app.ProgressDialog;
 import android.app.rgs.com.raidergrader.R;
+import android.app.rgs.com.raidergrader.data_access.Repository;
+import android.app.rgs.com.raidergrader.data_access.RestTask;
+import android.app.rgs.com.raidergrader.data_access.RestUtil;
+import android.app.rgs.com.raidergrader.helpers.RgsTextWatcher;
+import android.app.rgs.com.raidergrader.helpers.ValidateConstant;
+import android.app.rgs.com.raidergrader.helpers.Validators;
+import android.app.rgs.com.raidergrader.view_models.ClassViewModel;
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
 
-public class EnrollmentActivity extends AppCompatActivity {
+import com.google.gson.Gson;
+
+import java.io.IOException;
+
+public class EnrollmentActivity extends AppCompatActivity
+implements RestTask.ProgressCallback, RestTask.ResponseCallback{
+
+    Button submitBtn;
+    EditText inputClassId;
+    TextInputLayout inputLayoutClassId;
+    ProgressDialog mProgress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,14 +38,54 @@ public class EnrollmentActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        submitBtn = (Button) findViewById(R.id.submit_btn);
+        inputClassId = (EditText) findViewById(R.id.input_classid);
+        inputLayoutClassId = (TextInputLayout) findViewById(R.id.input_layout_classid);
+
+        inputClassId.addTextChangedListener(new RgsTextWatcher(getWindow(), inputClassId, inputLayoutClassId, ValidateConstant.INTEGER));
     }
 
+    public void onClickSubmit(View v) {
+//        if(!Validators.hasNoError(inputLayoutClassId)) {
+//            return;
+//        }
+        String classid = inputClassId.getText().toString();
+
+        try {
+            RestTask task = RestUtil.obtainGetTask(Repository.baseUrl + "api/Classes/" + classid);
+            task.setProgressCallback(this);
+            task.setResponseCallback(this);
+            task.execute();
+
+            mProgress = ProgressDialog.show(this, "Loading", "Fetching Data", true);
+        } catch (IOException e) {
+            onRequestError(e);
+        }
+    }
+
+    @Override
+    public void onProgressUpdate(int progress) {
+
+    }
+
+    @Override
+    public void onRequestSuccess(String response) {
+        if(mProgress != null){
+            mProgress.dismiss();
+        }
+        Gson gson = new Gson();
+        ClassViewModel cvm = gson.fromJson(response, ClassViewModel.class);
+
+        Intent intent = new Intent(this, EnrollmentConfirmationActivity.class);
+        Repository.selectedEnrollClass = cvm;
+        startActivity(intent);
+    }
+
+    @Override
+    public void onRequestError(Exception error) {
+        if(mProgress != null){
+            mProgress.dismiss();
+        }
+        Toast.makeText(this,error.getMessage(), Toast.LENGTH_SHORT).show();
+    }
 }
