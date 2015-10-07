@@ -28,5 +28,11 @@
     <string name="btn_register">Register</string>
     <string name="text_register">New to raider grader? Register Here</string>
 
+    <string name="text_class">Class: </string>
+    <string name="text_courseNumber">Course Number: </string>
+    <string name="text_teacher">Teacher: </string>
+    <string name="text_startDate">Start Date: </string>
+    <string name="text_endDate">End Date: </string>
+
     <string name="action_settings">Settings</string>
 </resources>

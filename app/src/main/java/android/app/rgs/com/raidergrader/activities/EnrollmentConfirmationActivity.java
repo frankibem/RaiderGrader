@@ -1,6 +1,8 @@
 package android.app.rgs.com.raidergrader.activities;
 
 import android.app.rgs.com.raidergrader.R;
+import android.app.rgs.com.raidergrader.data_access.Repository;
+import android.app.rgs.com.raidergrader.view_models.ClassViewModel;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,16 +14,25 @@ import android.widget.TextView;
 public class EnrollmentConfirmationActivity extends AppCompatActivity {
 
     TextView outputEdit;
+    ClassViewModel cvm;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enrollment_confirmation);
+
+        cvm = Repository.selectedEnrollClass;
+        setReferences();
+        setTextValues();
+    }
+
+    private void setReferences(){
         outputEdit = (TextView) findViewById(R.id.enrollconfirm);
-        Intent intent = getIntent();
-        String outputText = String.format("Class ID: %s", intent.getStringExtra("classid"));
-        outputEdit.setText(outputText);
+    }
+
+    private void setTextValues(){
+
     }
 
     public void onClickConfirm(View v) {
