@@ -36,5 +36,8 @@
     <string name="btn_submit">Submit</string>
     <string name="text_confirm_enroll">Are you sure you want to join this class?</string>
 
+    <!-- Validation -->
+    <string name="invalid_password">Must be at least 6 characters long\nMust contain a digit\nMust contain upper and lowercase letters\nMust contain a punctuation</string>
+
     <string name="action_settings">Settings</string>
 </resources>

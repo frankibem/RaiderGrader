@@ -2,7 +2,9 @@ package android.app.rgs.com.raidergrader.activities;
 
 import android.app.ProgressDialog;
 import android.app.rgs.com.raidergrader.R;
+import android.app.rgs.com.raidergrader.data_access.HttpStatusCodes;
 import android.app.rgs.com.raidergrader.data_access.Repository;
+import android.app.rgs.com.raidergrader.data_access.RequestError;
 import android.app.rgs.com.raidergrader.data_access.RestTask;
 import android.app.rgs.com.raidergrader.data_access.RestUtil;
 import android.app.rgs.com.raidergrader.helpers.RgsTextWatcher;
@@ -83,7 +85,7 @@ public class LoginActivity extends AppCompatActivity
 
             mProgress = ProgressDialog.show(this, "Loading", "Logging you in...", true);
         } catch (Exception e) {
-            onRequestError(e);
+            onRequestError(new RequestError(HttpStatusCodes.Incomplete, e.getMessage()));
         }
     }
 
@@ -104,7 +106,8 @@ public class LoginActivity extends AppCompatActivity
             startActivity(intent);
             Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
         } catch (JSONException e) {
-            onRequestError(e);
+            //TODO: Consider carefully
+            onRequestError(new RequestError(HttpStatusCodes.Incomplete, e.getMessage()));
         }
     }
 
@@ -123,7 +126,7 @@ public class LoginActivity extends AppCompatActivity
 
 
     @Override
-    public void onRequestError(Exception error) {
+    public void onRequestError(RequestError error) {
         if (mProgress != null) {
             mProgress.dismiss();
         }

@@ -1,5 +1,6 @@
 package android.app.rgs.com.raidergrader.helpers;
 
+import android.app.rgs.com.raidergrader.R;
 import android.support.design.widget.TextInputLayout;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -49,7 +50,7 @@ public class RgsTextWatcher implements TextWatcher {
                 break;
             case PASSWORD:
                 if (!Validators.validatePassword(view.getText().toString())) {
-                    textInputLayout.setError("Enter the password");
+                    textInputLayout.setError(window.getContext().getResources().getString(R.string.invalid_password));
                     requestFocus(view);
                 } else {
                     textInputLayout.setError("");
@@ -75,7 +76,7 @@ public class RgsTextWatcher implements TextWatcher {
                 }
                 break;
             default:
-                textInputLayout.setError("Cannot validte input");
+                textInputLayout.setError("Cannot validate input");
                 requestFocus(view);
                 break;
         }
