@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity
         btnLogin = (Button) findViewById(R.id.btn_login);
 
         inputEmail.addTextChangedListener(new RgsTextWatcher(getWindow(), inputEmail, inputLayoutEmail, ValidateConstant.EMAIL));
-        inputPassword.addTextChangedListener(new RgsTextWatcher(getWindow(), inputPassword, inputLayoutPassword, ValidateConstant.PASSWORD));
+        inputPassword.addTextChangedListener(new RgsTextWatcher(getWindow(), inputPassword, inputLayoutPassword, ValidateConstant.NON_EMPTY_TEXT));
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +64,7 @@ public class LoginActivity extends AppCompatActivity
         if (!Validators.validateEmail(inputEmail.getText().toString())) {
             return;
         }
-        if (!Validators.validatePassword(inputPassword.getText().toString())) {
+        if (!Validators.validateNonEmptyText(inputPassword.getText().toString())) {
             inputLayoutPassword.setError("Password cannot be empty");
             return;
         }

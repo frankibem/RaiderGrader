@@ -26,14 +26,20 @@
             android:layout_height="wrap_content"
             android:hint="@string/hint_classid"
             android:inputType="number"
-            android:textSize="25dp" />
+            android:textSize="25dp"
+            android:singleLine="true"
+            android:maxLength="10" />
     </android.support.design.widget.TextInputLayout>
 
 
     <Button
         android:id="@+id/submit_btn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@color/colorPrimary"
         android:onClick="onClickSubmit"
-        android:text="@string/btn_submit" />
+        android:text="@string/btn_submit"
+        android:textColor="@android:color/white" />
+
 </LinearLayout>
