@@ -7,6 +7,7 @@ import android.app.rgs.com.raidergrader.data_access.Repository;
 import android.app.rgs.com.raidergrader.data_access.RequestError;
 import android.app.rgs.com.raidergrader.data_access.RestTask;
 import android.app.rgs.com.raidergrader.data_access.RestUtil;
+import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
 import android.app.rgs.com.raidergrader.helpers.RgsTextWatcher;
 import android.app.rgs.com.raidergrader.helpers.ValidateConstant;
 import android.app.rgs.com.raidergrader.helpers.Validators;
@@ -88,6 +89,11 @@ public class EnrollmentActivity extends AppCompatActivity
         if (mProgress != null) {
             mProgress.dismiss();
         }
-        Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
+
+        if (error.getStatusCode() == HttpStatusCodes.NotFound) {
+            GlobalHandling.makeShortToast(this, "No class exists with that ID");
+        }else{
+            GlobalHandling.generalError(this, error);
+        }
     }
 }

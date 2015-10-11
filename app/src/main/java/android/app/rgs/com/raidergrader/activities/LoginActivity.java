@@ -7,6 +7,7 @@ import android.app.rgs.com.raidergrader.data_access.Repository;
 import android.app.rgs.com.raidergrader.data_access.RequestError;
 import android.app.rgs.com.raidergrader.data_access.RestTask;
 import android.app.rgs.com.raidergrader.data_access.RestUtil;
+import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
 import android.app.rgs.com.raidergrader.helpers.RgsTextWatcher;
 import android.app.rgs.com.raidergrader.helpers.ValidateConstant;
 import android.app.rgs.com.raidergrader.helpers.Validators;
@@ -136,7 +137,13 @@ public class LoginActivity extends AppCompatActivity
         if (mProgress != null) {
             mProgress.dismiss();
         }
-        Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
+
+        if (error.getStatusCode() == HttpStatusCodes.BadRequest ||
+                error.getStatusCode() == HttpStatusCodes.Unauthorized) {
+            GlobalHandling.makeShortToast(this, "Incorrect username or password");
+        } else {
+            GlobalHandling.generalError(this, error);
+        }
     }
 
     public void onClickRegister(View view) {
