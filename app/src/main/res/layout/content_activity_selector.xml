@@ -42,4 +42,46 @@
         android:onClick="onClick"
         android:text="@string/selector_std_classlist" />
 
+    <Button
+        android:id="@+id/btn_std_classdetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="@string/selector_std_classdetail" />
+
+    <Button
+        android:id="@+id/btn_tch_classlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="@string/selector_tch_classlist" />
+
+    <Button
+        android:id="@+id/btn_std_dropclass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="@string/selector_std_dropclass" />
+
+    <Button
+        android:id="@+id/btn_tch_deleteclass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="@string/selector_tch_deleteclass" />
+
+    <Button
+        android:id="@+id/btn_tch_manageclass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="@string/selector_tch_manageclass" />
+
+    <Button
+        android:id="@+id/btn_std_workitemdetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClick"
+        android:text="@string/selector_std_workitemdetail" />
+
 </LinearLayout>

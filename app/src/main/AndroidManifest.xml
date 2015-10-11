@@ -49,6 +49,10 @@
         </activity>
         <activity android:name=".activities.TeacherDeleteClassActivity" >
         </activity>
+        <activity android:name=".activities.StudentClassDetailActivity" >
+        </activity>
+        <activity android:name=".activities.TeacherClassListActivity" >
+        </activity>
     </application>
 
 </manifest>
