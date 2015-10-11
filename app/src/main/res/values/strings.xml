@@ -38,6 +38,9 @@
 
     <!-- Validation -->
     <string name="invalid_password">Must be at least 6 characters long\nMust contain a digit\nMust contain upper and lowercase letters\nMust contain a punctuation</string>
+    <string name="invalid_email">Enter a valid email address</string>
+    <string name="invalid_nonEmptyText">Value must not be empty</string>
+    <string name="invalid_integer">Enter a valid integer</string>
 
     <string name="action_settings">Settings</string>
 </resources>

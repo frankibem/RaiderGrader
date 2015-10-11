@@ -41,7 +41,7 @@ public class RgsTextWatcher implements TextWatcher {
         switch (textType) {
             case EMAIL:
                 if (!Validators.validateEmail(view.getText().toString())) {
-                    textInputLayout.setError("Enter a valid email address");
+                    textInputLayout.setError(window.getContext().getResources().getString(R.string.invalid_email));
                     requestFocus(view);
                 } else {
                     textInputLayout.setError("");
@@ -59,7 +59,7 @@ public class RgsTextWatcher implements TextWatcher {
                 break;
             case NON_EMPTY_TEXT:
                 if (!Validators.validateNonEmptyText(view.getText().toString())) {
-                    textInputLayout.setError("Value must not be empty");
+                    textInputLayout.setError(window.getContext().getResources().getString(R.string.invalid_nonEmptyText));
                     requestFocus(view);
                 } else {
                     textInputLayout.setError("");
@@ -68,7 +68,7 @@ public class RgsTextWatcher implements TextWatcher {
                 break;
             case INTEGER:
                 if (!Validators.validateInteger(view.getText().toString())) {
-                    textInputLayout.setError("Enter a valid integer");
+                    textInputLayout.setError(window.getContext().getResources().getString(R.string.invalid_nonEmptyText));
                     requestFocus(view);
                 } else {
                     textInputLayout.setError("");

@@ -61,11 +61,17 @@ public class LoginActivity extends AppCompatActivity
     }
 
     private void submitForm() {
+        boolean hasErrors = false;
         if (!Validators.validateEmail(inputEmail.getText().toString())) {
-            return;
+            inputEmail.setError(getResources().getString(R.string.invalid_email));
+            hasErrors = true;
         }
         if (!Validators.validateNonEmptyText(inputPassword.getText().toString())) {
-            inputLayoutPassword.setError("Password cannot be empty");
+            inputLayoutPassword.setError(getResources().getString(R.string.invalid_nonEmptyText));
+            hasErrors = true;
+        }
+
+        if (hasErrors) {
             return;
         }
 
