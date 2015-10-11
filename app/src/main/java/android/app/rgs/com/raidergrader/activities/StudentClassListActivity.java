@@ -3,9 +3,12 @@ package android.app.rgs.com.raidergrader.activities;
 import android.app.ProgressDialog;
 import android.app.rgs.com.raidergrader.R;
 import android.app.rgs.com.raidergrader.adapters.ClassListAdapter;
+import android.app.rgs.com.raidergrader.data_access.HttpStatusCodes;
 import android.app.rgs.com.raidergrader.data_access.Repository;
+import android.app.rgs.com.raidergrader.data_access.RequestError;
 import android.app.rgs.com.raidergrader.data_access.RestTask;
 import android.app.rgs.com.raidergrader.data_access.RestUtil;
+import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
 import android.app.rgs.com.raidergrader.view_models.ClassViewModel;
 import android.content.Intent;
 import android.os.Bundle;
@@ -69,13 +72,12 @@ public class StudentClassListActivity extends AppCompatActivity
             task.execute();
             mProgress = ProgressDialog.show(this, "Loading", "Fetching your data", true);
         } catch (IOException e) {
-            onRequestError(e);
+            onRequestError(new RequestError(HttpStatusCodes.Incomplete, e.getMessage()));
         }
     }
 
     @Override
     public void onProgressUpdate(int progress) {
-
     }
 
     @Override
@@ -95,11 +97,15 @@ public class StudentClassListActivity extends AppCompatActivity
     }
 
     @Override
-    public void onRequestError(Exception error) {
+    public void onRequestError(RequestError error) {
         if (mProgress != null) {
             mProgress.dismiss();
         }
 
-        Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT);
+        if (error.getStatusCode() == HttpStatusCodes.NotFound) {
+            GlobalHandling.makeShortToast(this, "Error locating your account");
+        } else {
+            GlobalHandling.generalError(this, error);
+        }
     }
 }

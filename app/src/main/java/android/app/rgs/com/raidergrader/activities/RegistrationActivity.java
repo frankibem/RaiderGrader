@@ -2,9 +2,12 @@ package android.app.rgs.com.raidergrader.activities;
 
 import android.app.ProgressDialog;
 import android.app.rgs.com.raidergrader.R;
+import android.app.rgs.com.raidergrader.data_access.HttpStatusCodes;
 import android.app.rgs.com.raidergrader.data_access.Repository;
+import android.app.rgs.com.raidergrader.data_access.RequestError;
 import android.app.rgs.com.raidergrader.data_access.RestTask;
 import android.app.rgs.com.raidergrader.data_access.RestUtil;
+import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
 import android.app.rgs.com.raidergrader.helpers.RgsTextWatcher;
 import android.app.rgs.com.raidergrader.helpers.ValidateConstant;
 import android.app.rgs.com.raidergrader.helpers.Validators;
@@ -74,7 +77,7 @@ public class RegistrationActivity extends AppCompatActivity
         inputEmail.addTextChangedListener(new RgsTextWatcher(getWindow(), inputEmail,
                 inputLayoutEmail, ValidateConstant.EMAIL));
         inputPassword.addTextChangedListener(new RgsTextWatcher(getWindow(), inputPassword,
-                inputLayoutPassword, ValidateConstant.NON_EMPTY_TEXT));
+                inputLayoutPassword, ValidateConstant.PASSWORD));
         inputConfirmPwd.addTextChangedListener(new RgsTextWatcher(getWindow(), inputConfirmPwd,
                 inputLayoutConfirmPwd, ValidateConstant.NON_EMPTY_TEXT));
     }
@@ -145,7 +148,7 @@ public class RegistrationActivity extends AppCompatActivity
 
             mProgress = ProgressDialog.show(this, "Loading", "Creating your account", true);
         } catch (Exception e) {
-            onRequestError(e);
+            onRequestError(new RequestError(HttpStatusCodes.Incomplete, e.getMessage()));
         }
     }
 
@@ -167,11 +170,15 @@ public class RegistrationActivity extends AppCompatActivity
     }
 
     @Override
-    public void onRequestError(Exception error) {
+    public void onRequestError(RequestError error) {
         if (mProgress != null) {
             mProgress.dismiss();
         }
 
-        Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
+        if (error.getStatusCode() == HttpStatusCodes.BadRequest) {
+            GlobalHandling.makeShortToast(this, "Please review your input");
+        } else {
+            GlobalHandling.generalError(this, error);
+        }
     }
 }

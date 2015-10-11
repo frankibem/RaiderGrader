@@ -2,9 +2,12 @@ package android.app.rgs.com.raidergrader.activities;
 
 import android.app.ProgressDialog;
 import android.app.rgs.com.raidergrader.R;
+import android.app.rgs.com.raidergrader.data_access.HttpStatusCodes;
 import android.app.rgs.com.raidergrader.data_access.Repository;
+import android.app.rgs.com.raidergrader.data_access.RequestError;
 import android.app.rgs.com.raidergrader.data_access.RestTask;
 import android.app.rgs.com.raidergrader.data_access.RestUtil;
+import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
 import android.app.rgs.com.raidergrader.helpers.RgsTextWatcher;
 import android.app.rgs.com.raidergrader.helpers.ValidateConstant;
 import android.app.rgs.com.raidergrader.helpers.Validators;
@@ -48,7 +51,7 @@ public class LoginActivity extends AppCompatActivity
         btnLogin = (Button) findViewById(R.id.btn_login);
 
         inputEmail.addTextChangedListener(new RgsTextWatcher(getWindow(), inputEmail, inputLayoutEmail, ValidateConstant.EMAIL));
-        inputPassword.addTextChangedListener(new RgsTextWatcher(getWindow(), inputPassword, inputLayoutPassword, ValidateConstant.PASSWORD));
+        inputPassword.addTextChangedListener(new RgsTextWatcher(getWindow(), inputPassword, inputLayoutPassword, ValidateConstant.NON_EMPTY_TEXT));
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,11 +62,17 @@ public class LoginActivity extends AppCompatActivity
     }
 
     private void submitForm() {
+        boolean hasErrors = false;
         if (!Validators.validateEmail(inputEmail.getText().toString())) {
-            return;
+            inputEmail.setError(getResources().getString(R.string.invalid_email));
+            hasErrors = true;
         }
-        if (!Validators.validatePassword(inputPassword.getText().toString())) {
-            inputLayoutPassword.setError("Password cannot be empty");
+        if (!Validators.validateNonEmptyText(inputPassword.getText().toString())) {
+            inputLayoutPassword.setError(getResources().getString(R.string.invalid_nonEmptyText));
+            hasErrors = true;
+        }
+
+        if (hasErrors) {
             return;
         }
 
@@ -83,7 +92,7 @@ public class LoginActivity extends AppCompatActivity
 
             mProgress = ProgressDialog.show(this, "Loading", "Logging you in...", true);
         } catch (Exception e) {
-            onRequestError(e);
+            onRequestError(new RequestError(HttpStatusCodes.Incomplete, e.getMessage()));
         }
     }
 
@@ -104,7 +113,8 @@ public class LoginActivity extends AppCompatActivity
             startActivity(intent);
             Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show();
         } catch (JSONException e) {
-            onRequestError(e);
+            //TODO: Consider carefully
+            onRequestError(new RequestError(HttpStatusCodes.Incomplete, e.getMessage()));
         }
     }
 
@@ -123,11 +133,17 @@ public class LoginActivity extends AppCompatActivity
 
 
     @Override
-    public void onRequestError(Exception error) {
+    public void onRequestError(RequestError error) {
         if (mProgress != null) {
             mProgress.dismiss();
         }
-        Toast.makeText(this, error.getMessage(), Toast.LENGTH_SHORT).show();
+
+        if (error.getStatusCode() == HttpStatusCodes.BadRequest ||
+                error.getStatusCode() == HttpStatusCodes.Unauthorized) {
+            GlobalHandling.makeShortToast(this, "Incorrect username or password");
+        } else {
+            GlobalHandling.generalError(this, error);
+        }
     }
 
     public void onClickRegister(View view) {

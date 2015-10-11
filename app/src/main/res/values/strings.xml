@@ -26,7 +26,7 @@
     <string name="hint_lastName">Last Name</string>
     <string name="hint_confirmPwd">Confirm Password</string>
     <string name="btn_register">Register</string>
-    <string name="text_register">New to raider grader? Register Here</string>
+    <string name="text_register">New to Raider Grader? Register Here</string>
 
     <string name="text_class">Class: </string>
     <string name="text_courseNumber">Course Number: </string>
@@ -35,6 +35,12 @@
     <string name="text_endDate">End Date: </string>
     <string name="btn_submit">Submit</string>
     <string name="text_confirm_enroll">Are you sure you want to join this class?</string>
+
+    <!-- Validation -->
+    <string name="invalid_password">Must be at least 6 characters long\nMust contain a digit\nMust contain upper and lowercase letters\nMust contain a punctuation</string>
+    <string name="invalid_email">Enter a valid email address</string>
+    <string name="invalid_nonEmptyText">Value must not be empty</string>
+    <string name="invalid_integer">Enter a valid integer</string>
 
     <string name="action_settings">Settings</string>
 </resources>

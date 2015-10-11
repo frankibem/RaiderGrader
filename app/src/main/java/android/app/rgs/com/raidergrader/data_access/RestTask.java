@@ -35,7 +35,7 @@ public class RestTask extends AsyncTask<Void, Integer, Object> {
          *
          * @param error
          */
-        void onRequestError(Exception error);
+        void onRequestError(RequestError error);
     }
 
     /**
@@ -149,8 +149,7 @@ public class RestTask extends AsyncTask<Void, Integer, Object> {
             int status = mConnection.getResponseCode();
             if (status >= 300) {
                 String message = mConnection.getResponseMessage();
-                //TODO: Replace with custom exception class to allow embedding status codes
-                return new Exception(message);
+                return new RequestError(status, message);
             }
 
             InputStream in = mConnection.getInputStream();
@@ -198,11 +197,10 @@ public class RestTask extends AsyncTask<Void, Integer, Object> {
             final ResponseCallback cb = mResponseCallback.get();
             if (result instanceof String) {
                 cb.onRequestSuccess((String) result);
-                //TODO: Create exception class for http exceptions so status code can be embedded.
-            } else if (result instanceof Exception) {
-                cb.onRequestError((Exception) result);
+            } else if (result instanceof RequestError) {
+                cb.onRequestError((RequestError) result);
             } else {
-                cb.onRequestError(new IOException("Unknown Error Contacting Host"));
+                cb.onRequestError(new RequestError(HttpStatusCodes.Incomplete, "An unknown Error occured"));
             }
         }
     }

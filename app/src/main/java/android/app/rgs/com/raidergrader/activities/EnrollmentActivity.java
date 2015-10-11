@@ -2,9 +2,12 @@ package android.app.rgs.com.raidergrader.activities;
 
 import android.app.ProgressDialog;
 import android.app.rgs.com.raidergrader.R;
+import android.app.rgs.com.raidergrader.data_access.HttpStatusCodes;
 import android.app.rgs.com.raidergrader.data_access.Repository;
+import android.app.rgs.com.raidergrader.data_access.RequestError;
 import android.app.rgs.com.raidergrader.data_access.RestTask;
 import android.app.rgs.com.raidergrader.data_access.RestUtil;
+import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
 import android.app.rgs.com.raidergrader.helpers.RgsTextWatcher;
 import android.app.rgs.com.raidergrader.helpers.ValidateConstant;
 import android.app.rgs.com.raidergrader.helpers.Validators;
@@ -24,7 +27,7 @@ import com.google.gson.Gson;
 import java.io.IOException;
 
 public class EnrollmentActivity extends AppCompatActivity
-implements RestTask.ProgressCallback, RestTask.ResponseCallback{
+        implements RestTask.ProgressCallback, RestTask.ResponseCallback {
 
     Button submitBtn;
     EditText inputClassId;
@@ -59,7 +62,7 @@ implements RestTask.ProgressCallback, RestTask.ResponseCallback{
 
             mProgress = ProgressDialog.show(this, "Loading", "Fetching Data", true);
         } catch (IOException e) {
-            onRequestError(e);
+            onRequestError(new RequestError(HttpStatusCodes.Incomplete, e.getMessage()));
         }
     }
 
@@ -70,7 +73,7 @@ implements RestTask.ProgressCallback, RestTask.ResponseCallback{
 
     @Override
     public void onRequestSuccess(String response) {
-        if(mProgress != null){
+        if (mProgress != null) {
             mProgress.dismiss();
         }
         Gson gson = new Gson();
@@ -82,10 +85,15 @@ implements RestTask.ProgressCallback, RestTask.ResponseCallback{
     }
 
     @Override
-    public void onRequestError(Exception error) {
-        if(mProgress != null){
+    public void onRequestError(RequestError error) {
+        if (mProgress != null) {
             mProgress.dismiss();
         }
-        Toast.makeText(this,error.getMessage(), Toast.LENGTH_SHORT).show();
+
+        if (error.getStatusCode() == HttpStatusCodes.NotFound) {
+            GlobalHandling.makeShortToast(this, "No class exists with that ID");
+        }else{
+            GlobalHandling.generalError(this, error);
+        }
     }
 }

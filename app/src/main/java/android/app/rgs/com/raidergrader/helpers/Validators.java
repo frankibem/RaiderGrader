@@ -21,7 +21,10 @@ public class Validators {
      * Returns true if @inputPassword is a valid password according to our application rules
      */
     public static boolean validatePassword(String inputPassword) {
-        return !inputPassword.isEmpty();
+        return inputPassword.length() >= 6 && StringUtils.containsDigit(inputPassword) &&
+                StringUtils.containsLowerCase(inputPassword) &&
+                StringUtils.containsUpperCase(inputPassword) &&
+                StringUtils.notContainsAlphaNumeric(inputPassword);
     }
 
     /**
@@ -35,16 +38,18 @@ public class Validators {
 
     /**
      * Returns true if the two strings are equal
+     *
      * @param first
      * @param second
      * @return
      */
-    public static boolean validateTextEquality(String first, String second){
+    public static boolean validateTextEquality(String first, String second) {
         return first.equals(second);
     }
 
     /**
      * Returns true if the input string is a valid integer
+     *
      * @param inputNumber
      * @return
      */
@@ -60,6 +65,7 @@ public class Validators {
     /**
      * Returns true if the associated TextView has no errors according
      * to our validation rules
+     *
      * @param til
      * @return
      */
