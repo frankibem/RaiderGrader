@@ -24,6 +24,3 @@ A blackboard inspired application that allows teachers and students to track the
 - Enter an email address and password
 - Password rules: At least 6 characters in length, at least 1 uppercase letter, 1 lowercase letter, a digit and a punctuation.
 - If registration is successful, you will be taken back to the login page.
-
-## Error Handling
-- At this moment, error handling has not been fully implemented. Bear with us, if you encounter any problems.
