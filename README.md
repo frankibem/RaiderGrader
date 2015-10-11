@@ -20,7 +20,7 @@ A blackboard inspired application that allows teachers and students to track the
 - Note that if the student is already enrolled in a class, re-enrolling will fail.
 
 #### Creating an account:
-- Hit the link for registration at the bottom of the login page
+- Hit the registration bottom at the top of the login page
 - Enter an email address and password
 - Password rules: At least 6 characters in length, at least 1 uppercase letter, 1 lowercase letter, a digit and a punctuation.
 - If registration is successful, you will be taken back to the login page.
