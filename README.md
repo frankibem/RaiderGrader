@@ -7,7 +7,7 @@ A blackboard inspired application that allows teachers and students to track the
 - Launch with emulator or suitable android device (preferred, must be API 21 and above)
 
 #### Logging in
-- You can log in with these details: Email-- frankibem@rgs.com  Password-- Ss1*ss OR
+- You can log in with these details: Email-- frankibem@rgs.com  Password-- SuperSecurePassword100 OR
 - If you prefer, you can create a new account for testing (see "Creating an account" below).
 - If successful, you will be taken to the student class list page which shows all classes that the current user has enrolled in.
 
