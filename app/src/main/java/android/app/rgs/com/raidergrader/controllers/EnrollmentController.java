@@ -2,7 +2,6 @@ package android.app.rgs.com.raidergrader.controllers;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.app.rgs.com.raidergrader.activities.EnrollmentConfirmationActivity;
 import android.app.rgs.com.raidergrader.activities.StudentClassListActivity;
 import android.app.rgs.com.raidergrader.data_access.HttpStatusCodes;
 import android.app.rgs.com.raidergrader.data_access.Repository;

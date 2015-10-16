@@ -31,12 +31,8 @@ public class EnrollmentConfirmationActivity extends AppCompatActivity
         implements ControllerCallback {
 
     TextView className, courseNumber, teacherName;
-//    TextView startDate;
-//    TextView endDate;
 
-    private ProgressDialog mProgress;
     private ClassViewModel cvm;
-
     private EnrollmentController controller;
 
     @Override
