@@ -164,6 +164,17 @@ public class AccountController {
     }
 
     /**
+     * Logs the user out of the application and deletes his/her credentials
+     */
+    public void LogUserOut() {
+        SharedPreferences settings = activity.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.remove(Repository.ACCESS_TOKEN_KEY);
+        editor.remove(Repository.USERNAME_KEY);
+        editor.commit();
+    }
+
+    /**
      * Store the user's credentials for next use
      *
      * @param username The user's username
