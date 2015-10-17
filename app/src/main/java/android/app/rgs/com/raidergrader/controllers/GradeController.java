@@ -7,7 +7,7 @@ import android.app.rgs.com.raidergrader.models.ControllerCallback;
 /**
  * Created by Frank Ibem on 10/16/2015.
  */
-public class AnnouncementController {
+public class GradeController {
     private Activity activity;
     private ControllerCallback controllerCallback;
     private ProgressDialog mProgress;
@@ -18,7 +18,7 @@ public class AnnouncementController {
      * @param activity Activity to be used by the controller
      * @param callback Callback to be notified when results are received
      */
-    public AnnouncementController(Activity activity, ControllerCallback callback) {
+    public GradeController(Activity activity, ControllerCallback callback) {
         this.activity = activity;
         this.controllerCallback = callback;
     }
