@@ -12,10 +12,16 @@ import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
 import android.app.rgs.com.raidergrader.helpers.JsonHelpers;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
 import android.app.rgs.com.raidergrader.models.EnrollmentBindingModel;
+import android.app.rgs.com.raidergrader.models.EnrollmentModel;
+import android.app.rgs.com.raidergrader.models.ScoreUnitModel;
 import android.content.Intent;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 /**
  * Created by Frank Ibem on 10/16/2015.
@@ -134,6 +140,59 @@ public class EnrollmentController {
             task.execute();
 
             mProgress = ProgressDialog.show(activity, "Loading", "Dropping class...", true);
+        } catch (Exception ex) {
+            responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
+        }
+    }
+
+    /*
+    * Lauren Joness
+    * Returns a list of all enrollments for a student (pending and not)
+    * */
+    public void GetStudentEnrollments(String studentUserName){
+        RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
+            @Override
+            public void onRequestSuccess(String response) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+                Gson gson = JsonHelpers.getGson();
+
+                Type type = new TypeToken<List<EnrollmentModel>>() {
+                }.getType();
+                List<EnrollmentModel> result = gson.fromJson(response, type);
+
+                controllerCallback.DisplayResult(result);
+            }
+
+            @Override
+            public void onRequestError(RequestError error) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
+                // TODO: Add appropriate error handling later
+                if (error.getStatusCode() == HttpStatusCodes.Conflict) {
+                    GlobalHandling.makeShortToast(activity, "Error loading enrollments");
+                } else {
+                    GlobalHandling.generalError(activity, error);
+                }
+            }
+        };
+
+        RestTask.ProgressCallback progressCallback = new RestTask.ProgressCallback() {
+            @Override
+            public void onProgressUpdate(int progress) {
+            }
+        };
+
+        try {
+            RestTask task = RestUtil.obtainGetTask(Repository.baseUrl + "api/Enrollments?studentUserName=" + studentUserName);
+            task.setResponseCallback(responseCallback);
+            task.setProgressCallback(progressCallback);
+            task.execute();
+
+            mProgress = ProgressDialog.show(activity, "Loading", "Loading student enrollments", true);
         } catch (Exception ex) {
             responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
         }
