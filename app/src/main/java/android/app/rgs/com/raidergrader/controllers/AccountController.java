@@ -35,7 +35,7 @@ public class AccountController {
 
     /**
      * Creates an AccountController
-     *
+     * Frank Ibem
      * @param activity Activity to be used by the controller
      * @param callback Callback to be notified when results are received
      */
