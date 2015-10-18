@@ -10,6 +10,7 @@ import android.app.rgs.com.raidergrader.data_access.RequestError;
 import android.app.rgs.com.raidergrader.data_access.RestTask;
 import android.app.rgs.com.raidergrader.data_access.RestUtil;
 import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
+import android.app.rgs.com.raidergrader.models.AnnouncementModel;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
 import android.app.rgs.com.raidergrader.models.RegisterModel;
 import android.content.Context;
@@ -36,6 +37,7 @@ public class AccountController {
     /**
      * Creates an AccountController
      * Frank Ibem
+     *
      * @param activity Activity to be used by the controller
      * @param callback Callback to be notified when results are received
      */
@@ -188,4 +190,5 @@ public class AccountController {
         editor.putString(Repository.USERNAME_KEY, Repository.USERNAME);
         editor.commit();
     }
+
 }
