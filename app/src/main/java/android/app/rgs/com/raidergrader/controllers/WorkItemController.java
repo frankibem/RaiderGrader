@@ -160,7 +160,6 @@ public class WorkItemController {
      * @param classId
      */
     public void GetWorkItemsForClass(int classId){
-
         RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
             @Override
             public void onRequestSuccess(String response) {
@@ -192,7 +191,7 @@ public class WorkItemController {
             }
         };
 
-        try{
+        try {
             RestTask task = RestUtil.obtainGetTask(Repository.baseUrl + "api/WorkItems?classId=" + classId);
             task.setResponseCallback(responseCallback);
             task.setProgressCallback(progressCallback);
@@ -202,6 +201,5 @@ public class WorkItemController {
         } catch (Exception ex){
             responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
         }
-
     }
 }

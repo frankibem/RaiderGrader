@@ -150,7 +150,7 @@ public class AnnouncementController {
      * @param model
      */
     public void UpdateAnnouncement(UpdateAnnouncementModel model) {
-        Gson gson = new Gson();
+        Gson gson = JsonHelpers.getGson();
         String request = gson.toJson(model);
 
         RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
@@ -161,7 +161,6 @@ public class AnnouncementController {
                 }
 
                 Toast.makeText(activity, "Announcement updated.", Toast.LENGTH_SHORT).show();
-
                 controllerCallback.DisplayResult(null);
             }
 
