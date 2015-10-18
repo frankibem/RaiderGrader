@@ -1,6 +1,6 @@
 package android.app.rgs.com.raidergrader.adapters;
 
-import android.app.rgs.com.raidergrader.view_models.ClassViewModel;
+import android.app.rgs.com.raidergrader.models.ClassModel;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.TextUtils;
@@ -12,11 +12,11 @@ import android.widget.TextView;
 
 import java.util.List;
 
-public class ClassListAdapter extends ArrayAdapter<ClassViewModel> {
-    private final List<ClassViewModel> classes;
+public class ClassListAdapter extends ArrayAdapter<ClassModel> {
+    private final List<ClassModel> classes;
     private final Context context;
 
-    public ClassListAdapter(Context context, List<ClassViewModel> classes) {
+    public ClassListAdapter(Context context, List<ClassModel> classes) {
         super(context, -1, classes);
 
         this.context = context;
@@ -30,7 +30,7 @@ public class ClassListAdapter extends ArrayAdapter<ClassViewModel> {
         View rowView = inflater.inflate(android.R.layout.simple_list_item_1, parent, false);
         TextView textView = (TextView) rowView.findViewById(android.R.id.text1);
 
-        ClassViewModel cvm = classes.get(position);
+        ClassModel cvm = classes.get(position);
         textView.setText(cvm.Title);
         textView.setTextColor(Color.BLACK);
         textView.setEllipsize(TextUtils.TruncateAt.END);

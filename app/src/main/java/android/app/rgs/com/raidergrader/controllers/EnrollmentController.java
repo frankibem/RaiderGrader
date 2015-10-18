@@ -10,7 +10,7 @@ import android.app.rgs.com.raidergrader.data_access.RestTask;
 import android.app.rgs.com.raidergrader.data_access.RestUtil;
 import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
-import android.app.rgs.com.raidergrader.models.EnrollmentRequestModel;
+import android.app.rgs.com.raidergrader.models.EnrollmentBindingModel;
 import android.content.Intent;
 import android.widget.Toast;
 
@@ -40,7 +40,7 @@ public class EnrollmentController {
      *
      * @param model Model containing the details of the request
      */
-    public void RequestEnrollment(EnrollmentRequestModel model) {
+    public void RequestEnrollment(EnrollmentBindingModel model) {
         Gson gson = new Gson();
         String request = gson.toJson(model);
 

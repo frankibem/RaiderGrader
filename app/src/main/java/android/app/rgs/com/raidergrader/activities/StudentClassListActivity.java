@@ -9,17 +9,15 @@ import android.app.rgs.com.raidergrader.data_access.RequestError;
 import android.app.rgs.com.raidergrader.data_access.RestTask;
 import android.app.rgs.com.raidergrader.data_access.RestUtil;
 import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
-import android.app.rgs.com.raidergrader.view_models.ClassViewModel;
+import android.app.rgs.com.raidergrader.models.ClassModel;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -86,10 +84,10 @@ public class StudentClassListActivity extends AppCompatActivity
             mProgress.dismiss();
         }
 
-        Type listType = new TypeToken<List<ClassViewModel>>() {
+        Type listType = new TypeToken<List<ClassModel>>() {
         }.getType();
         Gson gson = new Gson();
-        List<ClassViewModel> cvms = gson.fromJson(response, listType);
+        List<ClassModel> cvms = gson.fromJson(response, listType);
         Repository.studentClasses = cvms;
 
         ClassListAdapter adapter = new ClassListAdapter(getApplicationContext(), cvms);
