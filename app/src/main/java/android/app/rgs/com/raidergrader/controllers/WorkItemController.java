@@ -159,7 +159,7 @@ public class WorkItemController {
      * Created by Michael Arroyo 10/18/2015
      * @param classId
      */
-    public void ListWorkItems(int classId){
+    public void GetWorkItemsForClass(int classId){
 
         RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
             @Override

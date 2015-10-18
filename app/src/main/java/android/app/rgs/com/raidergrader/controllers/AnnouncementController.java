@@ -12,6 +12,7 @@ import android.app.rgs.com.raidergrader.helpers.JsonHelpers;
 import android.app.rgs.com.raidergrader.models.AnnouncementModel;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
 import android.app.rgs.com.raidergrader.models.CreateAnnouncementModel;
+import android.app.rgs.com.raidergrader.models.UpdateAnnouncementModel;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -138,6 +139,60 @@ public class AnnouncementController {
             task.execute();
 
             mProgress = ProgressDialog.show(activity, "Loading", "Deleting your announcement", true);
+        } catch (Exception ex) {
+            responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
+        }
+    }
+
+    /**
+     * Update the details of an announcement
+     * Created by Michael Arroyo on 10/18/2015
+     * @param model
+     */
+    public void UpdateAnnouncement(UpdateAnnouncementModel model) {
+        Gson gson = new Gson();
+        String request = gson.toJson(model);
+
+        RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
+            @Override
+            public void onRequestSuccess(String response) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
+                Toast.makeText(activity, "Announcement updated.", Toast.LENGTH_SHORT).show();
+
+                controllerCallback.DisplayResult(null);
+            }
+
+            @Override
+            public void onRequestError(RequestError error) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
+                //TODO: Add appropriate error handling later
+                if (error.getStatusCode() == HttpStatusCodes.BadRequest) {
+                    GlobalHandling.makeShortToast(activity, "Please review your input.");
+                } else {
+                    GlobalHandling.generalError(activity, error);
+                }
+            }
+        };
+
+        RestTask.ProgressCallback progressCallback = new RestTask.ProgressCallback() {
+            @Override
+            public void onProgressUpdate(int progress) {
+            }
+        };
+
+        try {
+            RestTask task = RestUtil.obtainJSONPutTask(Repository.baseUrl + "api/Announcement", request);
+            task.setProgressCallback(progressCallback);
+            task.setResponseCallback(responseCallback);
+            task.execute();
+
+            mProgress = ProgressDialog.show(activity, "Loading", "Updating announcement details", true);
         } catch (Exception ex) {
             responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
         }
