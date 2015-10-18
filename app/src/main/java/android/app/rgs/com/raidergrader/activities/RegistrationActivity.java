@@ -146,5 +146,7 @@ public class RegistrationActivity extends AppCompatActivity
 
     @Override
     public void DisplayResult(Object result) {
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 }
