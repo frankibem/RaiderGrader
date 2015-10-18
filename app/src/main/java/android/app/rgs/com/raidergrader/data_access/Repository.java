@@ -1,6 +1,6 @@
 package android.app.rgs.com.raidergrader.data_access;
 
-import android.app.rgs.com.raidergrader.view_models.ClassViewModel;
+import android.app.rgs.com.raidergrader.models.ClassModel;
 
 import java.util.List;
 
@@ -14,6 +14,6 @@ public class Repository {
     public static String USERNAME_KEY = "USERNAME";
     public static String USERNAME = "";
 
-    public static List<ClassViewModel> studentClasses;
-    public static ClassViewModel selectedEnrollClass;
+    public static List<ClassModel> studentClasses;
+    public static ClassModel selectedEnrollClass;
 }
