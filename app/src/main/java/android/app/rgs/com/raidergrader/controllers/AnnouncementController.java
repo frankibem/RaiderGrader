@@ -91,4 +91,55 @@ public class AnnouncementController {
             responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
         }
     }
+
+    /*
+    * Lauren Joness
+    * Deletes an announcement
+    * @param announcementID ID of the announcement to delete
+    * */
+
+    public void DeleteAnnouncement(int announcementId){
+        RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
+            @Override
+            public void onRequestSuccess(String response) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
+                Toast.makeText(activity, "Announcement deleted", Toast.LENGTH_SHORT).show();
+                controllerCallback.DisplayResult(null);
+            }
+
+            @Override
+            public void onRequestError(RequestError error) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
+                // TODO: Add appropriate error handling later
+                if (error.getStatusCode() == HttpStatusCodes.Conflict) {
+                    GlobalHandling.makeShortToast(activity, "Error deleting announcement");
+                } else {
+                    GlobalHandling.generalError(activity, error);
+                }
+            }
+        };
+
+        RestTask.ProgressCallback progressCallback = new RestTask.ProgressCallback() {
+            @Override
+            public void onProgressUpdate(int progress) {
+            }
+        };
+
+        try {
+            RestTask task = RestUtil.obtainDeleteTask(Repository.baseUrl + "api/Announcements/" + announcementId);
+            task.setResponseCallback(responseCallback);
+            task.setProgressCallback(progressCallback);
+            task.execute();
+
+            mProgress = ProgressDialog.show(activity, "Loading", "Deleting your announcement", true);
+        } catch (Exception ex) {
+            responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
+        }
+    }
 }
