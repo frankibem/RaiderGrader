@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 
 import com.google.gson.reflect.TypeToken;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 
@@ -44,6 +45,7 @@ public class WorkItemController {
     /**
      * Noris Rogers
      * Updates the details of a work item
+     *
      */
     public void UpdateWorkItem(UpdateWorkItemModel updateWorkItemModel) {
         Gson gson = JsonHelpers.getGson();
@@ -56,7 +58,7 @@ public class WorkItemController {
                     mProgress.dismiss();
                 }
 
-                Toast.makeText(activity, "Work Item Updated", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "Work item updated", Toast.LENGTH_SHORT).show();
                 controllerCallback.DisplayResult(null);
             }
 
@@ -148,8 +150,7 @@ public class WorkItemController {
      *
      * @param classId
      */
-    public void ListWorkItems(int classId) {
-
+    public void GetWorkItemsForClass(int classId){
         RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
             @Override
             public void onRequestSuccess(String response) {

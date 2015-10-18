@@ -53,7 +53,7 @@ public class EnrollmentConfirmationActivity extends AppCompatActivity
         model.ClassId = cvm.Id;
         model.StudentUserName = Repository.USERNAME;
 
-        controller.RequestEnrollment(model);
+        controller.RequestEnrollmentforStudent(model);
     }
 
     @Override
