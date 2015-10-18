@@ -9,38 +9,16 @@ import android.app.rgs.com.raidergrader.data_access.RestTask;
 import android.app.rgs.com.raidergrader.data_access.RestUtil;
 import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
 import android.app.rgs.com.raidergrader.helpers.JsonHelpers;
-import android.app.rgs.com.raidergrader.activities.StudentClassListActivity;
-import android.app.rgs.com.raidergrader.activities.StudentWorkItemDetailActivity;
-import android.app.rgs.com.raidergrader.data_access.HttpStatusCodes;
-import android.app.rgs.com.raidergrader.data_access.Repository;
-import android.app.rgs.com.raidergrader.data_access.RequestError;
-import android.app.rgs.com.raidergrader.data_access.RestTask;
-import android.app.rgs.com.raidergrader.data_access.RestUtil;
-import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
-import android.app.rgs.com.raidergrader.helpers.JsonHelpers;
-import android.app.rgs.com.raidergrader.data_access.HttpStatusCodes;
-import android.app.rgs.com.raidergrader.data_access.Repository;
-import android.app.rgs.com.raidergrader.data_access.RequestError;
-import android.app.rgs.com.raidergrader.data_access.RestTask;
-import android.app.rgs.com.raidergrader.data_access.RestUtil;
-import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
 import android.app.rgs.com.raidergrader.models.CreateWorkItemModel;
 import android.app.rgs.com.raidergrader.models.WorkItemModel;
 import android.widget.Toast;
 import android.app.rgs.com.raidergrader.models.UpdateWorkItemModel;
-import android.content.Intent;
-import android.widget.Toast;
-import android.app.rgs.com.raidergrader.models.WorkItemModel;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
-import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 
@@ -66,10 +44,8 @@ public class WorkItemController {
     /**
      * Noris Rogers
      * Updates the details of a work item
-     *
      */
-    public void UpdateWorkItem(UpdateWorkItemModel updateWorkItemModel)
-    {
+    public void UpdateWorkItem(UpdateWorkItemModel updateWorkItemModel) {
         Gson gson = JsonHelpers.getGson();
         String request = gson.toJson(updateWorkItemModel);
 
@@ -121,7 +97,7 @@ public class WorkItemController {
     /* Claire Gray
      * deleting Work item
      */
-    public void DeleteWorkItem(int workItemId){
+    public void DeleteWorkItem(int workItemId) {
         RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
             @Override
             public void onRequestSuccess(String response) {
@@ -169,9 +145,10 @@ public class WorkItemController {
     /**
      * List all of the work items for a given class.
      * Created by Michael Arroyo 10/18/2015
+     *
      * @param classId
      */
-    public void ListWorkItems(int classId){
+    public void ListWorkItems(int classId) {
 
         RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
             @Override
@@ -184,6 +161,7 @@ public class WorkItemController {
 
                 controllerCallback.DisplayResult(result);
             }
+
             public void onRequestError(RequestError error) {
                 if (mProgress != null) {
                     mProgress.dismiss();
@@ -204,14 +182,14 @@ public class WorkItemController {
             }
         };
 
-        try{
+        try {
             RestTask task = RestUtil.obtainGetTask(Repository.baseUrl + "api/WorkItems?classId=" + classId);
             task.setResponseCallback(responseCallback);
             task.setProgressCallback(progressCallback);
             task.execute();
 
             mProgress = ProgressDialog.show(activity, "Loading", "Fetching your work items", true);
-        } catch (Exception ex){
+        } catch (Exception ex) {
             responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
         }
 
