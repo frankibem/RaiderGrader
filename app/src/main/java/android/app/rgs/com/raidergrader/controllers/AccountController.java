@@ -60,10 +60,8 @@ public class AccountController {
                     mProgress.dismiss();
                 }
 
-                Intent intent = new Intent(activity, LoginActivity.class);
-                activity.startActivity(intent);
-
                 Toast.makeText(activity, "Account created", Toast.LENGTH_SHORT).show();
+                controllerCallback.DisplayResult(null);
             }
 
             @Override

@@ -9,9 +9,26 @@ import android.app.rgs.com.raidergrader.data_access.RestTask;
 import android.app.rgs.com.raidergrader.data_access.RestUtil;
 import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
 import android.app.rgs.com.raidergrader.helpers.JsonHelpers;
+import android.app.rgs.com.raidergrader.models.ClassModel;
+import android.app.rgs.com.raidergrader.data_access.HttpStatusCodes;
+import android.app.rgs.com.raidergrader.data_access.Repository;
+import android.app.rgs.com.raidergrader.data_access.RequestError;
+import android.app.rgs.com.raidergrader.data_access.RestTask;
+import android.app.rgs.com.raidergrader.data_access.RestUtil;
+import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
+import android.app.rgs.com.raidergrader.helpers.JsonHelpers;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
+import android.app.rgs.com.raidergrader.models.UpdateClassModel;
+import android.widget.Toast;
 import android.app.rgs.com.raidergrader.models.CreateClassModel;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.List;
 
 import com.google.gson.Gson;
 
@@ -138,4 +155,111 @@ public class ClassController {
             responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
         }
     }
+
+    /**
+     * Update the details of a class
+     * Created by Michael Arroyo on 10/18/2015
+     * @param model
+     */
+    public void UpdateClass(UpdateClassModel model) {
+        Gson gson = new Gson();
+        String request = gson.toJson(model);
+
+        RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
+            @Override
+            public void onRequestSuccess(String response) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
+                Toast.makeText(activity, "Class updated.", Toast.LENGTH_SHORT).show();
+
+                controllerCallback.DisplayResult(null);
+            }
+
+            @Override
+            public void onRequestError(RequestError error) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
+                //TODO: Add appropriate error handling later
+                if (error.getStatusCode() == HttpStatusCodes.BadRequest) {
+                    GlobalHandling.makeShortToast(activity, "Please review your input.");
+                } else {
+                    GlobalHandling.generalError(activity, error);
+                }
+            }
+        };
+
+        RestTask.ProgressCallback progressCallback = new RestTask.ProgressCallback() {
+            @Override
+            public void onProgressUpdate(int progress) {
+            }
+        };
+
+        try {
+            RestTask task = RestUtil.obtainJSONPutTask(Repository.baseUrl + "api/Classes", request);
+            task.setProgressCallback(progressCallback);
+            task.setResponseCallback(responseCallback);
+            task.execute();
+
+            mProgress = ProgressDialog.show(activity, "Loading", "Updating class details", true);
+        } catch (Exception ex) {
+            responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
+        }
+    }
+
+    /**
+     * Returns a list of all classes taught by a given teacher.
+     * Created by Michael Arroyo 10/18/2015
+     * @param userName
+     */
+    public void GetTeacherClasses(String userName) {
+
+        RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
+            @Override
+            public void onRequestSuccess(String response) {
+                Gson gson = JsonHelpers.getGson();
+
+                Type type = new TypeToken<List<ClassModel>>() {
+                }.getType();
+                List<ClassModel> result = gson.fromJson(response, type);
+
+                controllerCallback.DisplayResult(result);
+            }
+
+            @Override
+            public void onRequestError(RequestError error) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
+                //TODO: Add appropriate error handling later
+                if (error.getStatusCode() == HttpStatusCodes.BadRequest) {
+                    GlobalHandling.makeShortToast(activity, "Please review your input.");
+                } else {
+                    GlobalHandling.generalError(activity, error);
+                }
+            }
+        };
+
+        RestTask.ProgressCallback progressCallback = new RestTask.ProgressCallback() {
+            @Override
+            public void onProgressUpdate(int progress) {
+            }
+        };
+
+        try{
+            RestTask task = RestUtil.obtainGetTask(Repository.baseUrl + "api/Classes?userName=" + userName);
+            task.setProgressCallback(progressCallback);
+            task.setResponseCallback(responseCallback);
+            task.execute();
+
+            mProgress = ProgressDialog.show(activity, "Loading", "Getting class list", true);
+        } catch (Exception ex) {
+            responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
+        }
+    }
 }
+
