@@ -147,6 +147,28 @@ public class RestUtil {
     }
 
     /**
+     * Returns a RestTask for a HTTP DELETE with a JSON body
+     *
+     * @param url
+     * @param jsonBody
+     * @return
+     * @throws MalformedURLException
+     * @throws IOException
+     */
+
+    public static RestTask obtainJSONDeleteTask(String url, String jsonBody)
+            throws IOException {
+        HttpURLConnection connection = createDefaultConnection(url);
+        attachAuthentication(connection);
+        connection.setRequestMethod("DELETE");
+        connection.setDoInput(true);
+
+        RestTask task = new RestTask(connection);
+        task.setFormBody(jsonBody);
+        return task;
+    }
+
+    /**
      * Creates a connection with default time out values
      *
      * @param url
