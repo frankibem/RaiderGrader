@@ -80,4 +80,33 @@ public class WorkItemController {
             responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
         }
     }
+
+    /**
+     * List all of the work items for a given class.
+     * Created by Michael Arroyo 10/18/2015
+     * @param classId
+     */
+    public void ListWorkItems(int classId){
+        RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
+            @Override
+            public void onRequestSuccess(String response) {
+
+            }
+
+            @Override
+            public void onRequestError(RequestError error) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
+                //TODO: Add appropriate error handling later
+                if (error.getStatusCode() == HttpStatusCodes.BadRequest) {
+                    GlobalHandling.makeShortToast(activity, "Please review your input.");
+                } else {
+                    GlobalHandling.generalError(activity, error);
+                }
+            }
+        };
+
+    }
 }
