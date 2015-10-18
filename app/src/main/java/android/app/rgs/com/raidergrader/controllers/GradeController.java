@@ -60,6 +60,10 @@ public class GradeController {
 
             @Override
             public void onRequestError(RequestError error) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
                 // TODO: Add appropriate error handling later
                 if (error.getStatusCode() == HttpStatusCodes.BadRequest) {
                     GlobalHandling.makeShortToast(activity, "Please review your input");
