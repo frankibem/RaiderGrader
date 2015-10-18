@@ -39,7 +39,7 @@ public class GradeController {
     }
 
     /**
-     * Returns a list of ScoreUnits for a work-item. The ScoreUnits represent a students grade
+     * Returns a list of ScoreUnits for a work-item. The ScoreUnits represent students grade
      *
      * @param workItemId ID of the work-item to return grades for
      */
