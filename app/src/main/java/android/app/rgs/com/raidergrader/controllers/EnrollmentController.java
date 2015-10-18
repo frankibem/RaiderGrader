@@ -93,6 +93,112 @@ public class EnrollmentController {
         }
     }
 
+
+    /*
+    * Lauren Joness
+    * Drops a student from a class
+    * */
+    public void DropStudent(EnrollmentBindingModel model){
+        Gson gson = JsonHelpers.getGson();
+        String request = gson.toJson(model);
+
+        RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
+            @Override
+            public void onRequestSuccess(String response) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
+                Toast.makeText(activity, "Successfully dropped class.", Toast.LENGTH_SHORT).show();
+                controllerCallback.DisplayResult(null);
+            }
+
+            @Override
+            public void onRequestError(RequestError error) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
+                // TODO: Add appropriate error handling later
+                if (error.getStatusCode() == HttpStatusCodes.BadRequest) {
+                    GlobalHandling.makeShortToast(activity, "Please review your input");
+                } else {
+                    GlobalHandling.generalError(activity, error);
+                }
+            }
+        };
+
+        RestTask.ProgressCallback progressCallback = new RestTask.ProgressCallback() {
+            @Override
+            public void onProgressUpdate(int progress) {
+            }
+        };
+
+        try {
+            RestTask task = RestUtil.obtainJSONDeleteTask(Repository.baseUrl + "api/Enrollments", request);
+            task.setProgressCallback(progressCallback);
+            task.setResponseCallback(responseCallback);
+            task.execute();
+
+            mProgress = ProgressDialog.show(activity, "Loading", "Dropping class...", true);
+        } catch (Exception ex) {
+            responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
+        }
+    }
+
+    /*
+    * Lauren Joness
+    * Returns a list of all enrollments for a student (pending and not)
+    * */
+    public void GetStudentEnrollments(String studentUserName){
+        RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
+            @Override
+            public void onRequestSuccess(String response) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+                Gson gson = JsonHelpers.getGson();
+
+                Type type = new TypeToken<List<EnrollmentModel>>() {
+                }.getType();
+                List<EnrollmentModel> result = gson.fromJson(response, type);
+
+                controllerCallback.DisplayResult(result);
+            }
+
+            @Override
+            public void onRequestError(RequestError error) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
+                // TODO: Add appropriate error handling later
+                if (error.getStatusCode() == HttpStatusCodes.Conflict) {
+                    GlobalHandling.makeShortToast(activity, "Error loading enrollments");
+                } else {
+                    GlobalHandling.generalError(activity, error);
+                }
+            }
+        };
+
+        RestTask.ProgressCallback progressCallback = new RestTask.ProgressCallback() {
+            @Override
+            public void onProgressUpdate(int progress) {
+            }
+        };
+
+        try {
+            RestTask task = RestUtil.obtainGetTask(Repository.baseUrl + "api/Enrollments?studentUserName=" + studentUserName);
+            task.setResponseCallback(responseCallback);
+            task.setProgressCallback(progressCallback);
+            task.execute();
+
+            mProgress = ProgressDialog.show(activity, "Loading", "Loading student enrollments", true);
+        } catch (Exception ex) {
+            responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
+        }
+    }
+
     /**
      * Noris Rogers
      *
