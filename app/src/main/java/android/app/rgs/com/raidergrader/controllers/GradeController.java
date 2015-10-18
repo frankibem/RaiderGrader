@@ -8,6 +8,7 @@ import android.app.rgs.com.raidergrader.data_access.RequestError;
 import android.app.rgs.com.raidergrader.data_access.RestTask;
 import android.app.rgs.com.raidergrader.data_access.RestUtil;
 import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
+import android.app.rgs.com.raidergrader.helpers.JsonHelpers;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
 import android.app.rgs.com.raidergrader.models.ScoreUnitModel;
 
@@ -47,10 +48,7 @@ public class GradeController {
         RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
             @Override
             public void onRequestSuccess(String response) {
-                GsonBuilder builder = new GsonBuilder();
-                builder.serializeNulls();
-                Gson gson = builder.create();
-
+                Gson gson = JsonHelpers.getGson();
                 Type type = new TypeToken<List<ScoreUnitModel>>() {
                 }.getType();
                 List<ScoreUnitModel> result = gson.fromJson(response, type);
