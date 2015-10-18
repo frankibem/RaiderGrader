@@ -42,7 +42,7 @@ public class EnrollmentController {
      *
      * @param model Model containing the details of the request
      */
-    public void RequestEnrollment(EnrollmentBindingModel model) {
+    public void RequestEnrollmentforStudent(EnrollmentBindingModel model) {
         Gson gson = JsonHelpers.getGson();
         String request = gson.toJson(model);
 
