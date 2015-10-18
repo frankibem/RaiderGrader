@@ -65,7 +65,7 @@ public class WorkItemController {
                     mProgress.dismiss();
                 }
 
-                Toast.makeText(activity, "Work Item Updated", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "Work item updated", Toast.LENGTH_SHORT).show();
                 controllerCallback.DisplayResult(null);
             }
 

@@ -9,6 +9,7 @@ import android.app.rgs.com.raidergrader.data_access.RequestError;
 import android.app.rgs.com.raidergrader.data_access.RestTask;
 import android.app.rgs.com.raidergrader.data_access.RestUtil;
 import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
+import android.app.rgs.com.raidergrader.helpers.JsonHelpers;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
 import android.app.rgs.com.raidergrader.models.EnrollmentBindingModel;
 import android.content.Intent;
@@ -36,12 +37,13 @@ public class EnrollmentController {
     }
 
     /**
+     * Noris Rogers
      * Request enrollment for a student into a class
      *
      * @param model Model containing the details of the request
      */
     public void RequestEnrollment(EnrollmentBindingModel model) {
-        Gson gson = new Gson();
+        Gson gson = JsonHelpers.getGson();
         String request = gson.toJson(model);
 
         RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
@@ -51,8 +53,57 @@ public class EnrollmentController {
                     mProgress.dismiss();
                 }
 
-                Intent intent = new Intent(activity, StudentClassListActivity.class);
-                activity.startActivity(intent);
+                Toast.makeText(activity, "Enrollment has been requested", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onRequestError(RequestError error) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+                if (error.getStatusCode() == HttpStatusCodes.Conflict) {
+                    GlobalHandling.makeShortToast(activity, "You are already enrolled in this class");
+                } else {
+                    GlobalHandling.generalError(activity, error);
+                }
+            }
+        };
+        RestTask.ProgressCallback progressCallback = new RestTask.ProgressCallback() {
+            @Override
+            public void onProgressUpdate(int progress) {
+            }
+        };
+
+        try {
+            RestTask task = RestUtil.obtainJSONPostTask(Repository.baseUrl + "api/Enrollments", request);
+            task.setProgressCallback(progressCallback);
+            task.setResponseCallback(responseCallback);
+
+            task.execute();
+            mProgress = ProgressDialog.show(activity, "Loading", "Requesting your enrollment...", true);
+        } catch (Exception ex) {
+            responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
+        }
+    }
+
+    /**
+     * Noris Rogers
+     *
+     *  Accepts or rejects students enrollment into a class
+     *  @param model Model containing the details of the request
+     */
+
+    public void AcceptStudentEnrollment(EnrollmentBindingModel model){
+        Gson gson = JsonHelpers.getGson();
+        String request = gson.toJson(model);
+
+        RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
+            @Override
+            public void onRequestSuccess(String response) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
                 Toast.makeText(activity, "Enrollment successful", Toast.LENGTH_SHORT).show();
             }
 
@@ -75,14 +126,16 @@ public class EnrollmentController {
         };
 
         try {
-            RestTask task = RestUtil.obtainJSONPostTask(Repository.baseUrl + "api/Students", request);
+            RestTask task = RestUtil.obtainJSONPostTask(Repository.baseUrl + "api/Enrollments", request);
             task.setProgressCallback(progressCallback);
             task.setResponseCallback(responseCallback);
 
             task.execute();
-            mProgress = ProgressDialog.show(activity, "Loading", "Requesting your enrollment...", true);
+            mProgress = ProgressDialog.show(activity, "Loading", "Accepting enrollment...", true);
         } catch (Exception ex) {
             responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
         }
+
+
     }
 }
