@@ -1,44 +1,32 @@
 package android.app.rgs.com.raidergrader.activities;
 
-import android.app.ProgressDialog;
 import android.app.rgs.com.raidergrader.R;
-import android.app.rgs.com.raidergrader.adapters.ClassListAdapter;
-import android.app.rgs.com.raidergrader.data_access.HttpStatusCodes;
+import android.app.rgs.com.raidergrader.controllers.EnrollmentController;
 import android.app.rgs.com.raidergrader.data_access.Repository;
-import android.app.rgs.com.raidergrader.data_access.RequestError;
-import android.app.rgs.com.raidergrader.data_access.RestTask;
-import android.app.rgs.com.raidergrader.data_access.RestUtil;
-import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
-import android.app.rgs.com.raidergrader.models.EnrollmentModel;
-import android.app.rgs.com.raidergrader.view_models.ClassViewModel;
-import android.content.Intent;
+import android.app.rgs.com.raidergrader.models.ControllerCallback;
+import android.app.rgs.com.raidergrader.models.EnrollmentBindingModel;
+import android.app.rgs.com.raidergrader.models.ClassModel;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
-
-import java.io.IOException;
 
 public class EnrollmentConfirmationActivity extends AppCompatActivity
-        implements RestTask.ProgressCallback, RestTask.ResponseCallback {
+        implements ControllerCallback {
 
     TextView className, courseNumber, teacherName;
-//    TextView startDate;
-//    TextView endDate;
 
-    private ProgressDialog mProgress;
-    private ClassViewModel cvm;
+    private ClassModel cvm;
+    private EnrollmentController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_enrollment_confirmation);
 
+        controller = new EnrollmentController(this, this);
         cvm = Repository.selectedEnrollClass;
         setReferences();
         setTextValues();
@@ -55,29 +43,17 @@ public class EnrollmentConfirmationActivity extends AppCompatActivity
     private void setTextValues() {
         className.setText(cvm.Title);
         courseNumber.setText(String.format("%s %d - %d", cvm.Prefix, cvm.CourseNumber, cvm.Section));
-        teacherName.setText(cvm.TeacherName);
+        teacherName.setText(cvm.Teacher.UserName);
 //        startDate.setText(cvm.StartDate);
 //        endDate.setText(cvm.EndDate);
     }
 
     public void onClickConfirm(View v) {
-        EnrollmentModel model = new EnrollmentModel();
+        EnrollmentBindingModel model = new EnrollmentBindingModel();
         model.ClassId = cvm.Id;
         model.StudentUserName = Repository.USERNAME;
 
-        Gson gson = new Gson();
-        String request = gson.toJson(model);
-
-        try {
-            RestTask task = RestUtil.obtainJSONPostTask(Repository.baseUrl + "api/Students", request);
-            task.setProgressCallback(this);
-            task.setResponseCallback(this);
-            task.execute();
-
-            mProgress = ProgressDialog.show(this, "Loading", "Enrolling you into class...", true);
-        } catch (Exception e) {
-            onRequestError(new RequestError(HttpStatusCodes.Incomplete, e.getMessage()));
-        }
+        controller.RequestEnrollment(model);
     }
 
     @Override
@@ -103,29 +79,6 @@ public class EnrollmentConfirmationActivity extends AppCompatActivity
     }
 
     @Override
-    public void onProgressUpdate(int progress) {
-    }
-
-    @Override
-    public void onRequestSuccess(String response) {
-        if (mProgress != null) {
-            mProgress.dismiss();
-        }
-
-        Intent intent = new Intent(this, StudentClassListActivity.class);
-        startActivity(intent);
-        Toast.makeText(this, "Enrollment successful", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onRequestError(RequestError error) {
-        if (mProgress != null) {
-            mProgress.dismiss();
-        }
-        if (error.getStatusCode() == HttpStatusCodes.Conflict) {
-            GlobalHandling.makeShortToast(this, "You are already enrolled in this class");
-        } else {
-            GlobalHandling.generalError(this, error);
-        }
+    public void DisplayResult(Object result) {
     }
 }

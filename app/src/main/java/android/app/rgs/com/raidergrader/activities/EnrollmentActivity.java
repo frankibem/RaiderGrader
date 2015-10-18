@@ -10,8 +10,7 @@ import android.app.rgs.com.raidergrader.data_access.RestUtil;
 import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
 import android.app.rgs.com.raidergrader.helpers.RgsTextWatcher;
 import android.app.rgs.com.raidergrader.helpers.ValidateConstant;
-import android.app.rgs.com.raidergrader.helpers.Validators;
-import android.app.rgs.com.raidergrader.view_models.ClassViewModel;
+import android.app.rgs.com.raidergrader.models.ClassModel;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -20,7 +19,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -77,7 +75,7 @@ public class EnrollmentActivity extends AppCompatActivity
             mProgress.dismiss();
         }
         Gson gson = new Gson();
-        ClassViewModel cvm = gson.fromJson(response, ClassViewModel.class);
+        ClassModel cvm = gson.fromJson(response, ClassModel.class);
 
         Intent intent = new Intent(this, EnrollmentConfirmationActivity.class);
         Repository.selectedEnrollClass = cvm;

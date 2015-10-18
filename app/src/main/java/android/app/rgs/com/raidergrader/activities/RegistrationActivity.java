@@ -2,6 +2,8 @@ package android.app.rgs.com.raidergrader.activities;
 
 import android.app.ProgressDialog;
 import android.app.rgs.com.raidergrader.R;
+import android.app.rgs.com.raidergrader.controllers.AccountController;
+import android.app.rgs.com.raidergrader.controllers.AnnouncementController;
 import android.app.rgs.com.raidergrader.data_access.HttpStatusCodes;
 import android.app.rgs.com.raidergrader.data_access.Repository;
 import android.app.rgs.com.raidergrader.data_access.RequestError;
@@ -11,6 +13,7 @@ import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
 import android.app.rgs.com.raidergrader.helpers.RgsTextWatcher;
 import android.app.rgs.com.raidergrader.helpers.ValidateConstant;
 import android.app.rgs.com.raidergrader.helpers.Validators;
+import android.app.rgs.com.raidergrader.models.ControllerCallback;
 import android.app.rgs.com.raidergrader.models.RegisterModel;
 import android.content.Intent;
 import android.os.Bundle;
@@ -28,13 +31,23 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 
 public class RegistrationActivity extends AppCompatActivity
-        implements RestTask.ResponseCallback, RestTask.ProgressCallback {
-    private EditText inputFirstName, inputLastName, inputEmail, inputPassword, inputConfirmPwd;
-    private TextInputLayout inputLayoutFName, inputLayoutLName, inputLayoutEmail, inputLayoutPassword,
+        implements ControllerCallback {
+    private EditText inputFirstName,
+            inputLastName,
+            inputEmail,
+            inputPassword,
+            inputConfirmPwd;
+
+    private TextInputLayout inputLayoutFName,
+            inputLayoutLName,
+            inputLayoutEmail,
+            inputLayoutPassword,
             inputLayoutConfirmPwd;
+
     private Spinner spinnerRole;
     private Button btnRegister;
-    private ProgressDialog mProgress;
+
+    private AccountController controller;
 
     private String[] roles = {"Teacher", "Student"};
 
@@ -44,6 +57,8 @@ public class RegistrationActivity extends AppCompatActivity
         setContentView(R.layout.activity_registration);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        controller = new AccountController(this, this);
 
         LoadReferences();
         SetValidators();
@@ -112,73 +127,24 @@ public class RegistrationActivity extends AppCompatActivity
         return noErrors;
     }
 
-    /**
-     * Returns true if input associated input control has no error
-     *
-     * @param til TextInputLayout to validate
-     */
-    private boolean HasError(TextInputLayout til) {
-        return til.getError() == "";
-    }
-
     public void onClick(View v) {
         if (!ValidateFields()) {
             Toast.makeText(this, "Review your input", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        try {
-            RegisterModel registerModel = new RegisterModel();
-            registerModel.FirstName = inputFirstName.getText().toString();
-            registerModel.LastName = inputLastName.getText().toString();
-            registerModel.Email = inputEmail.getText().toString();
-            registerModel.Password = inputPassword.getText().toString();
-            registerModel.ConfirmPassword = inputConfirmPwd.getText().toString();
-            //returns an object that is typecast to string
-            registerModel.Role = (String) spinnerRole.getSelectedItem();
+        RegisterModel registerModel = new RegisterModel();
+        registerModel.FirstName = inputFirstName.getText().toString();
+        registerModel.LastName = inputLastName.getText().toString();
+        registerModel.Email = inputEmail.getText().toString();
+        registerModel.Password = inputPassword.getText().toString();
+        registerModel.ConfirmPassword = inputConfirmPwd.getText().toString();
+        registerModel.Role = (String) spinnerRole.getSelectedItem();
 
-            Gson gson = new Gson();
-            //sent to server
-            String entity = gson.toJson(registerModel);
-
-            RestTask task = RestUtil.obtainJSONPostTask(Repository.baseUrl + "api/Account/Register", entity);
-            task.setProgressCallback(this);
-            task.setResponseCallback(this);
-            task.execute();
-
-            mProgress = ProgressDialog.show(this, "Loading", "Creating your account", true);
-        } catch (Exception e) {
-            onRequestError(new RequestError(HttpStatusCodes.Incomplete, e.getMessage()));
-        }
+        controller.RegisterUser(registerModel);
     }
 
     @Override
-    public void onProgressUpdate(int progress) {
-
-    }
-
-    @Override
-    public void onRequestSuccess(String response) {
-        if (mProgress != null) {
-            mProgress.dismiss();
-        }
-
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
-
-        Toast.makeText(this, "Account created", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onRequestError(RequestError error) {
-        if (mProgress != null) {
-            mProgress.dismiss();
-        }
-
-        if (error.getStatusCode() == HttpStatusCodes.BadRequest) {
-            GlobalHandling.makeShortToast(this, "Please review your input");
-        } else {
-            GlobalHandling.generalError(this, error);
-        }
+    public void DisplayResult(Object result) {
     }
 }
