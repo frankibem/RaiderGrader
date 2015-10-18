@@ -64,15 +64,23 @@ public class WorkItemController {
                 if (mProgress != null) {
                     mProgress.dismiss();
                 }
-                Intent intent = new Intent(activity, StudentWorkItemDetailActivity.class);
-                activity.startActivity(intent);
-                Toast.makeText(activity, "Work Item Updated", Toast.LENGTH_SHORT).show();
 
+                Toast.makeText(activity, "Work Item Updated", Toast.LENGTH_SHORT).show();
+                controllerCallback.DisplayResult(null);
             }
 
             @Override
             public void onRequestError(RequestError error) {
-                GlobalHandling.generalError(activity, error);
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
+                // TODO: Add appropriate error handling later
+                if (error.getStatusCode() == HttpStatusCodes.BadRequest) {
+                    GlobalHandling.makeShortToast(activity, "Please review your input");
+                } else {
+                    GlobalHandling.generalError(activity, error);
+                }
             }
         };
 
@@ -83,7 +91,7 @@ public class WorkItemController {
         };
 
         try {
-            RestTask task = RestUtil.obtainGetTask(Repository.baseUrl + "api/WorkItems");
+            RestTask task = RestUtil.obtainJSONPutTask(Repository.baseUrl + "api/WorkItems", request);
             task.setProgressCallback(progressCallback);
             task.setResponseCallback(responseCallback);
             task.execute();
@@ -95,7 +103,7 @@ public class WorkItemController {
 
     }
 
-    /**@author Claire Gray
+    /* Claire Gray
      * deleting Work item
      */
     public void DeleteWorkItem(int workItemId){
