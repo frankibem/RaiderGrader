@@ -8,6 +8,7 @@ import android.app.rgs.com.raidergrader.data_access.RequestError;
 import android.app.rgs.com.raidergrader.data_access.RestTask;
 import android.app.rgs.com.raidergrader.data_access.RestUtil;
 import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
+import android.app.rgs.com.raidergrader.helpers.JsonHelpers;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
 import android.app.rgs.com.raidergrader.models.ScoreUnitModel;
 
@@ -39,7 +40,7 @@ public class GradeController {
     }
 
     /**
-     * Returns a list of ScoreUnits for a work-item. The ScoreUnits represent a students grade
+     * Returns a list of ScoreUnits for a work-item. The ScoreUnits represent students grade
      *
      * @param workItemId ID of the work-item to return grades for
      */
@@ -47,9 +48,11 @@ public class GradeController {
         RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
             @Override
             public void onRequestSuccess(String response) {
-                GsonBuilder builder = new GsonBuilder();
-                builder.serializeNulls();
-                Gson gson = builder.create();
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
+                Gson gson = JsonHelpers.getGson();
 
                 Type type = new TypeToken<List<ScoreUnitModel>>() {
                 }.getType();
@@ -60,6 +63,10 @@ public class GradeController {
 
             @Override
             public void onRequestError(RequestError error) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
                 // TODO: Add appropriate error handling later
                 if (error.getStatusCode() == HttpStatusCodes.BadRequest) {
                     GlobalHandling.makeShortToast(activity, "Please review your input");
