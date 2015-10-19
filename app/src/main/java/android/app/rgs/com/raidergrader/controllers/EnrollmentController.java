@@ -307,4 +307,63 @@ public class EnrollmentController {
             responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
         }
     }
+
+    /**
+     * Claire Gray
+     * Returns a list of all students who have been accepted into a class
+     *
+     * @param classId
+     */
+    public void GetAcceptedEnrollment(int classId){
+        RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
+            @Override
+            public void onRequestSuccess(String response) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
+                Gson gson = JsonHelpers.getGson();
+                Type type = new TypeToken<List<EnrollmentModel>>() {
+                }.getType();
+                List<EnrollmentModel> result = gson.fromJson(response, type);
+                List<EnrollmentModel> accepted = new ArrayList<>();
+                for (EnrollmentModel enroll : result) {
+                    if (!enroll.Pending) {
+                        accepted.add(enroll);
+                    }
+                }
+            }
+
+            @Override
+            public void onRequestError(RequestError error) {
+                    if (mProgress != null) {
+                        mProgress.dismiss();
+                    }
+
+                    // TODO: Add appropriate error handling later
+                    if (error.getStatusCode() == HttpStatusCodes.BadRequest) {
+                        GlobalHandling.makeShortToast(activity, "Please review your input");
+                    } else {
+                        GlobalHandling.generalError(activity, error);
+                    }
+            }
+        };
+        RestTask.ProgressCallback progressCallback = new RestTask.ProgressCallback() {
+            @Override
+            public void onProgressUpdate(int progress) {
+
+            }
+        };
+        try {
+            RestTask task = RestUtil.obtainGetTask(Repository.baseUrl + "api/Enrollments?classId=" + classId);
+            task.setProgressCallback(progressCallback);
+            task.setResponseCallback(responseCallback);
+            task.execute();
+
+            mProgress = ProgressDialog.show(activity, "Loading", "You have successfully enrolled in your class.", true);
+        } catch (Exception ex) {
+            responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
+        }
+
+    }
 }
