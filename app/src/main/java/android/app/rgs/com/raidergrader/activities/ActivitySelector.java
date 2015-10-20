@@ -42,26 +42,6 @@ public class ActivitySelector extends AppCompatActivity {
                 Intent intent5 = new Intent(this, StudentClassDetailActivity.class);
                 startActivity(intent5);
                 break;
-            case R.id.btn_tch_classlist:
-                Intent intent6 = new Intent(this, TeacherClassListActivity.class);
-                startActivity(intent6);
-                break;
-            case R.id.btn_std_dropclass:
-                Intent intent7 = new Intent(this, StudentDropClassActivity.class);
-                startActivity(intent7);
-                break;
-            case R.id.btn_tch_deleteclass:
-                Intent intent8 = new Intent(this, TeacherDeleteClassActivity.class);
-                startActivity(intent8);
-                break;
-            case R.id.btn_tch_manageclass:
-                Intent intent9 = new Intent(this, TeacherClassManagementActivity.class);
-                startActivity(intent9);
-                break;
-            case R.id.btn_std_workitemdetail:
-                Intent intent10 = new Intent(this, StudentWorkItemDetailActivity.class);
-                startActivity(intent10);
-                break;
             default:
                 Toast.makeText(this, "Not implemented", Toast.LENGTH_SHORT).show();
                 break;
