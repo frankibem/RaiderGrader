@@ -49,6 +49,38 @@
         </activity>
         <activity android:name=".activities.student.StudentAnnouncementDetailActivity" >
         </activity>
+        <activity android:name=".activities.teacher.TeacherClassHomeActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherClassItemsActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherCreateClassActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherUpdateClassActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherStudentItemsActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherClassWaitlistActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherClassAcceptedStudentsActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherWorkItemListActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherCreateWorkItemActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherWorkItemDetailActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherUpdateWorkItemActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherGradeWorkItemActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherAnnouncementListActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherCreateAnnouncementActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherAnnouncementDetailActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherUpdateAnnouncementActivity" >
+        </activity>
     </application>
 
 </manifest>
