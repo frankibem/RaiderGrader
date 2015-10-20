@@ -4,6 +4,7 @@ import android.app.rgs.com.raidergrader.R;
 import android.app.rgs.com.raidergrader.adapters.StudentEnrollmentListAdapter;
 import android.app.rgs.com.raidergrader.controllers.EnrollmentController;
 import android.app.rgs.com.raidergrader.data_access.Repository;
+import android.app.rgs.com.raidergrader.dialogs.EnrollmentPendingFragment;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
 import android.app.rgs.com.raidergrader.models.EnrollmentModel;
 import android.content.Intent;
@@ -36,6 +37,12 @@ public class StudentClassListActivity extends AppCompatActivity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                EnrollmentModel model = (EnrollmentModel) parent.getItemAtPosition(position);
+                if (model.Pending) {
+                    EnrollmentPendingFragment dialog = new EnrollmentPendingFragment();
+                    dialog.setModel(model);
+                    dialog.show(getSupportFragmentManager(), "pending_enrollment");
+                }
 //                Intent intent = new Intent(getApplicationContext(), StudentClassDetailActivity.class);
 //                intent.putExtra(StudentClassDetailActivity.CLASS_INDEX, position);
 //                startActivity(intent);
