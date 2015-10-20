@@ -94,7 +94,7 @@ public class EnrollmentController {
     }
 
 
-    /*
+    /**
     * Lauren Joness
     * Drops a student from a class
     * */
@@ -146,7 +146,7 @@ public class EnrollmentController {
         }
     }
 
-    /*
+    /**
     * Lauren Joness
     * Returns a list of all enrollments for a student (pending and not)
     * */
