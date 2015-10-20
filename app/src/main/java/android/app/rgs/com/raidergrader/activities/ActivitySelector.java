@@ -1,10 +1,10 @@
 package android.app.rgs.com.raidergrader.activities;
 
 import android.app.rgs.com.raidergrader.R;
+import android.app.rgs.com.raidergrader.activities.student.EnrollmentActivity;
+import android.app.rgs.com.raidergrader.activities.student.StudentClassListActivity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -37,10 +37,6 @@ public class ActivitySelector extends AppCompatActivity {
             case R.id.btn_std_classlist:
                 Intent intent4 = new Intent(getApplicationContext(), StudentClassListActivity.class);
                 startActivity(intent4);
-                break;
-            case R.id.btn_std_classdetail:
-                Intent intent5 = new Intent(this, StudentClassDetailActivity.class);
-                startActivity(intent5);
                 break;
             default:
                 Toast.makeText(this, "Not implemented", Toast.LENGTH_SHORT).show();

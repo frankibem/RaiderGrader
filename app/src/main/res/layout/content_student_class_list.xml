@@ -9,7 +9,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="android.app.rgs.com.raidergrader.activities.StudentClassListActivity"
+    tools:context="android.app.rgs.com.raidergrader.activities.student.StudentClassListActivity"
     tools:showIn="@layout/activity_student_class_list">
 
     <ListView

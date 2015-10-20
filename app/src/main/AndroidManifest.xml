@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="android.app.rgs.com.raidergrader">
+    package="android.app.rgs.com.raidergrader" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -9,11 +9,11 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".activities.LoginActivity"
             android:label="@string/title_activity_login"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.EnrollmentActivity"
+            android:name=".activities.student.EnrollmentActivity"
             android:label="@string/title_activity_enrollment"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -33,13 +33,22 @@
             android:label="@string/title_activity_activity_selector"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.StudentClassListActivity"
+            android:name=".activities.student.StudentClassListActivity"
             android:label="@string/title_activity_student_class_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.EnrollmentConfirmationActivity"
+            android:name=".activities.student.EnrollmentConfirmationActivity"
             android:label="@string/title_activity_enrollment_confirmation" />
-        <activity android:name=".activities.StudentClassDetailActivity"></activity>
+        <activity android:name=".activities.student.StudentClassItemsActivity" >
+        </activity>
+        <activity android:name=".activities.student.StudentWorkItemListActivity" >
+        </activity>
+        <activity android:name=".activities.student.StudentWorkItemDetailActivity" >
+        </activity>
+        <activity android:name=".activities.student.StudentAnnouncementListActivity" >
+        </activity>
+        <activity android:name=".activities.student.StudentAnnouncementDetailActivity" >
+        </activity>
     </application>
 
 </manifest>

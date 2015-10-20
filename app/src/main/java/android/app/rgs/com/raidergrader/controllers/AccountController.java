@@ -2,15 +2,13 @@ package android.app.rgs.com.raidergrader.controllers;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.app.rgs.com.raidergrader.activities.LoginActivity;
-import android.app.rgs.com.raidergrader.activities.StudentClassListActivity;
+import android.app.rgs.com.raidergrader.activities.student.StudentClassListActivity;
 import android.app.rgs.com.raidergrader.data_access.HttpStatusCodes;
 import android.app.rgs.com.raidergrader.data_access.Repository;
 import android.app.rgs.com.raidergrader.data_access.RequestError;
 import android.app.rgs.com.raidergrader.data_access.RestTask;
 import android.app.rgs.com.raidergrader.data_access.RestUtil;
 import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
-import android.app.rgs.com.raidergrader.models.AnnouncementModel;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
 import android.app.rgs.com.raidergrader.models.RegisterModel;
 import android.content.Context;

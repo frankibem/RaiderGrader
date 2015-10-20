@@ -2,7 +2,6 @@ package android.app.rgs.com.raidergrader.controllers;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.app.rgs.com.raidergrader.activities.StudentClassListActivity;
 import android.app.rgs.com.raidergrader.data_access.HttpStatusCodes;
 import android.app.rgs.com.raidergrader.data_access.Repository;
 import android.app.rgs.com.raidergrader.data_access.RequestError;
@@ -13,8 +12,6 @@ import android.app.rgs.com.raidergrader.helpers.JsonHelpers;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
 import android.app.rgs.com.raidergrader.models.EnrollmentBindingModel;
 import android.app.rgs.com.raidergrader.models.EnrollmentModel;
-import android.app.rgs.com.raidergrader.models.ScoreUnitModel;
-import android.content.Intent;
 import android.widget.Toast;
 
 import com.google.gson.Gson;

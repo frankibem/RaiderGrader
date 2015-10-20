@@ -1,4 +1,4 @@
-package android.app.rgs.com.raidergrader.activities;
+package android.app.rgs.com.raidergrader.activities.student;
 
 import android.app.ProgressDialog;
 import android.app.rgs.com.raidergrader.R;
