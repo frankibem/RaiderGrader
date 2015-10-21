@@ -22,7 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by Frank Ibem on 10/16/2015.
+ * @author Lauren Joness
+ * @author Claire Gray
+ * @author Noris Rogers
  */
 public class EnrollmentController {
     private Activity activity;
@@ -41,7 +43,6 @@ public class EnrollmentController {
     }
 
     /**
-     * Noris Rogers
      * Request enrollment for a student into a class
      *
      * @param model Model containing the details of the request
@@ -92,10 +93,9 @@ public class EnrollmentController {
 
 
     /**
-    * Lauren Joness
-    * Drops a student from a class
-    * */
-    public void DropStudent(EnrollmentBindingModel model){
+     * Drops a student from a class
+     */
+    public void DropStudent(EnrollmentBindingModel model) {
         Gson gson = JsonHelpers.getGson();
         String request = gson.toJson(model);
 
@@ -144,10 +144,9 @@ public class EnrollmentController {
     }
 
     /**
-    * Lauren Joness
-    * Returns a list of all enrollments for a student (pending and not)
-    * */
-    public void GetStudentEnrollments(String studentUserName){
+     * Returns a list of all enrollments for a student (pending and not)
+     */
+    public void GetStudentEnrollments(String studentUserName) {
         RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
             @Override
             public void onRequestSuccess(String response) {
@@ -190,20 +189,18 @@ public class EnrollmentController {
             task.setProgressCallback(progressCallback);
             task.execute();
 
-            mProgress = ProgressDialog.show(activity, "Loading", "Loading student enrollments", true);
+            mProgress = ProgressDialog.show(activity, "Loading", "Fetching your data", true);
         } catch (Exception ex) {
             responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
         }
     }
 
     /**
-     * Noris Rogers
+     * Accepts or rejects students enrollment into a class
      *
-     *  Accepts or rejects students enrollment into a class
-     *  @param model Model containing the details of the request
+     * @param model Model containing the details of the request
      */
-
-    public void AcceptStudentEnrollment(EnrollmentBindingModel model){
+    public void AcceptStudentEnrollment(EnrollmentBindingModel model) {
         Gson gson = JsonHelpers.getGson();
         String request = gson.toJson(model);
 
@@ -248,9 +245,9 @@ public class EnrollmentController {
     }
 
     /**
-     * Claire Gray
      * Returns a list of all students whose enrollment into a class is pending
-     * @param classId
+     *
+     * @param classId Id of class to obtain pending enrollments for
      */
     public void GetPendingEnrollments(int classId) {
         RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
@@ -306,12 +303,11 @@ public class EnrollmentController {
     }
 
     /**
-     * Claire Gray
      * Returns a list of all students who have been accepted into a class
      *
-     * @param classId
+     * @param classId Id of class to get accepted enrollments for
      */
-    public void GetAcceptedEnrollment(int classId){
+    public void GetAcceptedEnrollment(int classId) {
         RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
             @Override
             public void onRequestSuccess(String response) {
@@ -333,16 +329,16 @@ public class EnrollmentController {
 
             @Override
             public void onRequestError(RequestError error) {
-                    if (mProgress != null) {
-                        mProgress.dismiss();
-                    }
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
 
-                    // TODO: Add appropriate error handling later
-                    if (error.getStatusCode() == HttpStatusCodes.BadRequest) {
-                        GlobalHandling.makeShortToast(activity, "Please review your input");
-                    } else {
-                        GlobalHandling.generalError(activity, error);
-                    }
+                // TODO: Add appropriate error handling later
+                if (error.getStatusCode() == HttpStatusCodes.BadRequest) {
+                    GlobalHandling.makeShortToast(activity, "Please review your input");
+                } else {
+                    GlobalHandling.generalError(activity, error);
+                }
             }
         };
         RestTask.ProgressCallback progressCallback = new RestTask.ProgressCallback() {

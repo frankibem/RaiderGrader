@@ -78,10 +78,10 @@ public class EnrollmentActivity extends AppCompatActivity
             mProgress.dismiss();
         }
         Gson gson = new Gson();
-        ClassModel cvm = gson.fromJson(response, ClassModel.class);
+        ClassModel classModel = gson.fromJson(response, ClassModel.class);
 
         Intent intent = new Intent(this, EnrollmentConfirmationActivity.class);
-        Repository.selectedEnrollClass = cvm;
+        Repository.setCurrentClass(classModel);
         startActivity(intent);
     }
 

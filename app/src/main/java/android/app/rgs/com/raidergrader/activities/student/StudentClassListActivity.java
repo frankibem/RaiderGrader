@@ -48,8 +48,8 @@ public class StudentClassListActivity extends AppCompatActivity
                     return;
                 }
 
+                Repository.setCurrentClass(model.Class);
                 Intent intent = new Intent(getApplicationContext(), StudentClassItemsActivity.class);
-                intent.putExtra(StudentClassItemsActivity.CLASS_INDEX_KEY, position);
                 startActivity(intent);
             }
         });
@@ -81,7 +81,7 @@ public class StudentClassListActivity extends AppCompatActivity
     /**
      * Navigate to the enrollment page when fab is clicked
      *
-     * @param view
+     * @param view The view that was clicked/tapped
      */
     public void requestEnrollment(View view) {
         Intent intent = new Intent(getApplicationContext(), EnrollmentActivity.class);

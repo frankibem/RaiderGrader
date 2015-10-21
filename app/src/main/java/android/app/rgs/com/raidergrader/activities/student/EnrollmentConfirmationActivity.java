@@ -1,7 +1,6 @@
 package android.app.rgs.com.raidergrader.activities.student;
 
 import android.app.rgs.com.raidergrader.R;
-import android.app.rgs.com.raidergrader.controllers.AccountController;
 import android.app.rgs.com.raidergrader.controllers.EnrollmentController;
 import android.app.rgs.com.raidergrader.data_access.Repository;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
@@ -9,8 +8,6 @@ import android.app.rgs.com.raidergrader.models.EnrollmentBindingModel;
 import android.app.rgs.com.raidergrader.models.ClassModel;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -19,7 +16,7 @@ public class EnrollmentConfirmationActivity extends AppCompatActivity
 
     TextView className, courseNumber, teacherName;
 
-    private ClassModel cvm;
+    private ClassModel classModel;
     private EnrollmentController controller;
 
     @Override
@@ -28,7 +25,7 @@ public class EnrollmentConfirmationActivity extends AppCompatActivity
         setContentView(R.layout.activity_enrollment_confirmation);
 
         controller = new EnrollmentController(this, this);
-        cvm = Repository.selectedEnrollClass;
+        classModel = Repository.getCurrentClass();
         setReferences();
         setTextValues();
     }
@@ -42,16 +39,16 @@ public class EnrollmentConfirmationActivity extends AppCompatActivity
     }
 
     private void setTextValues() {
-        className.setText(cvm.Title);
-        courseNumber.setText(String.format("%s %d - %d", cvm.Prefix, cvm.CourseNumber, cvm.Section));
-        teacherName.setText(cvm.Teacher.UserName);
-//        startDate.setText(cvm.StartDate);
-//        endDate.setText(cvm.EndDate);
+        className.setText(classModel.Title);
+        courseNumber.setText(String.format("%s %d - %d", classModel.Prefix, classModel.CourseNumber, classModel.Section));
+        teacherName.setText(classModel.Teacher.UserName);
+//        startDate.setText(classModel.StartDate);
+//        endDate.setText(classModel.EndDate);
     }
 
     public void onClickConfirm(View v) {
         EnrollmentBindingModel model = new EnrollmentBindingModel();
-        model.ClassId = cvm.Id;
+        model.ClassId = classModel.Id;
         model.StudentUserName = Repository.USERNAME;
 
         controller.RequestEnrollmentforStudent(model);

@@ -8,8 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 public class StudentClassItemsActivity extends AppCompatActivity {
-    public static final String CLASS_INDEX_KEY = "class_index";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
