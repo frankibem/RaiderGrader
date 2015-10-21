@@ -29,7 +29,7 @@
             android:label="@string/title_activity_registration"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.ActivitySelector"
+            android:name=".activities.MainActivitySelector"
             android:label="@string/title_activity_activity_selector"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity

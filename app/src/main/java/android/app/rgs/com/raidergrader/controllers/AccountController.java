@@ -3,6 +3,7 @@ package android.app.rgs.com.raidergrader.controllers;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.app.rgs.com.raidergrader.activities.student.StudentClassListActivity;
+import android.app.rgs.com.raidergrader.activities.teacher.TeacherClassHomeActivity;
 import android.app.rgs.com.raidergrader.data_access.HttpStatusCodes;
 import android.app.rgs.com.raidergrader.data_access.Repository;
 import android.app.rgs.com.raidergrader.data_access.RequestError;
@@ -22,10 +23,13 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
- * Created by Frank Ibem on 10/16/2015.
+ * Controller for account related activities
+ *
+ * @author Frank ibem
  */
 public class AccountController {
     private Activity activity;
@@ -34,7 +38,6 @@ public class AccountController {
 
     /**
      * Creates an AccountController
-     * Frank Ibem
      *
      * @param activity Activity to be used by the controller
      * @param callback Callback to be notified when results are received
@@ -116,15 +119,12 @@ public class AccountController {
 
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    Repository.ACCESS_TOKEN = jsonObject.getString("access_token");
-                    Repository.USERNAME = jsonObject.getString("userName");
+                    String accessToken = jsonObject.getString("access_token");
+                    String username = jsonObject.getString("userName");
 
-                    saveUserCredentials(Repository.USERNAME, Repository.ACCESS_TOKEN);
-                    Intent intent = new Intent(activity, StudentClassListActivity.class);
-                    activity.startActivity(intent);
-                    Toast.makeText(activity, "Login successful", Toast.LENGTH_SHORT).show();
+                    Repository.saveUserCredentials(username, accessToken, activity);
+                    controllerCallback.DisplayResult("success");
                 } catch (JSONException e) {
-                    //TODO: Consider carefully
                     onRequestError(new RequestError(HttpStatusCodes.Incomplete, e.getMessage()));
                 }
             }
@@ -162,31 +162,64 @@ public class AccountController {
     }
 
     /**
-     * Logs the user out of the application and deletes his/her credentials
+     * Determines the user's role and navigates to the appropriate activity
      */
-    public void LogUserOut() {
-        SharedPreferences settings = activity.getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.remove(Repository.ACCESS_TOKEN_KEY);
-        editor.remove(Repository.USERNAME_KEY);
-        editor.commit();
+    public void DetermineUserRole() {
+        RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
+            @Override
+            public void onRequestSuccess(String response) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
+                Intent intent = null;
+                if (response.toLowerCase().contains("teacher")) {
+                    intent = new Intent(activity, TeacherClassHomeActivity.class);
+                } else if (response.toLowerCase().contains("student")) {
+                    intent = new Intent(activity, StudentClassListActivity.class);
+                } else {
+                    Toast.makeText(activity, "You cannot use that account with this application", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                activity.startActivity(intent);
+                Toast.makeText(activity, "Login successful", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onRequestError(RequestError error) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
+                if (error.getStatusCode() == HttpStatusCodes.BadRequest ||
+                        error.getStatusCode() == HttpStatusCodes.Unauthorized) {
+                    GlobalHandling.makeShortToast(activity, "Incorrect username or password");
+                } else {
+                    GlobalHandling.generalError(activity, error);
+                }
+            }
+        };
+        RestTask.ProgressCallback progressCallback = new RestTask.ProgressCallback() {
+            @Override
+            public void onProgressUpdate(int progress) {
+            }
+        };
+
+        try {
+            RestTask task = RestUtil.obtainGetTask(Repository.baseUrl + "api/Account/Role");
+            task.setProgressCallback(progressCallback);
+            task.setResponseCallback(responseCallback);
+            task.execute();
+        } catch (Exception ex) {
+            responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
+        }
     }
 
     /**
-     * Store the user's credentials for next use
-     *
-     * @param username The user's username
-     * @param token    The token received from the web endpoint
+     * Logs the user out of the application and deletes his/her credentials
      */
-    private void saveUserCredentials(String username, String token) {
-        Repository.ACCESS_TOKEN = token;
-        Repository.USERNAME = username;
-
-        SharedPreferences settings = activity.getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString(Repository.ACCESS_TOKEN_KEY, Repository.ACCESS_TOKEN);
-        editor.putString(Repository.USERNAME_KEY, Repository.USERNAME);
-        editor.commit();
+    public void LogUserOut() {
+        Repository.clearUserCredentials(activity);
     }
-
 }

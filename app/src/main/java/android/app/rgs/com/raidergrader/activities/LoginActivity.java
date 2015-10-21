@@ -31,7 +31,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class LoginActivity extends AppCompatActivity
-        implements ControllerCallback {
+        implements ControllerCallback<String> {
     private EditText inputEmail,
             inputPassword;
 
@@ -85,6 +85,9 @@ public class LoginActivity extends AppCompatActivity
     }
 
     @Override
-    public void DisplayResult(Object result) {
+    public void DisplayResult(String result) {
+        if (result == "success") {
+            controller.DetermineUserRole();
+        }
     }
 }
