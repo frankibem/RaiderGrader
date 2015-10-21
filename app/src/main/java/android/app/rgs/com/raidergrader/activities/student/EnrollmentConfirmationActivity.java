@@ -1,6 +1,7 @@
 package android.app.rgs.com.raidergrader.activities.student;
 
 import android.app.rgs.com.raidergrader.R;
+import android.app.rgs.com.raidergrader.controllers.AccountController;
 import android.app.rgs.com.raidergrader.controllers.EnrollmentController;
 import android.app.rgs.com.raidergrader.data_access.Repository;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
@@ -56,27 +57,6 @@ public class EnrollmentConfirmationActivity extends AppCompatActivity
         controller.RequestEnrollmentforStudent(model);
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_enrollment_confirmation, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @Override
     public void DisplayResult(Object result) {

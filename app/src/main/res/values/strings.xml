@@ -50,4 +50,7 @@
     <string name="invalid_integer">Enter a valid integer</string>
 
     <string name="action_settings">Settings</string>
+
+    <!-- Menu -->
+    <string name="menu_logout">Log out</string>
 </resources>

@@ -2,6 +2,7 @@ package android.app.rgs.com.raidergrader.activities.student;
 
 import android.app.ProgressDialog;
 import android.app.rgs.com.raidergrader.R;
+import android.app.rgs.com.raidergrader.controllers.AccountController;
 import android.app.rgs.com.raidergrader.data_access.HttpStatusCodes;
 import android.app.rgs.com.raidergrader.data_access.Repository;
 import android.app.rgs.com.raidergrader.data_access.RequestError;
@@ -16,6 +17,8 @@ import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -90,8 +93,29 @@ public class EnrollmentActivity extends AppCompatActivity
 
         if (error.getStatusCode() == HttpStatusCodes.NotFound) {
             GlobalHandling.makeShortToast(this, "No class exists with that ID");
-        }else{
+        } else {
             GlobalHandling.generalError(this, error);
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.item_logout) {
+            AccountController accountController = new AccountController(this, null);
+            accountController.LogUserOut();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
 }

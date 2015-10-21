@@ -2,6 +2,7 @@ package android.app.rgs.com.raidergrader.controllers;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.app.rgs.com.raidergrader.activities.LoginActivity;
 import android.app.rgs.com.raidergrader.activities.student.StudentClassListActivity;
 import android.app.rgs.com.raidergrader.activities.teacher.TeacherClassHomeActivity;
 import android.app.rgs.com.raidergrader.data_access.HttpStatusCodes;
@@ -221,5 +222,9 @@ public class AccountController {
      */
     public void LogUserOut() {
         Repository.clearUserCredentials(activity);
+        Toast.makeText(activity, "You've been logged out", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(activity, LoginActivity.class);
+        activity.startActivity(intent);
     }
 }
