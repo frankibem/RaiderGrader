@@ -1,4 +1,4 @@
-package android.app.rgs.com.raidergrader.helpers;
+package android.app.rgs.com.raidergrader.utilities;
 
 public enum ValidateConstant {
     EMAIL,

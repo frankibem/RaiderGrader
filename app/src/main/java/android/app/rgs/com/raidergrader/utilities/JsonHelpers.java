@@ -1,4 +1,4 @@
-package android.app.rgs.com.raidergrader.helpers;
+package android.app.rgs.com.raidergrader.utilities;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;

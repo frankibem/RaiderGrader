@@ -1,4 +1,4 @@
-package android.app.rgs.com.raidergrader.helpers;
+package android.app.rgs.com.raidergrader.utilities;
 
 /**
  * Created by Frank Ibem on 10/10/2015.

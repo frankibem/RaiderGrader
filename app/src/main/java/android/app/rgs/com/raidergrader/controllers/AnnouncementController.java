@@ -7,9 +7,8 @@ import android.app.rgs.com.raidergrader.data_access.Repository;
 import android.app.rgs.com.raidergrader.data_access.RequestError;
 import android.app.rgs.com.raidergrader.data_access.RestTask;
 import android.app.rgs.com.raidergrader.data_access.RestUtil;
-import android.app.rgs.com.raidergrader.helpers.GlobalHandling;
-import android.app.rgs.com.raidergrader.helpers.JsonHelpers;
-import android.app.rgs.com.raidergrader.models.AnnouncementModel;
+import android.app.rgs.com.raidergrader.utilities.GlobalHandling;
+import android.app.rgs.com.raidergrader.utilities.JsonHelpers;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
 import android.app.rgs.com.raidergrader.models.CreateAnnouncementModel;
 import android.app.rgs.com.raidergrader.models.ScoreUnitModel;
@@ -17,7 +16,6 @@ import android.app.rgs.com.raidergrader.models.UpdateAnnouncementModel;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;

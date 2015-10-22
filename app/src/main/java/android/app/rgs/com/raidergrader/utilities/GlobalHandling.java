@@ -1,4 +1,4 @@
-package android.app.rgs.com.raidergrader.helpers;
+package android.app.rgs.com.raidergrader.utilities;
 
 import android.app.rgs.com.raidergrader.activities.LoginActivity;
 import android.app.rgs.com.raidergrader.data_access.HttpStatusCodes;
