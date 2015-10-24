@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="android.app.rgs.com.raidergrader.activities.EnrollmentActivity">
+    tools:context="android.app.rgs.com.raidergrader.activities.student.EnrollmentActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

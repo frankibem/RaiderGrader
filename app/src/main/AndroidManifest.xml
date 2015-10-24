@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activities.EnrollmentActivity"
+            android:name=".activities.student.EnrollmentActivity"
             android:label="@string/title_activity_enrollment"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
@@ -29,29 +29,57 @@
             android:label="@string/title_activity_registration"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.ActivitySelector"
+            android:name=".activities.MainActivitySelector"
             android:label="@string/title_activity_activity_selector"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.StudentClassListActivity"
+            android:name=".activities.student.StudentClassListActivity"
             android:label="@string/title_activity_student_class_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".activities.EnrollmentConfirmationActivity"
+            android:name=".activities.student.EnrollmentConfirmationActivity"
             android:label="@string/title_activity_enrollment_confirmation" />
-        <activity android:name=".activities.CreateClassActivity" >
+        <activity android:name=".activities.student.StudentClassItemsActivity" >
         </activity>
-        <activity android:name=".activities.StudentDropClassActivity" >
+        <activity android:name=".activities.student.StudentWorkItemListActivity" >
         </activity>
-        <activity android:name=".activities.StudentWorkItemDetailActivity" >
+        <activity android:name=".activities.student.StudentWorkItemDetailActivity" >
         </activity>
-        <activity android:name=".activities.TeacherClassManagementActivity" >
+        <activity android:name=".activities.student.StudentAnnouncementListActivity" >
         </activity>
-        <activity android:name=".activities.TeacherDeleteClassActivity" >
+        <activity android:name=".activities.student.StudentAnnouncementDetailActivity" >
         </activity>
-        <activity android:name=".activities.StudentClassDetailActivity" >
+        <activity android:name=".activities.teacher.TeacherClassHomeActivity" >
         </activity>
-        <activity android:name=".activities.TeacherClassListActivity" >
+        <activity android:name=".activities.teacher.TeacherClassItemsActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherCreateClassActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherUpdateClassActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherStudentItemsActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherClassWaitlistActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherClassAcceptedStudentsActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherWorkItemListActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherCreateWorkItemActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherWorkItemDetailActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherUpdateWorkItemActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherGradeWorkItemActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherAnnouncementListActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherCreateAnnouncementActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherAnnouncementDetailActivity" >
+        </activity>
+        <activity android:name=".activities.teacher.TeacherUpdateAnnouncementActivity" >
         </activity>
         <activity
             android:name=".activity_teacher_create_workItem"

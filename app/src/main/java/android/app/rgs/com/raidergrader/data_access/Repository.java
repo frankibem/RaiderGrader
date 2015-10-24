@@ -1,19 +1,83 @@
 package android.app.rgs.com.raidergrader.data_access;
 
+import android.app.rgs.com.raidergrader.models.AnnouncementModel;
 import android.app.rgs.com.raidergrader.models.ClassModel;
+import android.app.rgs.com.raidergrader.models.WorkItemModel;
+import android.content.Context;
+import android.content.SharedPreferences;
 
 import java.util.List;
 
+/**
+ * @author Frank Ibem
+ */
 public class Repository {
     //TODO: Change to https in final application
-    public static String baseUrl = "http://raidergrader.azurewebsites.net/";
+    public static final String baseUrl = "http://raidergrader.azurewebsites.net/";
+    public static final String PREFERENCES_KEY = "com.raidergrader.settings";
 
-    public static String ACCESS_TOKEN_KEY = "ACCESS_TOKEN";
+    public static final String ACCESS_TOKEN_KEY = "ACCESS_TOKEN";
     public static String ACCESS_TOKEN = null;
 
-    public static String USERNAME_KEY = "USERNAME";
+    public static final String USERNAME_KEY = "USERNAME";
     public static String USERNAME = "";
 
-    public static List<ClassModel> studentClasses;
-    public static ClassModel selectedEnrollClass;
+    private static ClassModel currentClass;
+    private static WorkItemModel currentWorkItem;
+    private static AnnouncementModel currentAnnouncement;
+
+    public static ClassModel getCurrentClass() {
+        return currentClass;
+    }
+
+    public static void setCurrentClass(ClassModel currentClass) {
+        Repository.currentClass = currentClass;
+    }
+
+    public static WorkItemModel getCurrentWorkItem() {
+        return currentWorkItem;
+    }
+
+    public static void setCurrentWorkItem(WorkItemModel currentWorkItem) {
+        Repository.currentWorkItem = currentWorkItem;
+    }
+
+    public static AnnouncementModel getCurrentAnnouncement() {
+        return currentAnnouncement;
+    }
+
+    public static void setCurrentAnnouncement(AnnouncementModel currentAnnouncement) {
+        Repository.currentAnnouncement = currentAnnouncement;
+    }
+
+    /**
+     * Saves the users credentials locally
+     *
+     * @param username The user's username
+     * @param token    The access_token obtained for the user
+     * @param context  Context through which the application sharedPreferences can be obtained
+     */
+    public static void saveUserCredentials(String username, String token, Context context) {
+        ACCESS_TOKEN = token;
+        USERNAME = username;
+
+        SharedPreferences settings = context.getSharedPreferences(PREFERENCES_KEY, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString(Repository.ACCESS_TOKEN_KEY, Repository.ACCESS_TOKEN);
+        editor.putString(Repository.USERNAME_KEY, Repository.USERNAME);
+        editor.commit();
+    }
+
+    /**
+     * Clears the local copy of the user's credentials
+     *
+     * @param context Context through which the application sharedPreferences can be obtained
+     */
+    public static void clearUserCredentials(Context context) {
+        SharedPreferences settings = context.getSharedPreferences(PREFERENCES_KEY, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.remove(Repository.ACCESS_TOKEN_KEY);
+        editor.remove(Repository.USERNAME_KEY);
+        editor.commit();
+    }
 }
