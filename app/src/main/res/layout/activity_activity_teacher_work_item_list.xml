@@ -60,6 +60,6 @@
         android:layout_gravity="bottom|end"
         android:src="@drawable/sym_action_add"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"/>
 
 </RelativeLayout>
