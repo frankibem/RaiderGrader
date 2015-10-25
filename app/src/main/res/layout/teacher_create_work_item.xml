@@ -35,7 +35,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="50"
-            android:text="@string/btn_time" />
+            android:text="@string/btn_time"
+            android:onClick="onClickSetTime"/>
 
         <Button
             android:id="@+id/btn_setDate"
@@ -43,7 +44,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="50"
-            android:text="@string/btn_date" />
+            android:text="@string/btn_date"
+            android:onClick="onClickSetDate"/>
     </LinearLayout>
 
     <LinearLayout
@@ -102,7 +104,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="10"
-            android:text="@string/btn_cancel" />
+            android:text="@string/btn_cancel"
+            android:onClick="onClickCancel"/>
 
         <Button
             android:id="@+id/btn_done"
@@ -110,7 +113,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="10"
             android:text="@string/btn_done"
-            android:onClick="onClick"/>
+            android:onClick="onClickDone"/>
 
     </LinearLayout>
 
