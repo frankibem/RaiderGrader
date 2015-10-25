@@ -26,6 +26,10 @@ import java.util.List;
  * @author Claire Gray
  * @author Noris Rogers
  */
+
+/**
+ * Controller for class enrollment related actions
+ */
 public class EnrollmentController {
     private Activity activity;
     private ControllerCallback controllerCallback;
@@ -198,11 +202,11 @@ public class EnrollmentController {
     /**
      * Accepts or rejects students enrollment into a class
      *
-     * @param model Model containing the details of the request
+     * @param models Model containing the details of the request
      */
-    public void AcceptStudentEnrollment(EnrollmentBindingModel model) {
+    public void AcceptStudentEnrollment(List<EnrollmentBindingModel> models) {
         Gson gson = JsonHelpers.getGson();
-        String request = gson.toJson(model);
+        String request = gson.toJson(models);
 
         RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
             @Override
@@ -233,12 +237,12 @@ public class EnrollmentController {
         };
 
         try {
-            RestTask task = RestUtil.obtainJSONPostTask(Repository.baseUrl + "api/Enrollments", request);
+            RestTask task = RestUtil.obtainJSONPutTask(Repository.baseUrl + "api/Enrollments", request);
             task.setProgressCallback(progressCallback);
             task.setResponseCallback(responseCallback);
 
             task.execute();
-            mProgress = ProgressDialog.show(activity, "Loading", "Accepting enrollment...", true);
+            mProgress = ProgressDialog.show(activity, "Loading", "Updating wait list", true);
         } catch (Exception ex) {
             responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
         }
@@ -267,6 +271,8 @@ public class EnrollmentController {
                         pending.add(enroll);
                     }
                 }
+
+                controllerCallback.DisplayResult(pending);
             }
 
             @Override
@@ -325,6 +331,8 @@ public class EnrollmentController {
                         accepted.add(enroll);
                     }
                 }
+
+                controllerCallback.DisplayResult(accepted);
             }
 
             @Override
