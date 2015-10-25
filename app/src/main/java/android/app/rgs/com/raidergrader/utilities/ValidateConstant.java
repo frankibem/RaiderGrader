@@ -4,5 +4,6 @@ public enum ValidateConstant {
     EMAIL,
     PASSWORD,
     NON_EMPTY_TEXT,
-    INTEGER
+    INTEGER,
+    FLOAT
 }

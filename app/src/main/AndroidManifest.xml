@@ -82,7 +82,7 @@
         <activity android:name=".activities.teacher.TeacherUpdateAnnouncementActivity" >
         </activity>
         <activity
-            android:name=".activity_teacher_create_workItem"
+            android:name=".activities.teacher.activity_teacher_create_workItem"
             android:label="@string/title_activity_activity_teacher_create_work_item" >
         </activity>
         <activity

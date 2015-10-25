@@ -75,6 +75,15 @@ public class RgsTextWatcher implements TextWatcher {
                     textInputLayout.setErrorEnabled(false);
                 }
                 break;
+            case FLOAT:
+                if (!Validators.validateFloat(view.getText().toString())) {
+                    textInputLayout.setError(window.getContext().getResources().getString(R.string.invalid_nonEmptyText));
+                    requestFocus(view);
+                } else {
+                    textInputLayout.setError("");
+                    textInputLayout.setErrorEnabled(false);
+                }
+                break;
             default:
                 textInputLayout.setError("Cannot validate input");
                 requestFocus(view);

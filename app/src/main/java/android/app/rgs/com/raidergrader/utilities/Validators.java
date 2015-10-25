@@ -61,6 +61,20 @@ public class Validators {
         }
         return true;
     }
+    /**Claire Gray
+     * Returns true if the input string is a valid floating number
+     *
+     * @param inputNumber
+     * @return
+     */
+    public static boolean validateFloat(String inputNumber) {
+        try {
+            float result = Float.parseFloat(inputNumber);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
+    }
 
     /**
      * Returns true if the associated TextView has no errors according
