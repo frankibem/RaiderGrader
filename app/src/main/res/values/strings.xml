@@ -54,10 +54,15 @@
         activity_teacher_create_workItem
     </string>
 
-    <string name="hello_world">Hello world!</string>
-    <string name="text_title">Title: </string>
-    <string name="text_description">Description: </string>
-    <string name="text_score">Score: </string>
+    <string name="text_title">Title</string>
+    <string name="text_description">Description</string>
+    <string name="btn_time">Set time</string>
+    <string name="btn_date">Set date</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_done">Done</string>
+
+    <string name="btn_create"> Create</string>
+
     <string name="title_activity_activity_teacher_work_item_list">activity_teacher_workItem_list
     </string>
 
