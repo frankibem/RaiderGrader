@@ -13,8 +13,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 
@@ -22,19 +24,20 @@ public class TeacherCreateWorkItemActivity extends AppCompatActivity implements 
 
     private EditText inputTitle,
                      inputDescription,
-                     inputdueDate,
-                     inputmaxPoint,
-                     inputclassId,
-                     inputType;
+                     inputmaxPoint;
 
     private TextInputLayout inputLayoutTitle,
                             inputLayoutDescription,
-                            inputLayoutdueDate,
-                            inputLayoutmaxPoint,
-                            inputLayoutclassId,
-                            inputLayoutType;
+                            inputLayoutmaxPoint;
 
-    private Button btnCreate;
+    private Button setTime,
+                   setDate,
+                   cancel,
+                   done;
+
+    private Spinner spinnerType;
+
+    String[] types = {"Exam", "Quiz", "Homework", "Project", "Participation"};
 
     private WorkItemController controller;
 
@@ -50,24 +53,25 @@ public class TeacherCreateWorkItemActivity extends AppCompatActivity implements 
         LoadReferences();
         SetValidators();
 
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, types);
+        spinnerType.setAdapter(adapter);
+
     }
 
     private void LoadReferences() {
         inputTitle = (EditText) findViewById(R.id.input_Title);
         inputDescription = (EditText) findViewById(R.id.input_Description);
-        inputdueDate = (EditText) findViewById(R.id.input_Ddate);
         inputmaxPoint = (EditText) findViewById(R.id.input_Mpoint);
-        inputclassId = (EditText) findViewById(R.id.input_classid);
-        inputType = (EditText) findViewById(R.id.input_Type);
-
         inputLayoutTitle = (TextInputLayout) findViewById(R.id.input_layout_Title);
         inputLayoutDescription = (TextInputLayout) findViewById(R.id.input_layout_Description);
-        inputLayoutdueDate = (TextInputLayout) findViewById(R.id.input_layout_Ddate);
         inputLayoutmaxPoint = (TextInputLayout) findViewById(R.id.input_layout_Mpoint);
-        inputLayoutclassId = (TextInputLayout) findViewById(R.id.input_layout_ClassId);
-        inputLayoutType = (TextInputLayout) findViewById(R.id.input_layout_Type);
 
-        btnCreate = (Button) findViewById(R.id.btn_create);
+        setTime = (Button) findViewById(R.id.btn_setTime);
+        setDate = (Button) findViewById(R.id.btn_setDate);
+        cancel = (Button) findViewById(R.id.btn_cancel);
+        done = (Button) findViewById(R.id.btn_done);
+
+        spinnerType = (Spinner) findViewById(R.id.spinner_type);
     }
 
     private void SetValidators() {
@@ -75,14 +79,8 @@ public class TeacherCreateWorkItemActivity extends AppCompatActivity implements 
                 inputLayoutTitle, ValidateConstant.NON_EMPTY_TEXT));
         inputDescription.addTextChangedListener(new RgsTextWatcher(getWindow(), inputDescription,
                 inputLayoutDescription, ValidateConstant.NON_EMPTY_TEXT));
-        inputdueDate.addTextChangedListener(new RgsTextWatcher(getWindow(), inputdueDate,
-                inputLayoutdueDate, ValidateConstant.NON_EMPTY_TEXT));
         inputmaxPoint.addTextChangedListener(new RgsTextWatcher(getWindow(),  inputmaxPoint,
                 inputLayoutmaxPoint, ValidateConstant.FLOAT));
-        inputclassId.addTextChangedListener(new RgsTextWatcher(getWindow(), inputclassId,
-                inputLayoutclassId, ValidateConstant.INTEGER));
-        inputType.addTextChangedListener(new RgsTextWatcher(getWindow(), inputType,
-                inputLayoutType, ValidateConstant.INTEGER));
     }
 
     /**
@@ -99,23 +97,10 @@ public class TeacherCreateWorkItemActivity extends AppCompatActivity implements 
             noErrors = false;
             inputLayoutDescription.setError("Description should not be empty");
         }
-        if (!Validators.validateNonEmptyText(inputdueDate.getText().toString())) {
-            noErrors = false;
-            inputLayoutdueDate.setError("Due date should not be empty");
-        }
         if (!Validators.validateFloat(inputmaxPoint.getText().toString())) {
             noErrors = false;
             inputLayoutmaxPoint.setError("Max point should be a floating number.");
         }
-        if (!Validators.validateInteger(inputclassId.getText().toString())) {
-            noErrors = false;
-            inputLayoutclassId.setError("Class ID should be an integer.");
-        }
-        if (!Validators.validateInteger(inputType.getText().toString())) {
-            noErrors = false;
-            inputLayoutType.setError("Type should be an integer.");
-        }
-
         return noErrors;
     }
 
@@ -128,10 +113,7 @@ public class TeacherCreateWorkItemActivity extends AppCompatActivity implements 
         CreateWorkItemModel createWorkItemModel = new CreateWorkItemModel();
         createWorkItemModel.Title = inputTitle.getText().toString();
         createWorkItemModel.Description = inputDescription.getText().toString();
-        createWorkItemModel.DueDate = inputdueDate.getText().toString();
         createWorkItemModel.MaxPoints = Float.parseFloat(inputmaxPoint.getText().toString());
-        createWorkItemModel.ClassId = Integer.parseInt(inputclassId.getText().toString());
-        createWorkItemModel.Type = Integer.parseInt(inputType.getText().toString());
 
         controller.CreateWorkItem(createWorkItemModel);
     }
