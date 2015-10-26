@@ -16,7 +16,11 @@ import android.widget.ListView;
 
 public class TeacherWorkItemDetailActivity extends AppCompatActivity
         implements ControllerCallback {
-    private String[] items = {"Update work-item", "Assign Grades", "Delete"};
+    private static final String UPDATE = "Update work-item";
+    private static final String GRADE = "Assign Grades";
+    private static final String DELETE = "Delete";
+
+    private static String[] items = {UPDATE, GRADE, DELETE};
     private ListView listView;
     private TeacherWorkItemDetailActivity activity;
 
@@ -38,15 +42,14 @@ public class TeacherWorkItemDetailActivity extends AppCompatActivity
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = null;
-                switch (position) {
-                    case 0:
+                switch ((String) parent.getSelectedItem()) {
+                    case UPDATE:
                         intent = new Intent(getApplicationContext(), TeacherUpdateWorkItemActivity.class);
                         break;
-                    case 1:
+                    case GRADE:
                         intent = new Intent(getApplicationContext(), TeacherGradeWorkItemActivity.class);
                         break;
-                    case 2: {
-                        //// TODO: 10/24/2015 Implement dialog for deleting a work-item
+                    case DELETE: {
                         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
                         builder.setTitle(String.format("Delete \"%s\"", Repository.getCurrentWorkItem().Title));
                         builder.setMessage("This will delete all related grades assigned" +
@@ -67,7 +70,7 @@ public class TeacherWorkItemDetailActivity extends AppCompatActivity
 
                         AlertDialog dialog = builder.create();
                         dialog.show();
-                        break;
+                        return;
                     }
                 }
 
