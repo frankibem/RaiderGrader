@@ -6,13 +6,22 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.List;
 
 public class StudentAnnouncementListActivity extends AppCompatActivity {
+
+
+    private ListView listView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.student_announcement_list);
+
+        listView = (ListView) findViewById(R.id.listView);
     }
 
     @Override
