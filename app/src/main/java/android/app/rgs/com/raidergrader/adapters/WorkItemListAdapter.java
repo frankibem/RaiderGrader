@@ -31,7 +31,7 @@ public class WorkItemListAdapter extends ArrayAdapter<WorkItemModel> {
         LayoutInflater inflater = LayoutInflater.from(mContext);
 
         View rowView = inflater.inflate(R.layout.teacher_work_item_list_adapter, parent, false);
-
+        //put the title
         TextView text_title = (TextView) rowView.findViewById(R.id.txt_title);
         text_title.setText(item.Title);
         //put the max point
