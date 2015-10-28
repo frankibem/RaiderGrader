@@ -33,11 +33,9 @@ public class TeacherWorkItemListAdapter extends ArrayAdapter<WorkItemModel> {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View rowView = inflater.inflate(R.layout.teacher_work_item_list_item, parent, false);
 
-        //// TODO: 10/28/2015 Change 'txt...' to 'text...'
-        //put the title
         TextView textTitle = (TextView) rowView.findViewById(R.id.text_title);
         textTitle.setText(item.Title);
-        //put the max point
+
         TextView text_score = (TextView) rowView.findViewById(R.id.text_score);
         text_score.setText(Float.toString(item.MaxPoints));
 
