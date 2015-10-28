@@ -3,13 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="android.app.rgs.com.raidergrader.activities.teacher.TeacherWorkItemListActivity"
-    android:orientation="vertical">
-    
+    tools:context="android.app.rgs.com.raidergrader.activities.teacher.TeacherWorkItemListActivity">
+
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
@@ -19,11 +19,10 @@
     </ListView>
 
     <Button
-        android:text="Button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="30"
         android:layout_gravity="center_horizontal"
-        android:onClick="onClickButton"/>
-
+        android:layout_weight="30"
+        android:onClick="onClickButton"
+        android:text="Button" />
 </LinearLayout>

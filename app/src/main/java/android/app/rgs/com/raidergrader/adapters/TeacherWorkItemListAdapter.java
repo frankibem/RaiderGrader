@@ -14,28 +14,31 @@ import java.util.List;
 /**
  * Created by Claire on 10/27/2015.
  */
-public class WorkItemListAdapter extends ArrayAdapter<WorkItemModel> {
-    private List<WorkItemModel> workItem;
+public class TeacherWorkItemListAdapter extends ArrayAdapter<WorkItemModel> {
+    private List<WorkItemModel> workItems;
     private final Context mContext;
-    public WorkItemListAdapter(Context context, List<WorkItemModel> aClass) {
-        super(context, -1, aClass);
 
-        workItem = aClass;
+    public TeacherWorkItemListAdapter(Context context, List<WorkItemModel> workItems) {
+        super(context, -1, workItems);
+
+        this.workItems = workItems;
         mContext = context;
     }
 
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        WorkItemModel item = workItem.get(position);
+        WorkItemModel item = workItems.get(position);
 
         LayoutInflater inflater = LayoutInflater.from(mContext);
+        View rowView = inflater.inflate(R.layout.teacher_work_item_list_item, parent, false);
 
-        View rowView = inflater.inflate(R.layout.teacher_work_item_list_adapter, parent, false);
+        //// TODO: 10/28/2015 Change 'txt...' to 'text...'
         //put the title
-        TextView text_title = (TextView) rowView.findViewById(R.id.txt_title);
-        text_title.setText(item.Title);
+        TextView textTitle = (TextView) rowView.findViewById(R.id.text_title);
+        textTitle.setText(item.Title);
         //put the max point
-        TextView text_score = (TextView) rowView.findViewById(R.id.txt_score);
+        TextView text_score = (TextView) rowView.findViewById(R.id.text_score);
         text_score.setText(Float.toString(item.MaxPoints));
 
         return rowView;
