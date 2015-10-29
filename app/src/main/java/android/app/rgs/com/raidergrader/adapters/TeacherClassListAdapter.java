@@ -29,7 +29,7 @@ public class TeacherClassListAdapter extends ArrayAdapter<ClassModel> {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View rowView = inflater.inflate(android.R.layout.simple_list_item_1, parent);
+        View rowView = inflater.inflate(android.R.layout.simple_list_item_1, parent, false);
 
         ClassModel item = classes.get(position);
         TextView title = (TextView) rowView.findViewById(android.R.id.text1);
