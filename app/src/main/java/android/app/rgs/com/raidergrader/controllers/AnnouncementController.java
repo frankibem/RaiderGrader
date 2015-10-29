@@ -7,6 +7,7 @@ import android.app.rgs.com.raidergrader.data_access.Repository;
 import android.app.rgs.com.raidergrader.data_access.RequestError;
 import android.app.rgs.com.raidergrader.data_access.RestTask;
 import android.app.rgs.com.raidergrader.data_access.RestUtil;
+import android.app.rgs.com.raidergrader.models.AnnouncementModel;
 import android.app.rgs.com.raidergrader.utilities.GlobalHandling;
 import android.app.rgs.com.raidergrader.utilities.JsonHelpers;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
@@ -201,16 +202,16 @@ public class AnnouncementController {
      * Get announcements for a class
      * @param classId the details of the request
      */
-    private void GetAnnouncementsforClass(int classId) {
+    public void GetAnnouncementsforClass(int classId) {
         RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
             Gson gson = JsonHelpers.getGson();
 
             @Override
             public void onRequestSuccess(String response) {
 
-                Type type = new TypeToken<List<ScoreUnitModel>>() {
+                Type type = new TypeToken<List<AnnouncementModel>>() {
                 }.getType();
-                List<ScoreUnitModel> result = gson.fromJson(response, type);
+                List<AnnouncementModel> result = gson.fromJson(response, type);
 
                 controllerCallback.DisplayResult(result);
             }
