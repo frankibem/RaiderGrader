@@ -15,6 +15,7 @@ import android.widget.TextView;
 import org.joda.time.LocalDateTime;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * @author Michael Arroyo
@@ -46,7 +47,9 @@ public class StudentAnnouncementListAdapter extends ArrayAdapter<AnnouncementMod
 
         TextView dateView = (TextView) rowView.findViewById(R.id.date);
         LocalDateTime dateTime = TimeUtils.GetLocalTime(announce.CreatedOn);
-        dateView.setText(TimeUtils.ToLocaleString(dateTime));
+        String timeStr = dateTime.toString("hh:mm a", Locale.getDefault())
+                + "\n" + dateTime.toString("MMM d, yyyy", Locale.getDefault());
+        dateView.setText(timeStr);
 
         return rowView;
     }

@@ -207,6 +207,10 @@ public class ClassController {
         RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
             @Override
             public void onRequestSuccess(String response) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
                 Gson gson = JsonHelpers.getGson();
 
                 Type type = new TypeToken<List<ClassModel>>() {

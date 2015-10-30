@@ -38,7 +38,7 @@ public class TimeUtils {
      * @return
      */
     public static String ToLocaleString(LocalDateTime localDateTime) {
-        return localDateTime.toString("HH:mm a MMM d, yyyy ", Locale.getDefault());
+        return localDateTime.toString("hh:mm a MMM d, yyyy", Locale.getDefault());
     }
 
     /**

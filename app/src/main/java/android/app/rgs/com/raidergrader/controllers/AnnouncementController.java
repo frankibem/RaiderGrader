@@ -99,7 +99,7 @@ public class AnnouncementController {
     * @param announcementID ID of the announcement to delete
     * */
 
-    public void DeleteAnnouncement(int announcementId){
+    public void DeleteAnnouncement(int announcementId) {
         RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
             @Override
             public void onRequestSuccess(String response) {
@@ -147,6 +147,7 @@ public class AnnouncementController {
     /**
      * Update the details of an announcement
      * Created by Michael Arroyo on 10/18/2015
+     *
      * @param model
      */
     public void UpdateAnnouncement(UpdateAnnouncementModel model) {
@@ -200,6 +201,7 @@ public class AnnouncementController {
     /**
      * Noris Rogers
      * Get announcements for a class
+     *
      * @param classId the details of the request
      */
     public void GetAnnouncementsforClass(int classId) {
@@ -208,6 +210,9 @@ public class AnnouncementController {
 
             @Override
             public void onRequestSuccess(String response) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
 
                 Type type = new TypeToken<List<AnnouncementModel>>() {
                 }.getType();
