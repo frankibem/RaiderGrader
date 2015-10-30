@@ -14,7 +14,8 @@
         android:paddingStart="?android:attr/listPreferredItemPaddingStart"
         android:text="Project 1"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
-        android:gravity="center_vertical"/>
+        android:gravity="center_vertical"
+        android:singleLine="true"/>
 
     <TextView
         android:id="@+id/text_score"
@@ -27,5 +28,6 @@
         android:text="/100"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
         android:textColor="@android:color/black"
-        android:gravity="center_vertical"/>
+        android:gravity="center_vertical"
+        android:singleLine="true"/>
 </LinearLayout>
