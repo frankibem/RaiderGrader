@@ -19,6 +19,10 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author Michael Arroyo
+ */
+
 public class StudentAnnouncementListActivity extends AppCompatActivity
         implements ControllerCallback<List<AnnouncementModel>> {
     private ListView listView;
