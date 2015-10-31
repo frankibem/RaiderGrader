@@ -9,6 +9,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+/**
+ * @author Noris Rogers
+ * @author Lauren Joness
+ */
+
 public class TeacherStudentItemsActivity extends AppCompatActivity {
 
     ListView listView;
@@ -29,13 +34,14 @@ public class TeacherStudentItemsActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position) {
                     case 0:
-                        Intent intent0 = new Intent(getApplicationContext(), TeacherClassAcceptedStudentsActivity.class);
+                        Intent asIntent = new Intent(getApplicationContext(), TeacherClassAcceptedStudentsActivity.class);
+                        startActivity(asIntent);
                         break;
                     case 1:
-                        Intent intent1 = new Intent(getApplicationContext(), TeacherClassWaitlistActivity.class);
+                        Intent wlIntent = new Intent(getApplicationContext(), TeacherClassWaitlistActivity.class);
+                        startActivity(wlIntent);
                         break;
                 }
-
             }
 
 

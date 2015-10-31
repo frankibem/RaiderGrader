@@ -2,6 +2,8 @@ package android.app.rgs.com.raidergrader.data_access;
 
 import android.app.rgs.com.raidergrader.models.AnnouncementModel;
 import android.app.rgs.com.raidergrader.models.ClassModel;
+import android.app.rgs.com.raidergrader.models.ScoreUnitModel;
+import android.app.rgs.com.raidergrader.models.StudentModel;
 import android.app.rgs.com.raidergrader.models.WorkItemModel;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -25,6 +27,7 @@ public class Repository {
     private static ClassModel currentClass;
     private static WorkItemModel currentWorkItem;
     private static AnnouncementModel currentAnnouncement;
+    private static StudentModel currentStudent;
 
     public static ClassModel getCurrentClass() {
         return currentClass;
@@ -48,6 +51,14 @@ public class Repository {
 
     public static void setCurrentAnnouncement(AnnouncementModel currentAnnouncement) {
         Repository.currentAnnouncement = currentAnnouncement;
+    }
+
+    public static StudentModel getCurrentStudent() {
+        return currentStudent;
+    }
+
+    public static void setCurrentStudent(StudentModel currentStudent) {
+        Repository.currentStudent = currentStudent;
     }
 
     /**
