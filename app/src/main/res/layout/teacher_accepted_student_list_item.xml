@@ -14,7 +14,8 @@
         android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
         android:paddingStart="?android:attr/listPreferredItemPaddingStart"
         android:text="Student Name"
-        android:textAppearance="?android:attr/textAppearanceListItemSmall" />
+        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:ellipsize="end" />
 
     <TextView
         android:id="@+id/text_grade"
@@ -27,6 +28,7 @@
         android:paddingStart="?android:attr/listPreferredItemPaddingStart"
         android:text="100"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
-        android:textColor="@android:color/black" />
+        android:textColor="@android:color/black"
+        android:textAlignment="textEnd" />
 
 </LinearLayout>

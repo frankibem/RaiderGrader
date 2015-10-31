@@ -81,6 +81,8 @@
         </activity>
         <activity android:name=".activities.teacher.TeacherUpdateAnnouncementActivity" >
         </activity>
+        <activity android:name=".activities.teacher.TeacherStudentDetailActivity" >
+        </activity>
     </application>
 
 </manifest>
