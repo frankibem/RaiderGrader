@@ -35,6 +35,7 @@
     <string name="btn_register">Register</string>
     <string name="text_register">New to Raider Grader? Register Here</string>
 
+
     <string name="text_class">Class: </string>
     <string name="text_courseNumber">Course Number: </string>
     <string name="text_teacher">Teacher: </string>
@@ -54,7 +55,14 @@
         activity_teacher_create_workItem
     </string>
 
-    <string name="text_title">Title</string>
+    <string name="text_title">Title:</string>
+    <string name="text_prefix">Prefix</string>
+    <string name="text_section">Section</string>
+    <string name="text_project">Project</string>
+    <string name="text_exam">Exam</string>
+    <string name="text_quiz">Quiz</string>
+    <string name="text_homework">Homework</string>
+    <string name="text_other">Other</string>
     <string name="text_description">Description</string>
     <string name="text_score">Out of </string>
     <string name="btn_time">Set time</string>
