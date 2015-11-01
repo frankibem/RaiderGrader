@@ -7,6 +7,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+/**
+ * @author Michael Arroyo
+ * @author Noris Rogers
+ */
+
 public class StudentWorkItemDetailActivity extends AppCompatActivity {
 
     @Override
