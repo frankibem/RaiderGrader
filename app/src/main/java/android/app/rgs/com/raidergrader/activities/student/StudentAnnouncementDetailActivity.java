@@ -23,10 +23,7 @@ import java.util.Locale;
  */
 
 public class StudentAnnouncementDetailActivity extends AppCompatActivity {
-    private String announcmentDescription;
-
     private AnnouncementModel announcement;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -2,6 +2,8 @@ package android.app.rgs.com.raidergrader.activities.student;
 
 import android.app.rgs.com.raidergrader.R;
 import android.app.rgs.com.raidergrader.controllers.AccountController;
+import android.app.rgs.com.raidergrader.data_access.Repository;
+import android.app.rgs.com.raidergrader.models.WorkItemModel;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -13,11 +15,14 @@ import android.view.MenuItem;
  */
 
 public class StudentWorkItemDetailActivity extends AppCompatActivity {
+    private WorkItemModel workItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.student_work_item_detail);
+
+        workItem = Repository.getCurrentWorkItem();
     }
 
     @Override
