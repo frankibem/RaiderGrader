@@ -55,7 +55,8 @@ public class Validators {
      */
     public static boolean validateInteger(String inputNumber) {
         try {
-            int result = Integer.parseInt(inputNumber);
+            //noinspection ResultOfMethodCallIgnored
+            Integer.parseInt(inputNumber);
         } catch (NumberFormatException e) {
             return false;
         }
@@ -69,7 +70,8 @@ public class Validators {
      */
     public static boolean validateFloat(String inputNumber) {
         try {
-            float result = Float.parseFloat(inputNumber);
+            //noinspection ResultOfMethodCallIgnored
+            Float.parseFloat(inputNumber);
         } catch (NumberFormatException e) {
             return false;
         }

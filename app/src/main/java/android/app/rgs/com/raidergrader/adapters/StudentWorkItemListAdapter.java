@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Locale;
 
 /**
- * Created by lauren on 11/1/2015.
+ * @author Lauren Joness on 11/1/2015.
  */
 public class StudentWorkItemListAdapter extends ArrayAdapter<WorkItemModel> {
     private List<WorkItemModel> workitems;

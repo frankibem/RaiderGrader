@@ -6,7 +6,7 @@ import org.joda.time.LocalDateTime;
 import java.util.Locale;
 
 /**
- * Created by Frank Ibem on 10/22/2015.
+ * @author Frank Ibem.
  */
 public class TimeUtils {
     /**

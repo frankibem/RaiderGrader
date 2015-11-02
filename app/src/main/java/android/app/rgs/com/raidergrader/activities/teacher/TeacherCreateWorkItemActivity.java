@@ -60,8 +60,6 @@ public class TeacherCreateWorkItemActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.teacher_create_work_item);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         controller = new WorkItemController(this, this);
 
@@ -209,7 +207,7 @@ public class TeacherCreateWorkItemActivity extends AppCompatActivity
     }
 
     @Override
-    public void onTimePicked(int hour, int minute, int second) {
+    public void onTimePicked(int hour, int minute) {
         HOUR = hour;
         MINUTE = minute;
         LocalDateTime dateTime = TimeUtils.LocalDateTimeFromComponents(YEAR, MONTH, DAY, HOUR, MINUTE);

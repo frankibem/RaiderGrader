@@ -3,22 +3,8 @@
     <string name="title_activity_login">Log In</string>
     <string name="title_activity_enrollment">Enroll in a Class</string>
     <string name="title_activity_registration">Register</string>
-    <string name="title_activity_activity_selector">Choose an Activity</string>
     <string name="title_activity_student_class_list">My Classes</string>
     <string name="title_activity_enrollment_confirmation">Confirm Enrollment</string>
-
-    <!-- Selector Page -->
-    <string name="selector_login">Login</string>s
-    <string name="selector_enroll">Enrollment</string>
-    <string name="selector_register">Registration</string>
-    <string name="selector_std_classlist">Student class list</string>
-    <string name="selector_std_classdetail">Student class detail</string>
-    <string name="selector_tch_classlist">Teacher class list</string>
-    <string name="selector_std_dropclass">Student drop class</string>
-    <string name="selector_tch_deleteclass">Teacher delete class</string>
-    <string name="selector_tch_manageclass">Teacher manage class</string>
-    <string name="selector_std_workitemdetail">Student workitem details</string>
-
 
     <!-- Login Page-->
     <string name="hint_email">Email</string>

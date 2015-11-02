@@ -53,10 +53,10 @@ public class EnrollmentActivity extends AppCompatActivity
 //        if(!Validators.hasNoError(inputLayoutClassId)) {
 //            return;
 //        }
-        String classid = inputClassId.getText().toString();
+        String classId = inputClassId.getText().toString();
 
         try {
-            RestTask task = RestUtil.obtainGetTask(Repository.baseUrl + "api/Classes/" + classid);
+            RestTask task = RestUtil.obtainGetTask(Repository.baseUrl + "api/Classes/" + classId);
             task.setProgressCallback(this);
             task.setResponseCallback(this);
             task.execute();

@@ -96,7 +96,7 @@ public class StudentClassListActivity extends AppCompatActivity
         public int compare(EnrollmentModel lhs, EnrollmentModel rhs) {
             if (lhs.Pending == rhs.Pending) {
                 return 0;
-            } else if (lhs.Pending && !rhs.Pending) {
+            } else if (lhs.Pending) {
                 return -1;
             } else {
                 return 1;

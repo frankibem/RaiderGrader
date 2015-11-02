@@ -2,6 +2,7 @@ package android.app.rgs.com.raidergrader.adapters;
 
 import android.app.rgs.com.raidergrader.R;
 import android.app.rgs.com.raidergrader.activities.teacher.TeacherClassWaitlistActivity;
+import android.app.rgs.com.raidergrader.models.EnrollmentState;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,7 +14,7 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
- * Created by Frank Ibem on 10/24/2015.
+ * @author Frank Ibem.
  */
 
 /**
@@ -87,7 +88,7 @@ public class WaitListAdapter
             // Mark item for acceptance and update background color
             listItem.setBackgroundResource(R.color.lightGreen);
             model.Accept = true;
-            model.State = TeacherClassWaitlistActivity.State.ACCEPT;
+            model.State = EnrollmentState.ACCEPT;
         }
     };
 
@@ -100,7 +101,7 @@ public class WaitListAdapter
             // Mark item for rejection and update background color
             listItem.setBackgroundResource(R.color.paleRed);
             model.Accept = false;
-            model.State = TeacherClassWaitlistActivity.State.REJECT;
+            model.State = EnrollmentState.REJECT;
         }
     };
 }

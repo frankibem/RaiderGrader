@@ -70,7 +70,7 @@ public class LoginActivity extends AppCompatActivity
 
     @Override
     public void DisplayResult(String result) {
-        if (result == "success") {
+        if (result.equals("success")) {
             controller.DetermineUserRole();
         }
     }

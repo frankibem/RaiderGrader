@@ -22,11 +22,17 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 /**
- * Created by Frank Ibem on 10/16/2015.
+ * @author Frank Ibem
+ * @author Michael Arroyo
+ * @author Joshua Hernandez
+ */
+
+/**
+ * Controller for class related actions.
  */
 public class ClassController {
-    private Activity activity;
-    private ControllerCallback controllerCallback;
+    private final Activity activity;
+    private final ControllerCallback controllerCallback;
     private ProgressDialog mProgress;
 
     /**
@@ -44,7 +50,7 @@ public class ClassController {
      * Joshua Hernandez
      * Creates a new class for a teacher from the given model
      *
-     * @param createClassModel
+     * @param createClassModel Model containing class creation details
      */
     public void CreateClass(CreateClassModel createClassModel) {
         Gson gson = JsonHelpers.getGson();
@@ -145,8 +151,7 @@ public class ClassController {
 
     /**
      * Update the details of a class
-     * Created by Michael Arroyo on 10/18/2015
-     * @param model
+     * @param model Model containing details used to update the class
      */
     public void UpdateClass(UpdateClassModel model) {
         Gson gson = new Gson();
@@ -199,8 +204,7 @@ public class ClassController {
 
     /**
      * Returns a list of all classes taught by a given teacher.
-     * Created by Michael Arroyo 10/18/2015
-     * @param userName
+     * @param userName Teacher's username
      */
     public void GetTeacherClasses(String userName) {
 
@@ -253,4 +257,3 @@ public class ClassController {
         }
     }
 }
-

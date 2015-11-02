@@ -15,7 +15,6 @@ public class RestUtil {
      *
      * @param url      Url for authentication
      * @param formBody Name-Value pair Collection containing users username, password and grant_type
-     * @return
      * @throws IOException
      */
     public static RestTask obtainLoginTask(String url, List<Pair<String, String>> formBody)
@@ -31,8 +30,7 @@ public class RestUtil {
     /**
      * Returns a RestTask for a HTTP GET
      *
-     * @param url
-     * @return
+     * @param url GET url
      * @throws MalformedURLException
      * @throws IOException
      */
@@ -42,16 +40,14 @@ public class RestUtil {
         attachAuthentication(connection);
         connection.setDoInput(true);
 
-        RestTask task = new RestTask(connection);
-        return task;
+        return new RestTask(connection);
     }
 
     /**
      * Returns a RestTask for a HTTP POST
      *
-     * @param url
-     * @param formData
-     * @return
+     * @param url POST url
+     * @param formData List of pairs representing form data
      * @throws MalformedURLException
      * @throws IOException
      */
@@ -69,9 +65,8 @@ public class RestUtil {
     /**
      * Returns a RestTask for a HTTP POST with a JSON body
      *
-     * @param url
-     * @param jsonBody
-     * @return
+     * @param url POST url
+     * @param jsonBody Body of the request in JSON format
      * @throws MalformedURLException
      * @throws IOException
      */
@@ -89,9 +84,8 @@ public class RestUtil {
     /**
      * Returns a RestTask for a HTTP POST with url-encoded form data
      *
-     * @param url
-     * @param formData
-     * @return
+     * @param url POST url
+     * @param formData URL-encoded request body
      * @throws MalformedURLException
      * @throws IOException
      */
@@ -110,9 +104,8 @@ public class RestUtil {
     /**
      * Returns a RestTask for a HTTP PUT with a JSON body
      *
-     * @param url
-     * @param jsonBody
-     * @return
+     * @param url PUT url
+     * @param jsonBody Body of the request in JSON format
      * @throws MalformedURLException
      * @throws IOException
      */
@@ -131,8 +124,7 @@ public class RestUtil {
     /**
      * Returns a RestTask for a HTTP DELETE
      *
-     * @param url
-     * @return
+     * @param url DELETE url
      * @throws IOException
      */
     public static RestTask obtainDeleteTask(String url)
@@ -142,16 +134,14 @@ public class RestUtil {
         connection.setRequestMethod("DELETE");
         connection.setDoInput(true);
 
-        RestTask task = new RestTask(connection);
-        return task;
+        return new RestTask(connection);
     }
 
     /**
      * Returns a RestTask for a HTTP DELETE with a JSON body
      *
-     * @param url
-     * @param jsonBody
-     * @return
+     * @param url DELETE url
+     * @param jsonBody Body of the request in JSON format
      * @throws MalformedURLException
      * @throws IOException
      */
@@ -171,8 +161,7 @@ public class RestUtil {
     /**
      * Creates a connection with default time out values
      *
-     * @param url
-     * @return
+     * @param url Url of request
      * @throws IOException
      */
     private static HttpURLConnection createDefaultConnection(String url) throws IOException {
@@ -185,7 +174,7 @@ public class RestUtil {
     /**
      * Attaches the user's access token to the request
      *
-     * @param connection
+     * @param connection Connection to attach the authentication parameters to
      */
     private static void attachAuthentication(HttpURLConnection connection) {
         connection.setRequestProperty("Authorization", "Bearer " + Repository.ACCESS_TOKEN);

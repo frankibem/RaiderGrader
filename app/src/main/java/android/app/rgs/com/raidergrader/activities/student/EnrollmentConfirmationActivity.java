@@ -51,7 +51,7 @@ public class EnrollmentConfirmationActivity extends AppCompatActivity
         model.ClassId = classModel.Id;
         model.StudentUserName = Repository.USERNAME;
 
-        controller.RequestEnrollmentforStudent(model);
+        controller.RequestEnrollmentForStudent(model);
     }
 
 

@@ -16,7 +16,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -54,7 +53,7 @@ public class StudentAnnouncementListActivity extends AppCompatActivity
     }
 
     private void fetchData() {
-        controller.GetAnnouncementsforClass(Repository.getCurrentClass().Id);
+        controller.GetAnnouncementsForClass(Repository.getCurrentClass().Id);
     }
 
     @Override

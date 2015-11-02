@@ -6,7 +6,7 @@
     android:orientation="horizontal">
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical">
@@ -44,7 +44,8 @@
         android:layout_gravity="center_vertical"
         android:layout_marginRight="15dp"
         android:clickable="true"
-        android:src="@drawable/accept" />
+        android:src="@drawable/accept"
+        android:contentDescription="Accept"/>
 
     <ImageView
         android:id="@+id/reject"
@@ -53,6 +54,7 @@
         android:layout_gravity="center_vertical"
         android:layout_marginRight="15dp"
         android:clickable="true"
-        android:src="@drawable/reject" />
+        android:src="@drawable/reject"
+        android:contentDescription="Reject"/>
 
 </LinearLayout>

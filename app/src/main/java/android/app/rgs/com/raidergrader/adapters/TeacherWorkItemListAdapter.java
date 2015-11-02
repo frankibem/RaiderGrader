@@ -10,9 +10,10 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
- * Created by Claire on 10/27/2015.
+ * @author Claire Gray
  */
 public class TeacherWorkItemListAdapter extends ArrayAdapter<WorkItemModel> {
     private List<WorkItemModel> workItems;
@@ -37,9 +38,8 @@ public class TeacherWorkItemListAdapter extends ArrayAdapter<WorkItemModel> {
         textTitle.setText(item.Title);
 
         TextView text_score = (TextView) rowView.findViewById(R.id.text_score);
-        text_score.setText(Float.toString(item.MaxPoints));
+        text_score.setText(String.format(Locale.getDefault(), "%.2f", item.MaxPoints));
 
         return rowView;
     }
-
 }

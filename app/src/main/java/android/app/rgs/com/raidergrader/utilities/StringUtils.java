@@ -1,7 +1,7 @@
 package android.app.rgs.com.raidergrader.utilities;
 
 /**
- * Created by Frank Ibem on 10/10/2015.
+ * @author Frank Ibem.
  */
 public class StringUtils {
     /**

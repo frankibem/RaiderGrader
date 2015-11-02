@@ -31,8 +31,8 @@ import java.util.List;
  * Controller for class enrollment related actions
  */
 public class EnrollmentController {
-    private Activity activity;
-    private ControllerCallback controllerCallback;
+    private final Activity activity;
+    private final ControllerCallback controllerCallback;
     private ProgressDialog mProgress;
 
     /**
@@ -51,7 +51,7 @@ public class EnrollmentController {
      *
      * @param model Model containing the details of the request
      */
-    public void RequestEnrollmentforStudent(EnrollmentBindingModel model) {
+    public void RequestEnrollmentForStudent(EnrollmentBindingModel model) {
         Gson gson = JsonHelpers.getGson();
         String request = gson.toJson(model);
 

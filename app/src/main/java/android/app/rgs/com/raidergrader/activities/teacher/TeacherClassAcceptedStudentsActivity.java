@@ -2,7 +2,6 @@ package android.app.rgs.com.raidergrader.activities.teacher;
 
 import android.app.rgs.com.raidergrader.R;
 import android.app.rgs.com.raidergrader.adapters.TeacherAcceptedStudentListAdapter;
-import android.app.rgs.com.raidergrader.controllers.ClassController;
 import android.app.rgs.com.raidergrader.controllers.EnrollmentController;
 import android.app.rgs.com.raidergrader.data_access.Repository;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;

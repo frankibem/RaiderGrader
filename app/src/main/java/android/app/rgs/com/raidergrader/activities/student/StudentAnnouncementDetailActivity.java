@@ -2,16 +2,13 @@ package android.app.rgs.com.raidergrader.activities.student;
 
 import android.app.rgs.com.raidergrader.R;
 import android.app.rgs.com.raidergrader.controllers.AccountController;
-import android.app.rgs.com.raidergrader.controllers.AnnouncementController;
 import android.app.rgs.com.raidergrader.data_access.Repository;
 import android.app.rgs.com.raidergrader.models.AnnouncementModel;
-import android.app.rgs.com.raidergrader.models.ControllerCallback;
 import android.app.rgs.com.raidergrader.utilities.TimeUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import org.joda.time.LocalDateTime;
@@ -23,10 +20,7 @@ import java.util.Locale;
  */
 
 public class StudentAnnouncementDetailActivity extends AppCompatActivity {
-    private String announcmentDescription;
-
     private AnnouncementModel announcement;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

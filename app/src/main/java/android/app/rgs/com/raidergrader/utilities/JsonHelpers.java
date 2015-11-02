@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 /**
- * Created by Frank Ibem on 10/18/2015.
+ * @author Frank Ibem.
  */
 public class JsonHelpers {
     /**
