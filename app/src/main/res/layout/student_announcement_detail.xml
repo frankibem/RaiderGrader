@@ -40,7 +40,6 @@
             android:singleLine="false"
             android:text="Really really really really very extrememly long title"
             android:textAppearance="?android:attr/textAppearanceListItemSmall"
-            android:textStyle="bold"
             android:ellipsize="none" />
 
     </RelativeLayout>

@@ -199,7 +199,7 @@ public class TeacherCreateWorkItemActivity extends AppCompatActivity
     @Override
     public void onDatePicked(int year, int month, int dayOfMonth) {
         YEAR = year;
-        MONTH = month;
+        MONTH = month+1;
         DAY = dayOfMonth;
         LocalDateTime dateTime = TimeUtils.LocalDateTimeFromComponents(YEAR, MONTH, DAY, HOUR, MINUTE);
         LocalDate date = new LocalDate(dateTime);
