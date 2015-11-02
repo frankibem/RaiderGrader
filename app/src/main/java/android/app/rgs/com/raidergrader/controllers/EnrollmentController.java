@@ -215,7 +215,7 @@ public class EnrollmentController {
                     mProgress.dismiss();
                 }
 
-                Toast.makeText(activity, "Enrollment successful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "Wait list updated", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -224,7 +224,7 @@ public class EnrollmentController {
                     mProgress.dismiss();
                 }
                 if (error.getStatusCode() == HttpStatusCodes.Conflict) {
-                    GlobalHandling.makeShortToast(activity, "You are already enrolled in this class");
+                    GlobalHandling.makeShortToast(activity, "An error occured while updating");
                 } else {
                     GlobalHandling.generalError(activity, error);
                 }
@@ -361,10 +361,9 @@ public class EnrollmentController {
             task.setResponseCallback(responseCallback);
             task.execute();
 
-            mProgress = ProgressDialog.show(activity, "Loading", "You have successfully enrolled in your class.", true);
+            mProgress = ProgressDialog.show(activity, "Loading", "Fetching student list", true);
         } catch (Exception ex) {
             responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
         }
-
     }
 }

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="android.app.rgs.com.raidergrader.activities.teacher.TeacherClassWaitlistActivity">
+    tools:context="android.app.rgs.com.raidergrader.activities.teacher.TeacherClassWaitListActivity">
 
     <Button
         android:id="@+id/done"
