@@ -38,7 +38,7 @@ public class TeacherStudentItemsActivity extends AppCompatActivity {
                         startActivity(asIntent);
                         break;
                     case 1:
-                        Intent wlIntent = new Intent(getApplicationContext(), TeacherClassWaitListActivity.class);
+                        Intent wlIntent = new Intent(getApplicationContext(), TeacherClassWaitlistActivity.class);
                         startActivity(wlIntent);
                         break;
                 }

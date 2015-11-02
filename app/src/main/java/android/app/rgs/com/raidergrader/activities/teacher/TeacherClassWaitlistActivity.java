@@ -21,7 +21,7 @@ public class TeacherClassWaitlistActivity extends AppCompatActivity
 
     private EnrollmentController controller = new EnrollmentController(this, this);
     private static List<EnrollmentModel> enrollments;
-    private static List<AcceptEnrollmentViewModel> viewModels;
+    private List<AcceptEnrollmentViewModel> viewModels;
     private ListView listView;
     private WaitListAdapter adapter;
 
@@ -90,5 +90,6 @@ public class TeacherClassWaitlistActivity extends AppCompatActivity
         for (EnrollmentModel model : enrollments) {
             viewModels.add(new AcceptEnrollmentViewModel(model));
         }
+        populateList();
     }
 }

@@ -1,7 +1,7 @@
 package android.app.rgs.com.raidergrader.adapters;
 
 import android.app.rgs.com.raidergrader.R;
-import android.app.rgs.com.raidergrader.activities.teacher.TeacherClassWaitListActivity;
+import android.app.rgs.com.raidergrader.activities.teacher.TeacherClassWaitlistActivity;
 import android.app.rgs.com.raidergrader.models.EnrollmentState;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -21,15 +21,15 @@ import java.util.List;
  * Adapter for wait-list activity
  */
 public class WaitListAdapter
-        extends ArrayAdapter<TeacherClassWaitListActivity.AcceptEnrollmentViewModel> {
+        extends ArrayAdapter<TeacherClassWaitlistActivity.AcceptEnrollmentViewModel> {
     private Context context;
-    private List<TeacherClassWaitListActivity.AcceptEnrollmentViewModel> viewModels;
+    private List<TeacherClassWaitlistActivity.AcceptEnrollmentViewModel> viewModels;
     private LayoutInflater inflater;
 
     /**
      * Returns the data associated with the adapter
      */
-    public List<TeacherClassWaitListActivity.AcceptEnrollmentViewModel> getViewModels() {
+    public List<TeacherClassWaitlistActivity.AcceptEnrollmentViewModel> getViewModels() {
         return viewModels;
     }
 
@@ -40,7 +40,7 @@ public class WaitListAdapter
      * @param enrollmentViewModels List of view-models to populate list with
      */
     public WaitListAdapter(Context context,
-                           List<TeacherClassWaitListActivity.AcceptEnrollmentViewModel> enrollmentViewModels) {
+                           List<TeacherClassWaitlistActivity.AcceptEnrollmentViewModel> enrollmentViewModels) {
         super(context, -1, enrollmentViewModels);
         this.context = context;
         this.viewModels = enrollmentViewModels;
@@ -49,7 +49,7 @@ public class WaitListAdapter
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        TeacherClassWaitListActivity.AcceptEnrollmentViewModel item = viewModels.get(position);
+        TeacherClassWaitlistActivity.AcceptEnrollmentViewModel item = viewModels.get(position);
         View rowView = inflater.inflate(R.layout.accept_enrollment_list_item, parent, false);
 
         TextView name = (TextView) rowView.findViewById(R.id.name);
@@ -88,7 +88,7 @@ public class WaitListAdapter
         @Override
         public void onClick(View v) {
             View listItem = (View) v.getParent();
-            TeacherClassWaitListActivity.AcceptEnrollmentViewModel model = (TeacherClassWaitListActivity.AcceptEnrollmentViewModel) listItem.getTag();
+            TeacherClassWaitlistActivity.AcceptEnrollmentViewModel model = (TeacherClassWaitlistActivity.AcceptEnrollmentViewModel) listItem.getTag();
 
             // Mark item for acceptance and update background color
             ImageView acceptImage = (ImageView) listItem.findViewById(R.id.accept);
@@ -106,7 +106,7 @@ public class WaitListAdapter
         @Override
         public void onClick(View v) {
             View listItem = (View) v.getParent();
-            TeacherClassWaitListActivity.AcceptEnrollmentViewModel model = (TeacherClassWaitListActivity.AcceptEnrollmentViewModel) listItem.getTag();
+            TeacherClassWaitlistActivity.AcceptEnrollmentViewModel model = (TeacherClassWaitlistActivity.AcceptEnrollmentViewModel) listItem.getTag();
 
             // Mark item for rejection and update background color
             ImageView acceptImage = (ImageView) listItem.findViewById(R.id.accept);
