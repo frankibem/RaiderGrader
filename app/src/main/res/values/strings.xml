@@ -6,6 +6,29 @@
     <string name="title_activity_activity_selector">Choose an Activity</string>
     <string name="title_activity_student_class_list">My Classes</string>
     <string name="title_activity_enrollment_confirmation">Confirm Enrollment</string>
+    <string name="title_activity_student_class_item">My Class Item</string>
+    <string name="title_activity_student_work_item_list">Work Item</string>
+    <string name="title_activity_student_work_item_list_detail">Work Item Details</string>
+    <string name="title_activity_student_announcement_list">Announcement</string>
+    <string name="title_activity_student_announcement_detail">Announcement Detail</string>
+    <string name="title_activity_teacher_class_home">My Homepage</string>
+    <string name="title_activity_teacher_class_item">My Class Item</string>
+    <string name="title_activity_teacher_create_class_item">Create Class Item</string>
+    <string name="title_activity_teacher_create_class">Create A Class</string>
+    <string name="title_activity_teacher_update_class">Update Class</string>
+    <string name="title_activity_teacher_student_item">Create Student Work Item</string>
+    <string name="title_activity_teacher_class_waitlist">Student Class Waitlist</string>
+    <string name="title_activity_teacher_class_accepted_student">Accepted Student</string>
+    <string name="title_activity_teacher_work_item_list">Work Item</string>
+    <string name="title_activity_teacher_create_work_item">Create Work Item</string>
+    <string name="title_activity_teacher_work_item_detail">Detail</string>
+    <string name="title_activity_teacher_update_work_item">Update Work Item</string>
+    <string name="title_activity_teacher_grade_work_item">Grade Work Item</string>
+    <string name="title_activity_teacher_announcement_list">Announcement</string>
+    <string name="title_activity_teacher_create_announcement">Create Announcement</string>
+    <string name="title_activity_teacher_announcement_detail">Announcement Detail</string>
+    <string name="title_activity_teacher_update_announcement">Update Announcement</string>
+    <string name="title_activity_teacher_student_detail">Student Detail</string>
 
     <!-- Selector Page -->
     <string name="selector_login">Login</string>s
