@@ -84,6 +84,13 @@ public class EnrollmentActivity extends AppCompatActivity
         Repository.setCurrentClass(classModel);
 
         Intent intent = new Intent(this, EnrollmentConfirmationActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, 0);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == 0) {
+            finish();
+        }
     }
 }

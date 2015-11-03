@@ -35,7 +35,7 @@ public class EnrollmentPendingFragment extends DialogFragment {
         builder.setTitle("Enrollment is pending");
         builder.setMessage(String.format("You cannot view the contents of \"%s\" because your enrollment has not " +
                 "yet been approved", model.Class.Title));
-        builder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }

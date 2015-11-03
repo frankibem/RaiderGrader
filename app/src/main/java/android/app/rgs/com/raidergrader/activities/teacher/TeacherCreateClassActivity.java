@@ -1,17 +1,15 @@
 package android.app.rgs.com.raidergrader.activities.teacher;
 
 import android.app.rgs.com.raidergrader.R;
-import android.app.rgs.com.raidergrader.controllers.AccountController;
 import android.app.rgs.com.raidergrader.controllers.ClassController;
-import android.app.rgs.com.raidergrader.data_access.Repository;
+import android.app.rgs.com.raidergrader.dialogs.ClassCreatedFragment;
+import android.app.rgs.com.raidergrader.models.ClassModel;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
 import android.app.rgs.com.raidergrader.models.CreateClassModel;
-import android.app.rgs.com.raidergrader.models.CreateWorkItemModel;
 import android.app.rgs.com.raidergrader.models.GradeDistribution;
 import android.app.rgs.com.raidergrader.utilities.RgsTextWatcher;
 import android.app.rgs.com.raidergrader.utilities.ValidateConstant;
 import android.app.rgs.com.raidergrader.utilities.Validators;
-import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,11 +18,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-// Created by Joshua Hernandez
+/**
+ * @author Joshua Hernandez
+ */
+
 public class TeacherCreateClassActivity extends AppCompatActivity
-            implements ControllerCallback{
+            implements ControllerCallback<ClassModel>{
     private EditText inputTitle;
-    private EditText inputCoursenumber;
+    private EditText inputCourseNumber;
     private EditText inputPrefix;
     private EditText inputSection;
     private EditText inputExam;
@@ -75,7 +76,7 @@ public class TeacherCreateClassActivity extends AppCompatActivity
         otherInputLayout=(TextInputLayout) findViewById(R.id.other_layout_textbox);
 
         inputTitle=(EditText) findViewById(R.id.classname_textbox);
-        inputCoursenumber=(EditText) findViewById(R.id.courseNumber_textbox);
+        inputCourseNumber =(EditText) findViewById(R.id.courseNumber_textbox);
         inputPrefix=(EditText) findViewById(R.id.prefix_textbox);
         inputSection=(EditText) findViewById(R.id.section_textbox);
         inputExam=(EditText) findViewById(R.id.exam_textbox);
@@ -85,13 +86,12 @@ public class TeacherCreateClassActivity extends AppCompatActivity
         inputOther=(EditText) findViewById(R.id.other_textbox);
 
         create_classBtn=(Button) findViewById(R.id.create_class_btn);
-
     }
 
     private void SetValidators() {
         inputTitle.addTextChangedListener(new RgsTextWatcher(getWindow(), inputTitle,
                 titleInputLayout, ValidateConstant.NON_EMPTY_TEXT));
-        inputCoursenumber.addTextChangedListener(new RgsTextWatcher(getWindow(), inputCoursenumber,
+        inputCourseNumber.addTextChangedListener(new RgsTextWatcher(getWindow(), inputCourseNumber,
                 courseInputLayout, ValidateConstant.INTEGER));
         inputPrefix.addTextChangedListener(new RgsTextWatcher(getWindow(), inputPrefix,
                 prefixInputLayout, ValidateConstant.NON_EMPTY_TEXT));
@@ -118,7 +118,7 @@ public class TeacherCreateClassActivity extends AppCompatActivity
             noErrors = false;
             titleInputLayout.setError("Title should not be empty");
         }
-        if (!Validators.validateInteger(inputCoursenumber.getText().toString())) {
+        if (!Validators.validateInteger(inputCourseNumber.getText().toString())) {
             noErrors = false;
             courseInputLayout.setError("Coursenumber should be filled with integers");
         }
@@ -164,7 +164,7 @@ public class TeacherCreateClassActivity extends AppCompatActivity
 
         CreateClassModel createClassModel = new CreateClassModel();
         createClassModel.Title = inputTitle.getText().toString();
-        createClassModel.CourseNumber = Integer.parseInt(inputCoursenumber.getText().toString());
+        createClassModel.CourseNumber = Integer.parseInt(inputCourseNumber.getText().toString());
         createClassModel.Prefix = inputPrefix.getText().toString();
         createClassModel.Section = Integer.parseInt(inputSection.getText().toString());
 
@@ -181,7 +181,9 @@ public class TeacherCreateClassActivity extends AppCompatActivity
     }
 
     @Override
-    public void DisplayResult(Object result) {
-
+    public void DisplayResult(ClassModel result) {
+        ClassCreatedFragment fragment = new ClassCreatedFragment();
+        fragment.setModel(result);
+        fragment.show(getSupportFragmentManager(), "class_created");
     }
 }
