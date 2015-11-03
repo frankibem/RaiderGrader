@@ -9,7 +9,7 @@ import android.support.v4.app.DialogFragment;
 import android.widget.DatePicker;
 
 /**
- * @author Frank Ibem.
+ * @author Frank Ibem
  */
 
 /**
