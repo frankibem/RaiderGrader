@@ -34,16 +34,12 @@ public class EnrollmentConfirmationActivity extends AppCompatActivity
         className = (TextView) findViewById(R.id.className);
         courseNumber = (TextView) findViewById(R.id.courseNumber);
         teacherName = (TextView) findViewById(R.id.teacherName);
-//        startDate = (TextView) findViewById(R.id.startDate);
-//        endDate = (TextView) findViewById(R.id.endDate);
     }
 
     private void setTextValues() {
         className.setText(classModel.Title);
         courseNumber.setText(String.format("%s %d - %d", classModel.Prefix, classModel.CourseNumber, classModel.Section));
         teacherName.setText(classModel.Teacher.UserName);
-//        startDate.setText(classModel.StartDate);
-//        endDate.setText(classModel.EndDate);
     }
 
     public void onClickConfirm(View v) {

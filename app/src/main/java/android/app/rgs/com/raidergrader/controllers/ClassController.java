@@ -18,6 +18,7 @@ import android.app.rgs.com.raidergrader.models.CreateClassModel;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.List;
 
@@ -47,7 +48,56 @@ public class ClassController {
     }
 
     /**
-     * Joshua Hernandez
+     * Returns a class with the specified id
+     *
+     * @param classId Id of the class to obtain
+     */
+    public void GetClassWithId(int classId) {
+        RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
+            @Override
+            public void onRequestSuccess(String response) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
+                Gson gson = new Gson();
+                ClassModel classModel = gson.fromJson(response, ClassModel.class);
+                controllerCallback.DisplayResult(classModel);
+            }
+
+            @Override
+            public void onRequestError(RequestError error) {
+                if (mProgress != null) {
+                    mProgress.dismiss();
+                }
+
+                if (error.getStatusCode() == HttpStatusCodes.NotFound) {
+                    GlobalHandling.makeShortToast(activity, "No class exists with that ID");
+                } else {
+                    GlobalHandling.generalError(activity, error);
+                }
+            }
+        };
+
+        RestTask.ProgressCallback progressCallback = new RestTask.ProgressCallback() {
+            @Override
+            public void onProgressUpdate(int progress) {
+            }
+        };
+
+        try {
+            RestTask task = RestUtil.obtainGetTask(Repository.baseUrl + "api/Classes/" + Integer.toString(classId));
+            task.setProgressCallback(progressCallback);
+            task.setResponseCallback(responseCallback);
+            task.execute();
+
+            mProgress = ProgressDialog.show(activity, "Loading", "Fetching Data", true);
+        } catch (IOException e) {
+            responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, e.getMessage()));
+        }
+    }
+
+    /**
      * Creates a new class for a teacher from the given model
      *
      * @param createClassModel Model containing class creation details
@@ -102,10 +152,11 @@ public class ClassController {
 
     /**
      * Delete a class
+     *
      * @param classId ID of the class to delete
      */
     public void DeleteClass(int classId) {
-         RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
+        RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
             @Override
             public void onRequestSuccess(String response) {
                 if (mProgress != null) {
@@ -151,6 +202,7 @@ public class ClassController {
 
     /**
      * Update the details of a class
+     *
      * @param model Model containing details used to update the class
      */
     public void UpdateClass(UpdateClassModel model) {
@@ -204,6 +256,7 @@ public class ClassController {
 
     /**
      * Returns a list of all classes taught by a given teacher.
+     *
      * @param userName Teacher's username
      */
     public void GetTeacherClasses(String userName) {
@@ -245,7 +298,7 @@ public class ClassController {
             }
         };
 
-        try{
+        try {
             RestTask task = RestUtil.obtainGetTask(Repository.baseUrl + "api/Classes?userName=" + userName);
             task.setProgressCallback(progressCallback);
             task.setResponseCallback(responseCallback);
