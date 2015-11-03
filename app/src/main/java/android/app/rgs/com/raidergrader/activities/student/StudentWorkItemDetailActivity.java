@@ -41,9 +41,7 @@ public class StudentWorkItemDetailActivity extends AppCompatActivity {
 
         TextView dateView = (TextView) findViewById(R.id.date);
         LocalDateTime dateTime = TimeUtils.GetLocalTime(workItem.DueDate);
-        String timeStr = dateTime.toString("hh:mm a", Locale.getDefault())
-                + "\n" + dateTime.toString("MMM d, yyyy", Locale.getDefault());
-        dateView.setText(timeStr);
+        dateView.setText(TimeUtils.ToLocaleString(dateTime));
     }
 
     @Override
