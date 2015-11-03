@@ -37,7 +37,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="50"
             android:text="@string/btn_time"
-            android:onClick="onClickSetTime"/>
+            android:onClick="onClickSetTime"
+            android:textColor="#ffffff"/>
 
         <Button
             android:id="@+id/btn_setDate"
@@ -46,7 +47,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="50"
             android:text="@string/btn_date"
-            android:onClick="onClickSetDate"/>
+            android:onClick="onClickSetDate"
+            android:textColor="#ffffff"/>
     </LinearLayout>
 
     <LinearLayout

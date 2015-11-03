@@ -14,7 +14,8 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/classname_layout_textbox"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:textColorHint="#ffffff">
 
         <EditText
             android:id="@+id/classname_textbox"
@@ -30,7 +31,8 @@
     <android.support.design.widget.TextInputLayout
         android:id="@+id/courseNumber_layout_textbox"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:textColorHint="#ffffff">
 
         <EditText
             android:id="@+id/courseNumber_textbox"
@@ -54,7 +56,8 @@
             android:id="@+id/prefix_layout_textbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="50">
+            android:layout_weight="50"
+            android:textColorHint="#ffffff">
 
             <EditText
                 android:id="@+id/prefix_textbox"
@@ -74,7 +77,8 @@
             android:id="@+id/section_layout_textbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="50">
+            android:layout_weight="50"
+            android:textColorHint="#ffffff">
 
             <EditText
                 android:id="@+id/section_textbox"
@@ -95,23 +99,27 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Grade Distrubtion"
+        android:text="Grade Distribution"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"
+        android:paddingEnd="5sp"
         android:textSize="@dimen/font_size_medium"
         android:gravity="center"
         android:layout_marginTop="20dp"
-        />
+        android:textColor="#ffffff"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="10sp">
 
         <android.support.design.widget.TextInputLayout
             android:id="@+id/exam_layout_textbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="50">
+            android:layout_weight="50"
+            android:textColorHint="#ffffff">
 
             <EditText
                 android:id="@+id/exam_textbox"
@@ -130,7 +138,8 @@
             android:id="@+id/project_layout_textbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="50">
+            android:layout_weight="50"
+            android:textColorHint="#ffffff">
 
             <EditText
                 android:id="@+id/project_textbox"
@@ -156,7 +165,8 @@
             android:id="@+id/quiz_layout_textbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="50">
+            android:layout_weight="50"
+            android:textColorHint="#ffffff">
 
             <EditText
                 android:id="@+id/quiz_textbox"
@@ -175,7 +185,8 @@
             android:id="@+id/homework_layout_textbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="50">
+            android:layout_weight="50"
+            android:textColorHint="#ffffff">
 
             <EditText
                 android:id="@+id/homework_textbox"
@@ -201,7 +212,8 @@
             android:id="@+id/other_layout_textbox"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="50">
+            android:layout_weight="50"
+            android:textColorHint="#ffffff">
 
             <EditText
                 android:id="@+id/other_textbox"
@@ -227,7 +239,7 @@
         android:layout_height="wrap_content"
         android:onClick="onClick"
         android:text="Create"
-
+        android:background="@color/colorPrimary"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true" />
 
