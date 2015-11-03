@@ -29,5 +29,6 @@
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
         android:textColor="@android:color/black"
         android:gravity="center_vertical"
-        android:singleLine="true"/>
+        android:singleLine="true"
+        android:ellipsize="none" />
 </LinearLayout>
