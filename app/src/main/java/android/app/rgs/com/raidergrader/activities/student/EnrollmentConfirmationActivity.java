@@ -51,7 +51,10 @@ public class EnrollmentConfirmationActivity extends AppCompatActivity
     }
 
 
+    // Controller shows toast. Simply finish the activity
     @Override
     public void DisplayResult(Object result) {
+        setResult(0);
+        finish();
     }
 }

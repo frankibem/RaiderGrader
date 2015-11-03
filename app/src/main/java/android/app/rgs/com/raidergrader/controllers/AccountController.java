@@ -182,6 +182,7 @@ public class AccountController {
 
                 activity.startActivity(intent);
                 Toast.makeText(activity, "Login successful", Toast.LENGTH_SHORT).show();
+                activity.finish();
             }
 
             @Override
