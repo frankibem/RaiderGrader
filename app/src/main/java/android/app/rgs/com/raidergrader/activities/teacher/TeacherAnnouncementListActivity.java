@@ -53,7 +53,7 @@ implements ControllerCallback<List<AnnouncementModel>> {
     }
 
     public void createAnnouncement(View view){
-        Intent intent = new Intent(getApplicationContext(), AnnouncementController.class);
+        Intent intent = new Intent(getApplicationContext(), TeacherCreateAnnouncementActivity.class);
         startActivity(intent);
     }
 
