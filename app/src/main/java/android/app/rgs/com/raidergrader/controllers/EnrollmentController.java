@@ -31,8 +31,8 @@ import java.util.List;
  * Controller for class enrollment related actions
  */
 public class EnrollmentController {
-    private Activity activity;
-    private ControllerCallback controllerCallback;
+    private final Activity activity;
+    private final ControllerCallback controllerCallback;
     private ProgressDialog mProgress;
 
     /**
@@ -51,7 +51,7 @@ public class EnrollmentController {
      *
      * @param model Model containing the details of the request
      */
-    public void RequestEnrollmentforStudent(EnrollmentBindingModel model) {
+    public void RequestEnrollmentForStudent(EnrollmentBindingModel model) {
         Gson gson = JsonHelpers.getGson();
         String request = gson.toJson(model);
 
@@ -215,7 +215,8 @@ public class EnrollmentController {
                     mProgress.dismiss();
                 }
 
-                Toast.makeText(activity, "Enrollment successful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "Wait list updated", Toast.LENGTH_SHORT).show();
+                activity.finish();
             }
 
             @Override
@@ -224,7 +225,7 @@ public class EnrollmentController {
                     mProgress.dismiss();
                 }
                 if (error.getStatusCode() == HttpStatusCodes.Conflict) {
-                    GlobalHandling.makeShortToast(activity, "You are already enrolled in this class");
+                    GlobalHandling.makeShortToast(activity, "An error occurred while updating");
                 } else {
                     GlobalHandling.generalError(activity, error);
                 }
@@ -361,10 +362,9 @@ public class EnrollmentController {
             task.setResponseCallback(responseCallback);
             task.execute();
 
-            mProgress = ProgressDialog.show(activity, "Loading", "You have successfully enrolled in your class.", true);
+            mProgress = ProgressDialog.show(activity, "Loading", "Fetching student list", true);
         } catch (Exception ex) {
             responseCallback.onRequestError(new RequestError(HttpStatusCodes.Incomplete, ex.getMessage()));
         }
-
     }
 }
