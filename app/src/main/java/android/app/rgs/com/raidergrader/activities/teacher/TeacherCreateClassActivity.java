@@ -160,6 +160,7 @@ public class TeacherCreateClassActivity extends AppCompatActivity
         if (!ValidateFields()) {
             Toast.makeText(this, "Review your input", Toast.LENGTH_SHORT).show();
             return;
+            //
         }
 
         CreateClassModel createClassModel = new CreateClassModel();
