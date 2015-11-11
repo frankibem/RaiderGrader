@@ -234,10 +234,10 @@
 
 
     <Button
-        android:id="@+id/create_class_btn"
+        android:id="@+id/update_class_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="onClick"
+        android:onClick="onClickUpdate"
         android:text="Update"
         android:background="@color/colorPrimary"
         android:layout_centerVertical="true"
