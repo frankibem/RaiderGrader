@@ -5,6 +5,7 @@
     <string name="title_activity_registration">Register</string>
     <string name="title_activity_student_class_list">My Classes</string>
     <string name="title_activity_enrollment_confirmation">Confirm Enrollment</string>
+    <string name="title_activity_teacher_update_class">Update a Class</string>
 
     <!-- Login Page-->
     <string name="hint_email">Email</string>

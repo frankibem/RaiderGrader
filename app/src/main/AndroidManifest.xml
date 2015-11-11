@@ -43,7 +43,9 @@
         <activity android:name=".activities.teacher.TeacherClassHomeActivity" />
         <activity android:name=".activities.teacher.TeacherClassItemsActivity" />
         <activity android:name=".activities.teacher.TeacherCreateClassActivity" />
-        <activity android:name=".activities.teacher.TeacherUpdateClassActivity" />
+        <activity
+            android:name=".activities.teacher.TeacherUpdateClassActivity"
+            android:label="@string/title_activity_teacher_update_class"/>
         <activity android:name=".activities.teacher.TeacherStudentItemsActivity" />
         <activity android:name=".activities.teacher.TeacherClassWaitlistActivity" />
         <activity android:name=".activities.teacher.TeacherClassAcceptedStudentsActivity" />
