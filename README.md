@@ -8,8 +8,8 @@ A blackboard inspired application that allows teachers and students to track the
 
 #### Logging in
 - You can log in with these details:
-	-Student: Email-- student@rgs.com  Password-- Texas*6
-	-Teacher: Email-- teacher@rgs.com  Password-- Texas*6
+- Student: Email-- student@rgs.com  Password-- Texas*6
+- Teacher: Email-- teacher@rgs.com  Password-- Texas*6
 
 OR
 
