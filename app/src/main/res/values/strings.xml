@@ -24,7 +24,7 @@
 
 
     <string name="text_class">Class: </string>
-    <string name="text_courseNumber">Course Number: </string>
+    <string name="text_courseNumber">Course Number </string>
     <string name="text_teacher">Teacher: </string>
     <string name="text_startDate">Start Date: </string>
     <string name="text_endDate">End Date: </string>
@@ -42,7 +42,7 @@
         activity_teacher_create_workItem
     </string>
 
-    <string name="text_title">Title:</string>
+    <string name="text_title">Title</string>
     <string name="text_prefix">Prefix</string>
     <string name="text_section">Section</string>
     <string name="text_project">Project</string>
