@@ -31,8 +31,6 @@ public class TeacherCreateAnnouncementActivity extends AppCompatActivity impleme
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.teacher_create_announcement);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         controller = new AnnouncementController(this, this);
         LoadReferences();
