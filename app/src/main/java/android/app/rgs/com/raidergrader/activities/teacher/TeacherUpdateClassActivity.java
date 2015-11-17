@@ -2,6 +2,7 @@ package android.app.rgs.com.raidergrader.activities.teacher;
 
 import android.app.rgs.com.raidergrader.R;
 import android.app.rgs.com.raidergrader.controllers.ClassController;
+import android.app.rgs.com.raidergrader.data_access.Repository;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
 import android.app.rgs.com.raidergrader.models.GradeDistribution;
 import android.app.rgs.com.raidergrader.models.UpdateClassModel;
@@ -159,6 +160,7 @@ public class TeacherUpdateClassActivity extends AppCompatActivity
         updateClassModel.CourseNumber = Integer.parseInt(inputCourseNumber.getText().toString());
         updateClassModel.Prefix = inputPrefix.getText().toString();
         updateClassModel.Section = Integer.parseInt(inputSection.getText().toString());
+        updateClassModel.Id = Repository.getCurrentClass().Id;
 
         GradeDistribution gradeDistribution= new GradeDistribution();
         gradeDistribution.Exam = Float.parseFloat(inputExam.getText().toString());
