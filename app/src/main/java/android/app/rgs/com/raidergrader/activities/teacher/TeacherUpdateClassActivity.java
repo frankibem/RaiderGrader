@@ -49,7 +49,7 @@ public class TeacherUpdateClassActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.teacher_update_class);
 
-        controller= new ClassController(this,this);
+        controller = new ClassController(this,this);
 
         LoadReference();
         SetValidators();
