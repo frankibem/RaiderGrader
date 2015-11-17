@@ -1,10 +1,8 @@
 package android.app.rgs.com.raidergrader.activities.teacher;
 
 import android.app.rgs.com.raidergrader.R;
-import android.app.rgs.com.raidergrader.controllers.ClassController;
+import android.app.rgs.com.raidergrader.controllers.WorkItemController;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
-import android.app.rgs.com.raidergrader.models.GradeDistribution;
-import android.app.rgs.com.raidergrader.models.UpdateClassModel;
 import android.app.rgs.com.raidergrader.models.UpdateWorkItemModel;
 import android.app.rgs.com.raidergrader.utilities.RgsTextWatcher;
 import android.app.rgs.com.raidergrader.utilities.ValidateConstant;
@@ -28,15 +26,15 @@ public class TeacherUpdateWorkItemActivity extends AppCompatActivity
             inputClass;
 
     private TextInputLayout titleInputLayout,
-            DescriptionInputLayout,
-            DueDateInputLayout,
-            MaxPointsInputLayout,
-            TypeInputLayout,
-            ClassInputLayout;
+            descriptionInputLayout,
+            duedateInputLayout,
+            maxpointsInputLayout,
+            typeInputLayout,
+            classInputLayout;
 
     private Button update_classBtn;
 
-    private ClassController controller;
+    private WorkItemController controller;
 
 
     @Override
@@ -44,7 +42,7 @@ public class TeacherUpdateWorkItemActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.teacher_update_work_item);
 
-        controller = new ClassController(this,this);
+        controller = new WorkItemController(this,this);
 
         LoadReference();
         SetValidators();
@@ -54,11 +52,11 @@ public class TeacherUpdateWorkItemActivity extends AppCompatActivity
     private void LoadReference(){
 
         titleInputLayout=(TextInputLayout) findViewById(R.id.title_layout_textbox);
-        DescriptionInputLayout=(TextInputLayout) findViewById(R.id.description_layout_textbox);
-        DueDateInputLayout=(TextInputLayout) findViewById(R.id.duedate_layout_textbox);
-        MaxPointsInputLayout=(TextInputLayout) findViewById(R.id.maxpoints_layout_textbox);
-        TypeInputLayout=(TextInputLayout) findViewById(R.id.type_layout_textbox);
-        ClassInputLayout=(TextInputLayout) findViewById(R.id.class_layout_textbox);
+        descriptionInputLayout=(TextInputLayout) findViewById(R.id.description_layout_textbox);
+        duedateInputLayout=(TextInputLayout) findViewById(R.id.duedate_layout_textbox);
+        maxpointsInputLayout=(TextInputLayout) findViewById(R.id.maxpoints_layout_textbox);
+        typeInputLayout=(TextInputLayout) findViewById(R.id.type_layout_textbox);
+        classInputLayout=(TextInputLayout) findViewById(R.id.class_layout_textbox);
 
         inputTitle=(EditText) findViewById(R.id.title_textbox);
         inputDescription =(EditText) findViewById(R.id.description_textbox);
@@ -105,26 +103,13 @@ public class TeacherUpdateWorkItemActivity extends AppCompatActivity
             noErrors = false;
             maxpointsInputLayout.setError("Section should be filled with integers");
         }
-        if (!Validators.validateFloat(inputExam.getText().toString())) {
+        if (!Validators.validateFloat(inputType.getText().toString())) {
             noErrors = false;
-            examInputLayout.setError("Exam percentage should be filled with decimal number");
+            typeInputLayout.setError("Exam percentage should be filled with decimal number");
         }
-        if (!Validators.validateFloat(inputProject.getText().toString())) {
+        if (!Validators.validateFloat(inputClass.getText().toString())) {
             noErrors = false;
-            projectInputLayout.setError("Project percentage should be filled with decimal number");
-        }
-        if (!Validators.validateFloat(inputQuiz.getText().toString())) {
-            noErrors = false;
-            quizInputLayout.setError("Quiz percentage should be filled with decimal number");
-        }
-        if (!Validators.validateFloat(inputHomework.getText().toString())) {
-            noErrors = false;
-            homeworkInputLayout.setError("Homework percentage should be filled with decimal number");
-        }
-
-        if (!Validators.validateFloat(inputOther.getText().toString())) {
-            noErrors = false;
-            otherInputLayout.setError("Other percentage should be filled with decimal number");
+            classInputLayout.setError("Project percentage should be filled with decimal number");
         }
 
         return noErrors;
@@ -136,26 +121,18 @@ public class TeacherUpdateWorkItemActivity extends AppCompatActivity
             return;
         }
 
-        UpdateClassModel updateClassModel = new UpdateClassModel();
-        updateClassModel.Title = inputTitle.getText().toString();
-        updateClassModel.CourseNumber = Integer.parseInt(inputCourseNumber.getText().toString());
-        updateClassModel.Prefix = inputPrefix.getText().toString();
-        updateClassModel.Section = Integer.parseInt(inputSection.getText().toString());
+        UpdateWorkItemModel updateWorkItemModel = new UpdateWorkItemModel();
+        updateWorkItemModel.Title = inputTitle.getText().toString();
+        updateWorkItemModel.Description = inputDescription.getText().toString();
+        updateWorkItemModel.DueDate = inputDueDate.getText().toString();
+        updateWorkItemModel.MaxPoints = Integer.parseInt(inputMaxPoints.getText().toString());
 
-        GradeDistribution gradeDistribution= new GradeDistribution();
-        gradeDistribution.Exam = Float.parseFloat(inputExam.getText().toString());
-        gradeDistribution.Project=Float.parseFloat(inputProject.getText().toString());
-        gradeDistribution.Homework = Float.parseFloat(inputHomework.getText().toString());
-        gradeDistribution.Quiz=Float.parseFloat(inputQuiz.getText().toString());
-        gradeDistribution.Other=Float.parseFloat(inputOther.getText().toString());
-
-        updateClassModel.GradeDistribution=gradeDistribution;
-        controller.UpdateClass(updateClassModel);
+        controller.GetWorkItemsForClass(R.id.class);
 
     }
 
     @Override
-    public void DisplayResult(UpdateClassModel result) {
+    public void DisplayResult(UpdateWorkItemModel result) {
 
     }
 }
