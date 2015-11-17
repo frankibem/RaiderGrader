@@ -127,7 +127,7 @@ public class TeacherUpdateWorkItemActivity extends AppCompatActivity
         updateWorkItemModel.DueDate = inputDueDate.getText().toString();
         updateWorkItemModel.MaxPoints = Integer.parseInt(inputMaxPoints.getText().toString());
 
-        controller.GetWorkItemsForClass(R.id.class);
+        controller.UpdateWorkItem(updateWorkItemModel);
 
     }
 
