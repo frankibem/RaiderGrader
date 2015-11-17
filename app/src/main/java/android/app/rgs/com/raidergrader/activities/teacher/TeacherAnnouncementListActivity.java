@@ -72,7 +72,7 @@ implements ControllerCallback<List<AnnouncementModel>> {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.item_logout) {
+        if (id == R.id.menu_logout) {
             AccountController accountController = new AccountController(this, null);
             accountController.LogUserOut();
             return true;
