@@ -1,7 +1,7 @@
 package android.app.rgs.com.raidergrader.data_access;
 
 /**
- * Created by Frank Ibem on 10/10/2015.
+ * @author Frank Ibem.
  */
 
 /**

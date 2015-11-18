@@ -23,7 +23,7 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 /**
- * Created by Frank Ibem on 10/16/2015.
+ * @author Frank Ibem.
  */
 public class WorkItemController {
     private Activity activity;

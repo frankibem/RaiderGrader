@@ -9,7 +9,7 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 
 /**
- * Created by Frank Ibem on 10/18/2015.
+ * @author Frank Ibem.
  */
 
 /**
@@ -22,9 +22,8 @@ public class EnrollmentPendingFragment extends DialogFragment {
     /**
      * Sets the model that is to used to create the fragment
      *
-     * @param model
+     * @param model Model containing details of a student's enrollment
      */
-    @NonNull
     public void setModel(EnrollmentModel model) {
         this.model = model;
     }
@@ -36,7 +35,7 @@ public class EnrollmentPendingFragment extends DialogFragment {
         builder.setTitle("Enrollment is pending");
         builder.setMessage(String.format("You cannot view the contents of \"%s\" because your enrollment has not " +
                 "yet been approved", model.Class.Title));
-        builder.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
             }

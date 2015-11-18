@@ -12,7 +12,6 @@ import android.app.rgs.com.raidergrader.utilities.GlobalHandling;
 import android.app.rgs.com.raidergrader.utilities.JsonHelpers;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
 import android.app.rgs.com.raidergrader.models.CreateAnnouncementModel;
-import android.app.rgs.com.raidergrader.models.ScoreUnitModel;
 import android.app.rgs.com.raidergrader.models.UpdateAnnouncementModel;
 import android.widget.Toast;
 
@@ -23,11 +22,11 @@ import java.lang.reflect.Type;
 import java.util.List;
 
 /**
- * Created by Frank Ibem on 10/16/2015.
+ * @author Frank Ibem.
  */
 public class AnnouncementController {
-    private Activity activity;
-    private ControllerCallback controllerCallback;
+    private final Activity activity;
+    private final ControllerCallback controllerCallback;
     private ProgressDialog mProgress;
 
     /**
@@ -41,7 +40,7 @@ public class AnnouncementController {
         this.controllerCallback = callback;
     }
 
-    /*
+    /**
     * Lauren Joness
     * Creates a new announcement in a class
     * */
@@ -93,11 +92,11 @@ public class AnnouncementController {
         }
     }
 
-    /*
+    /**
     * Lauren Joness
     * Deletes an announcement
-    * @param announcementID ID of the announcement to delete
-    * */
+    * @param announcementId ID of the announcement to delete
+    */
 
     public void DeleteAnnouncement(int announcementId) {
         RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
@@ -148,7 +147,7 @@ public class AnnouncementController {
      * Update the details of an announcement
      * Created by Michael Arroyo on 10/18/2015
      *
-     * @param model
+     * @param model Model containing update details for the announcement
      */
     public void UpdateAnnouncement(UpdateAnnouncementModel model) {
         Gson gson = JsonHelpers.getGson();
@@ -204,9 +203,9 @@ public class AnnouncementController {
      *
      * @param classId the details of the request
      */
-    public void GetAnnouncementsforClass(int classId) {
+    public void GetAnnouncementsForClass(int classId) {
         RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
-            Gson gson = JsonHelpers.getGson();
+            final Gson gson = JsonHelpers.getGson();
 
             @Override
             public void onRequestSuccess(String response) {

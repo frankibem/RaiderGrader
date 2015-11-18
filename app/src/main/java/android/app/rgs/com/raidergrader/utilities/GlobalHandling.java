@@ -8,14 +8,14 @@ import android.content.Intent;
 import android.widget.Toast;
 
 /**
- * Created by Frank Ibem on 10/10/2015.
+ * @author Frank Ibem.
  */
 public class GlobalHandling {
     /**
      * Creates and displays a Toast with the given text
      *
      * @param context
-     * @param text
+     * @param text Text to be displayed in toast
      */
     public static void makeShortToast(Context context, String text) {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show();

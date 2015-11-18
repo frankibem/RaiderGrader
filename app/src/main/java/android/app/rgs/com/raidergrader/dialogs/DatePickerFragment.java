@@ -2,14 +2,14 @@ package android.app.rgs.com.raidergrader.dialogs;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.app.TimePickerDialog;
 import android.app.rgs.com.raidergrader.models.OnDatePickedListener;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.widget.DatePicker;
 
 /**
- * Created by Frank Ibem on 10/22/2015.
+ * @author Frank Ibem
  */
 
 /**
@@ -42,6 +42,7 @@ public class DatePickerFragment extends DialogFragment
         this.dateListener = dateListener;
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         return new DatePickerDialog(getActivity(), this, mYear, mMonth, mDay);

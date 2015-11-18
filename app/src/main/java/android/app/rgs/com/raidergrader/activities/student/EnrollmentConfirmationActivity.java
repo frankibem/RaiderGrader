@@ -34,16 +34,12 @@ public class EnrollmentConfirmationActivity extends AppCompatActivity
         className = (TextView) findViewById(R.id.className);
         courseNumber = (TextView) findViewById(R.id.courseNumber);
         teacherName = (TextView) findViewById(R.id.teacherName);
-//        startDate = (TextView) findViewById(R.id.startDate);
-//        endDate = (TextView) findViewById(R.id.endDate);
     }
 
     private void setTextValues() {
         className.setText(classModel.Title);
         courseNumber.setText(String.format("%s %d - %d", classModel.Prefix, classModel.CourseNumber, classModel.Section));
         teacherName.setText(classModel.Teacher.UserName);
-//        startDate.setText(classModel.StartDate);
-//        endDate.setText(classModel.EndDate);
     }
 
     public void onClickConfirm(View v) {
@@ -51,11 +47,14 @@ public class EnrollmentConfirmationActivity extends AppCompatActivity
         model.ClassId = classModel.Id;
         model.StudentUserName = Repository.USERNAME;
 
-        controller.RequestEnrollmentforStudent(model);
+        controller.RequestEnrollmentForStudent(model);
     }
 
 
+    // Controller shows toast. Simply finish the activity
     @Override
     public void DisplayResult(Object result) {
+        setResult(0);
+        finish();
     }
 }

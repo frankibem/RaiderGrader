@@ -1,13 +1,14 @@
 package android.app.rgs.com.raidergrader.dialogs;
 
 /**
- * Created by Frank Ibem on 10/22/2015.
+ * @author Frank Ibem.
  */
 
 import android.app.Dialog;
 import android.app.TimePickerDialog;
 import android.app.rgs.com.raidergrader.models.OnTimePickedListener;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.widget.TimePicker;
 
@@ -40,6 +41,7 @@ public class TimePickerFragment extends DialogFragment
         timeListener = listener;
     }
 
+    @NonNull
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         return new TimePickerDialog(getActivity(), this, mHour, mMinute, true);
@@ -48,7 +50,7 @@ public class TimePickerFragment extends DialogFragment
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
         if (timeListener != null) {
-            timeListener.onTimePicked(mHour, mMinute, 0);
+            timeListener.onTimePicked(mHour, mMinute);
         }
     }
 }

@@ -26,14 +26,14 @@ public class RestTask extends AsyncTask<Void, Integer, Object> {
         /**
          * This method processes the string returened by a RestTask
          *
-         * @param response
+         * @param response Response returned for request
          */
         void onRequestSuccess(String response);
 
         /**
          * This method processes an exception that occurred as a result of a http call
          *
-         * @param error
+         * @param error Describes the error that occurred during the request
          */
         void onRequestError(RequestError error);
     }
@@ -55,7 +55,7 @@ public class RestTask extends AsyncTask<Void, Integer, Object> {
     /**
      * Creates a RestTask with the given connection
      *
-     * @param connection
+     * @param connection Connection to use for the request
      */
     public RestTask(HttpURLConnection connection) {
         this.mConnection = connection;
@@ -65,7 +65,7 @@ public class RestTask extends AsyncTask<Void, Integer, Object> {
      * Constructs the body of the request from a list of name-value pairs.
      * Also sets the 'Content-Type' header to 'application/x-www-form-encoded; charset=<chset>'
      *
-     * @param formData
+     * @param formData Adds form data to the request
      * @throws UnsupportedEncodingException
      */
     public void setFormBody(List<Pair<String, String>> formData, Charset chset) throws UnsupportedEncodingException {
@@ -105,7 +105,7 @@ public class RestTask extends AsyncTask<Void, Integer, Object> {
     /**
      * Sets the callback for responses received
      *
-     * @param callback
+     * @param callback Callback to be called when a request is successful
      */
     public void setResponseCallback(ResponseCallback callback) {
         mResponseCallback = new WeakReference<>(callback);
@@ -114,7 +114,7 @@ public class RestTask extends AsyncTask<Void, Integer, Object> {
     /**
      * Sets the callback for the progress of the HTTP call
      *
-     * @param callback
+     * @param callback Callback to be notified of request progress
      */
     public void setProgressCallback(ProgressCallback callback) {
         mProgressCallback = new WeakReference<>(callback);

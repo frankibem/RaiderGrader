@@ -30,8 +30,8 @@ import java.util.ArrayList;
  * @author Frank ibem
  */
 public class AccountController {
-    private Activity activity;
-    private ControllerCallback controllerCallback;
+    private final Activity activity;
+    private final ControllerCallback controllerCallback;
     private ProgressDialog mProgress;
 
     /**
@@ -170,7 +170,7 @@ public class AccountController {
                     mProgress.dismiss();
                 }
 
-                Intent intent = null;
+                Intent intent;
                 if (response.toLowerCase().contains("teacher")) {
                     intent = new Intent(activity, TeacherClassHomeActivity.class);
                 } else if (response.toLowerCase().contains("student")) {
@@ -182,6 +182,7 @@ public class AccountController {
 
                 activity.startActivity(intent);
                 Toast.makeText(activity, "Login successful", Toast.LENGTH_SHORT).show();
+                activity.finish();
             }
 
             @Override

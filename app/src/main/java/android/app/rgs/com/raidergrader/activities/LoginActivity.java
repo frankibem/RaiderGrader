@@ -14,6 +14,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
+/**
+ * @author Frank Ibem
+ */
+
 public class LoginActivity extends AppCompatActivity
         implements ControllerCallback<String> {
     private EditText inputEmail,
@@ -70,7 +74,7 @@ public class LoginActivity extends AppCompatActivity
 
     @Override
     public void DisplayResult(String result) {
-        if (result == "success") {
+        if (result.equals("success")) {
             controller.DetermineUserRole();
         }
     }

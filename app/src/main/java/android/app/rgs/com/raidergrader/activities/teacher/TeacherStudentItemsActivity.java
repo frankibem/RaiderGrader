@@ -16,7 +16,7 @@ import android.widget.ListView;
 
 public class TeacherStudentItemsActivity extends AppCompatActivity {
 
-    ListView listView;
+    private ListView listView;
     private String[] studentItems = {"Current", "Wait list"};
 
     @Override
@@ -26,7 +26,7 @@ public class TeacherStudentItemsActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.listView);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, studentItems);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, studentItems);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

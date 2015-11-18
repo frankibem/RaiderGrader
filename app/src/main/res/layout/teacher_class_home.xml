@@ -20,5 +20,5 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:onClick="createClass"
-        android:src="@drawable/sym_action_add" />
+        android:src="@drawable/add" />
 </android.support.design.widget.CoordinatorLayout>

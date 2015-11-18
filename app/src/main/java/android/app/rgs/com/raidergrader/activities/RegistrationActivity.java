@@ -137,5 +137,6 @@ public class RegistrationActivity extends AppCompatActivity
     public void DisplayResult(Object result) {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
+        finish();
     }
 }

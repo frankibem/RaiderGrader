@@ -18,12 +18,11 @@ import java.util.Locale;
 /**
  * @author Michael Arroyo
  */
-
-public class StudentAnnouncementListAdapter extends ArrayAdapter<AnnouncementModel> {
+public class TeacherAnnouncementListAdapter extends ArrayAdapter<AnnouncementModel> {
     private List<AnnouncementModel> announcements;
     private final Context context;
 
-    public StudentAnnouncementListAdapter(Context context, List<AnnouncementModel> announcements) {
+    public TeacherAnnouncementListAdapter(Context context, List<AnnouncementModel> announcements) {
         super(context, -1, announcements);
 
         this.context = context;
@@ -35,7 +34,7 @@ public class StudentAnnouncementListAdapter extends ArrayAdapter<AnnouncementMod
         AnnouncementModel announce = announcements.get(position);
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        View rowView = inflater.inflate(R.layout.student_announcement_list_item, parent, false);
+        View rowView = inflater.inflate(R.layout.teacher_announcement_list_item, parent, false);
 
         TextView titleView = (TextView) rowView.findViewById(R.id.title);
         titleView.setText(announce.Title);

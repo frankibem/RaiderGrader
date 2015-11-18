@@ -12,7 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 /**
- * Created by lauren on 10/30/2015.
+ * @author Lauren Joness
  */
 public class TeacherAcceptedStudentListAdapter extends ArrayAdapter<EnrollmentModel> {
 

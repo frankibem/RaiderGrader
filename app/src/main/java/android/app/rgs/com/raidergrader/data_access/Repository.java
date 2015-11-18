@@ -2,13 +2,10 @@ package android.app.rgs.com.raidergrader.data_access;
 
 import android.app.rgs.com.raidergrader.models.AnnouncementModel;
 import android.app.rgs.com.raidergrader.models.ClassModel;
-import android.app.rgs.com.raidergrader.models.ScoreUnitModel;
 import android.app.rgs.com.raidergrader.models.StudentModel;
 import android.app.rgs.com.raidergrader.models.WorkItemModel;
 import android.content.Context;
 import android.content.SharedPreferences;
-
-import java.util.List;
 
 /**
  * @author Frank Ibem
@@ -76,7 +73,7 @@ public class Repository {
         SharedPreferences.Editor editor = settings.edit();
         editor.putString(Repository.ACCESS_TOKEN_KEY, Repository.ACCESS_TOKEN);
         editor.putString(Repository.USERNAME_KEY, Repository.USERNAME);
-        editor.commit();
+        editor.apply();
     }
 
     /**
@@ -89,6 +86,6 @@ public class Repository {
         SharedPreferences.Editor editor = settings.edit();
         editor.remove(Repository.ACCESS_TOKEN_KEY);
         editor.remove(Repository.USERNAME_KEY);
-        editor.commit();
+        editor.apply();
     }
 }

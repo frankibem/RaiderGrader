@@ -7,6 +7,7 @@ import android.app.rgs.com.raidergrader.data_access.Repository;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
 import android.app.rgs.com.raidergrader.models.EnrollmentBindingModel;
 import android.app.rgs.com.raidergrader.models.EnrollmentModel;
+import android.app.rgs.com.raidergrader.models.EnrollmentState;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,33 +21,15 @@ public class TeacherClassWaitlistActivity extends AppCompatActivity
 
     private EnrollmentController controller = new EnrollmentController(this, this);
     private static List<EnrollmentModel> enrollments;
-    private static List<AcceptEnrollmentViewModel> viewModels;
+    private List<AcceptEnrollmentViewModel> viewModels;
     private ListView listView;
     private WaitListAdapter adapter;
-
-    /**
-     * Enumeration to represent the states of an enrollment
-     */
-    public enum State {
-        /**
-         * The enrollment is yet to be accepted/rejected
-         */
-        UNKNOWN,
-        /**
-         * The student has been accepted
-         */
-        ACCEPT,
-        /**
-         * The student has been rejected
-         */
-        REJECT
-    }
 
     public class AcceptEnrollmentViewModel {
         public String Name;
         public String Email;
         public boolean Accept;
-        public State State;
+        public EnrollmentState State;
 
         /**
          * View-model for EnrollmentModels
@@ -57,7 +40,7 @@ public class TeacherClassWaitlistActivity extends AppCompatActivity
             Accept = !model.Pending;
             Email = model.Student.UserName;
             Name = String.format("%s, %s", model.Student.LastName, model.Student.FirstName);
-            State = State.UNKNOWN;
+            State = EnrollmentState.UNKNOWN;
         }
     }
 
@@ -107,5 +90,6 @@ public class TeacherClassWaitlistActivity extends AppCompatActivity
         for (EnrollmentModel model : enrollments) {
             viewModels.add(new AcceptEnrollmentViewModel(model));
         }
+        populateList();
     }
 }

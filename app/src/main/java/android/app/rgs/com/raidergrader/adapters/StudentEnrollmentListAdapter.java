@@ -38,7 +38,7 @@ public class StudentEnrollmentListAdapter extends ArrayAdapter<EnrollmentModel> 
 
         TextView textView = (TextView) rowView.findViewById(R.id.title);
         textView.setText(enroll.Class.Title);
-        textView.setTextColor(Color.BLACK);
+        textView.setTextColor(Color.WHITE);
         textView.setEllipsize(TextUtils.TruncateAt.END);
 
         return rowView;

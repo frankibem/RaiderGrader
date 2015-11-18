@@ -24,7 +24,7 @@ public class StudentClassItemsActivity extends AppCompatActivity {
         setContentView(R.layout.student_class_items);
 
         listView = (ListView) findViewById(R.id.listView);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, data);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, data);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -41,7 +41,6 @@ public class StudentClassItemsActivity extends AppCompatActivity {
                         startActivity(intentAnnouncement);
                         break;
                     default:
-                        return;
                 }
             }
         });

@@ -9,26 +9,24 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="80"
+        android:ellipsize="end"
         android:gravity="center_vertical"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
         android:paddingStart="?android:attr/listPreferredItemPaddingStart"
         android:text="Student Name"
-        android:textAppearance="?android:attr/textAppearanceListItemSmall"
-        android:ellipsize="end" />
+        android:textAppearance="?android:attr/textAppearanceListItemSmall" />
 
     <TextView
         android:id="@+id/text_grade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="20"
-        android:gravity="center_vertical"
+        android:gravity="center_vertical|end"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
         android:paddingStart="?android:attr/listPreferredItemPaddingStart"
         android:text="100"
-        android:textAppearance="?android:attr/textAppearanceListItemSmall"
-        android:textColor="@android:color/black"
-        android:textAlignment="textEnd" />
+        android:textAppearance="?android:attr/textAppearanceListItemSmall" />
 
 </LinearLayout>
