@@ -181,7 +181,7 @@ public class TeacherCreateClassActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.edit_delete_menu, menu);
         return true;
     }
 
@@ -194,6 +194,11 @@ public class TeacherCreateClassActivity extends AppCompatActivity
             AccountController accountController = new AccountController(this, null);
             accountController.LogUserOut();
             return true;
+        }else if(id == R.id.menu_edit){
+            // Navigate to activity for deleting work item
+
+        }else if(id == R.id.menu_delete){
+            // Place code to delete work item here
         }
 
         return super.onOptionsItemSelected(item);
