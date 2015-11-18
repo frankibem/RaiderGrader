@@ -60,8 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Loren ipsum, verdana. Loren ipsum verdana. some more verdana. Even more ipsum and some lorem and them some more"
-            android:textSize="@dimen/font_size_medium"
-            android:elegantTextHeight="false" />
+            android:textSize="@dimen/font_size_medium" />
     </ScrollView>
 
 </LinearLayout>
