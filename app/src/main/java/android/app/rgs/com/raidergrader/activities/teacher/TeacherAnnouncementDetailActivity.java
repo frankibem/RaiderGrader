@@ -1,10 +1,16 @@
 package android.app.rgs.com.raidergrader.activities.teacher;
 
+import android.app.Activity;
 import android.app.rgs.com.raidergrader.R;
 import android.app.rgs.com.raidergrader.controllers.AccountController;
+import android.app.rgs.com.raidergrader.controllers.AnnouncementController;
 import android.app.rgs.com.raidergrader.data_access.Repository;
+import android.app.rgs.com.raidergrader.dialogs.DeleteModelFragment;
 import android.app.rgs.com.raidergrader.models.AnnouncementModel;
+import android.app.rgs.com.raidergrader.models.ControllerCallback;
+import android.app.rgs.com.raidergrader.models.DeleteModelInterface;
 import android.app.rgs.com.raidergrader.utilities.TimeUtils;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -15,7 +21,12 @@ import org.joda.time.LocalDateTime;
 
 import java.util.Locale;
 
-public class TeacherAnnouncementDetailActivity extends AppCompatActivity {
+/**
+ * @author lauren
+ */
+
+public class TeacherAnnouncementDetailActivity extends AppCompatActivity
+implements ControllerCallback{
 
     private AnnouncementModel announcement;
 
@@ -56,11 +67,29 @@ public class TeacherAnnouncementDetailActivity extends AppCompatActivity {
             return true;
         }else if(id == R.id.menu_edit){
             // Navigate to activity for deleting work item
-
+            Intent intent = new Intent(this, TeacherUpdateAnnouncementActivity.class);
+            startActivity(intent);
+            finish();
         }else if(id == R.id.menu_delete){
-            // Place code to delete work item here
+            // Delete work item
+            TeacherAnnouncementDetailActivity activity = this;
+            DeleteModelFragment deleteFragment = new DeleteModelFragment();
+            deleteFragment.setTitle("Delete?");
+            deleteFragment.setBody(String.format("You are about to delete \"%s\". This process cannot be reversed. Continue?"));
+            deleteFragment.setDeleter(new DeleteModelInterface() {
+                @Override
+                public void Delete() {
+//                    AnnouncementController controller = new AnnouncementController(activity, activity);
+//                    controller.DeleteAnnouncement(Repository.getCurrentAnnouncement().Id);
+                }
+            });
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void DisplayResult(Object result) {
+
     }
 }
