@@ -21,7 +21,7 @@ import android.widget.ListView;
 import java.util.List;
 
 /**
- * @author Claire Gray
+ * @author Claire  Gray
  */
 
 public class TeacherWorkItemListActivity extends AppCompatActivity
