@@ -1,65 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:padding="@dimen/activity_vertical_margin"
     tools:context="android.app.rgs.com.raidergrader.activities.teacher.TeacherAnnouncementDetailActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:gravity="center_vertical"
-            android:maxLines="2"
-            android:minHeight="?android:attr/listPreferredItemHeightSmall"
-            android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
-            android:paddingStart="?android:attr/listPreferredItemPaddingStart"
-            android:singleLine="false"
-            android:text="4:10 PM\nOct 5, 2015"
-            android:textAppearance="?android:attr/textAppearanceListItemSmall"
-            android:textSize="12sp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@id/date"
-            android:gravity="center_vertical"
-            android:minHeight="?android:attr/listPreferredItemHeightSmall"
-            android:singleLine="false"
-            android:text="Really really really really very extrememly long title"
-            android:textAppearance="?android:attr/textAppearanceListItemSmall"
-            android:ellipsize="none" />
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:gravity="center_vertical"
+                android:maxLines="2"
+                android:singleLine="false"
+                android:text="4:10 PM\nOct 5, 2015"
+                android:textAppearance="?android:attr/textAppearanceListItemSmall"
+                android:textSize="12sp" />
 
-    </RelativeLayout>
+            <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_toLeftOf="@id/date"
+                android:gravity="center_vertical"
+                android:singleLine="false"
+                android:text="Really really really really very extrememly long title"
+                android:textSize="@dimen/font_size_medium"
+                android:textStyle="bold" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray" />
+        </RelativeLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray" />
 
         <TextView
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:elegantTextHeight="false"
             android:text="Loren ipsum, verdana. Loren ipsum verdana. some more verdana. Even more ipsum and some lorem and them some more"
-            android:textSize="@dimen/font_size_medium"
-            android:elegantTextHeight="false" />
-    </ScrollView>
+            android:textSize="@dimen/font_size_content" />
+    </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

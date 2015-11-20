@@ -1,9 +1,9 @@
 package android.app.rgs.com.raidergrader.activities.teacher;
 
 import android.app.rgs.com.raidergrader.R;
-import android.app.rgs.com.raidergrader.controllers.AccountController;
 import android.app.rgs.com.raidergrader.controllers.ClassController;
-import android.app.rgs.com.raidergrader.dialogs.ClassCreatedFragment;
+//import android.app.rgs.com.raidergrader.dialogs.ClassCreatedFragment;
+import android.app.rgs.com.raidergrader.data_access.Repository;
 import android.app.rgs.com.raidergrader.models.ClassModel;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
 import android.app.rgs.com.raidergrader.models.CreateClassModel;
@@ -14,8 +14,6 @@ import android.app.rgs.com.raidergrader.utilities.Validators;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,15 +25,15 @@ import android.widget.Toast;
 
 public class TeacherCreateClassActivity extends AppCompatActivity
         implements ControllerCallback<ClassModel> {
-    private EditText inputTitle,
-            inputCourseNumber,
-            inputPrefix,
-            inputSection,
-            inputExam,
-            inputProject,
-            inputQuiz,
-            inputHomework,
-            inputOther;
+    private EditText inputTitle;
+    private EditText inputCourseNumber;
+    private EditText inputPrefix;
+    private EditText inputSection;
+    private EditText inputExam;
+    private EditText inputProject;
+    private EditText inputQuiz;
+    private EditText inputHomework;
+    private EditText inputOther;
 
     private TextInputLayout titleInputLayout,
             courseInputLayout,
@@ -47,6 +45,10 @@ public class TeacherCreateClassActivity extends AppCompatActivity
             homeworkInputLayout,
             otherInputLayout;
     private ClassController controller;
+
+
+    Button create_classBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +83,8 @@ public class TeacherCreateClassActivity extends AppCompatActivity
         inputQuiz = (EditText) findViewById(R.id.quiz_textbox);
         inputHomework = (EditText) findViewById(R.id.homework_textbox);
         inputOther = (EditText) findViewById(R.id.other_textbox);
+
+        create_classBtn = (Button) findViewById(R.id.create_class_btn);
     }
 
     private void SetValidators() {
@@ -113,7 +117,7 @@ public class TeacherCreateClassActivity extends AppCompatActivity
         }
         if (!Validators.validateInteger(inputCourseNumber.getText().toString())) {
             noErrors = false;
-            courseInputLayout.setError("Coursenumber should be filled with integers");
+            courseInputLayout.setError("Course number should be filled with integers");
         }
         if (!Validators.validateNonEmptyText(inputPrefix.getText().toString())) {
             noErrors = false;
@@ -148,6 +152,7 @@ public class TeacherCreateClassActivity extends AppCompatActivity
         return noErrors;
     }
 
+
     public void onClick(View v) {
         if (!ValidateFields()) {
             Toast.makeText(this, "Review your input", Toast.LENGTH_SHORT).show();
@@ -156,6 +161,7 @@ public class TeacherCreateClassActivity extends AppCompatActivity
 
         CreateClassModel createClassModel = new CreateClassModel();
         createClassModel.Title = inputTitle.getText().toString();
+        createClassModel.TeacherUserName = Repository.USERNAME;
         createClassModel.CourseNumber = Integer.parseInt(inputCourseNumber.getText().toString());
         createClassModel.Prefix = inputPrefix.getText().toString();
         createClassModel.Section = Integer.parseInt(inputSection.getText().toString());
@@ -174,28 +180,8 @@ public class TeacherCreateClassActivity extends AppCompatActivity
 
     @Override
     public void DisplayResult(ClassModel result) {
-        ClassCreatedFragment fragment = new ClassCreatedFragment();
-        fragment.setModel(result);
-        fragment.show(getSupportFragmentManager(), "class_created");
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.menu_logout) {
-            AccountController accountController = new AccountController(this, null);
-            accountController.LogUserOut();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+//        ClassCreatedFragment fragment = new ClassCreatedFragment();
+//        fragment.setModel(result);
+//        fragment.show(getSupportFragmentManager(), "class_created");
     }
 }
