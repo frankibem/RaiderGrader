@@ -13,10 +13,10 @@
     <string name="title_activity_teacher_class_waitlist">Class wait list</string>
     <string name="title_activity_teacher_class_accepted_student">Current students</string>
     <string name="title_activity_teacher_work_item">Class work items</string>
-    <string name="title_activity_teacher_create_work_item">Create a new work items</string>
-    <string name="title_activity_teacter_work_item_detail">Work item details</string>
-    <string name="title_activity_teacter_update_work_item">Update work items</string>
-    <string name="title_activity_teacter_grade_work_item">Update student grades</string>
+    <string name="title_activity_teacher_create_work_item">Create a new work item</string>
+    <string name="title_activity_teacher_work_item_detail">Work item details</string>
+    <string name="title_activity_teacher_update_work_item">Update work item</string>
+    <string name="title_activity_teacher_grade_work_item">Update student grades</string>
     <string name="title_activity_teacher_announcement">Class announcements</string>
     <string name="title_activity_teacher_create_announcement">Create a new announcement</string>
     <string name="title_activity_teacher_announcement_detail">Announcement details</string>

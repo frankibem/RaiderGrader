@@ -61,25 +61,25 @@ public class TeacherUpdateClassActivity extends AppCompatActivity
 
     private void LoadReference(){
 
-        courseInputLayout=(TextInputLayout)findViewById(R.id.courseNumber_layout_textbox);
-        titleInputLayout=(TextInputLayout) findViewById(R.id.classname_layout_textbox);
-        prefixInputLayout=(TextInputLayout) findViewById(R.id.prefix_layout_textbox);
-        sectionInputLayout=(TextInputLayout) findViewById(R.id.section_layout_textbox);
-        examInputLayout=(TextInputLayout) findViewById(R.id.exam_layout_textbox);
-        projectInputLayout=(TextInputLayout) findViewById(R.id.project_layout_textbox);
-        quizInputLayout=(TextInputLayout) findViewById(R.id.quiz_layout_textbox);
-        homeworkInputLayout=(TextInputLayout) findViewById(R.id.homework_layout_textbox);
-        otherInputLayout=(TextInputLayout) findViewById(R.id.other_layout_textbox);
+        courseInputLayout=(TextInputLayout)findViewById(R.id.inputLayoutCourseNumber);
+        titleInputLayout=(TextInputLayout) findViewById(R.id.inputLayoutTitle);
+        prefixInputLayout=(TextInputLayout) findViewById(R.id.inputLayoutPrefix);
+        sectionInputLayout=(TextInputLayout) findViewById(R.id.inputLayoutSection);
+        examInputLayout=(TextInputLayout) findViewById(R.id.inputLayoutExam);
+        projectInputLayout=(TextInputLayout) findViewById(R.id.inputLayoutProject);
+        quizInputLayout=(TextInputLayout) findViewById(R.id.inputLayoutQuiz);
+        homeworkInputLayout=(TextInputLayout) findViewById(R.id.inputLayoutHomework);
+        otherInputLayout=(TextInputLayout) findViewById(R.id.inputLayoutOther);
 
-        inputTitle=(EditText) findViewById(R.id.classname_textbox);
-        inputCourseNumber =(EditText) findViewById(R.id.courseNumber_textbox);
-        inputPrefix=(EditText) findViewById(R.id.prefix_textbox);
-        inputSection=(EditText) findViewById(R.id.section_textbox);
-        inputExam=(EditText) findViewById(R.id.exam_textbox);
-        inputProject=(EditText) findViewById(R.id.project_textbox);
-        inputQuiz=(EditText) findViewById(R.id.quiz_textbox);
-        inputHomework=(EditText)findViewById(R.id.homework_textbox);
-        inputOther=(EditText) findViewById(R.id.other_textbox);
+        inputTitle=(EditText) findViewById(R.id.inputTitle);
+        inputCourseNumber =(EditText) findViewById(R.id.inputCourseNumber);
+        inputPrefix=(EditText) findViewById(R.id.inputPrefix);
+        inputSection=(EditText) findViewById(R.id.inputSection);
+        inputExam=(EditText) findViewById(R.id.inputExam);
+        inputProject=(EditText) findViewById(R.id.inputProject);
+        inputQuiz=(EditText) findViewById(R.id.inputQuiz);
+        inputHomework=(EditText)findViewById(R.id.inputHomework);
+        inputOther=(EditText) findViewById(R.id.inputOther);
 
         update_classBtn=(Button) findViewById(R.id.update_class_btn);
     }

@@ -16,12 +16,13 @@
         android:orientation="vertical">
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/classname_layout_textbox"
+            android:id="@+id/inputLayoutTitle"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:textColorHint="#ffffff">
 
             <EditText
-                android:id="@+id/classname_textbox"
+                android:id="@+id/inputTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/text_title"
@@ -32,18 +33,18 @@
         </android.support.design.widget.TextInputLayout>
 
         <android.support.design.widget.TextInputLayout
-            android:id="@+id/courseNumber_layout_textbox"
+            android:id="@+id/inputLayoutCourseNumber"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:textColorHint="#ffffff">
 
             <EditText
-                android:id="@+id/courseNumber_textbox"
+                android:id="@+id/inputCourseNumber"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_alignParentStart="true"
-                android:layout_below="@+id/classname_textbox"
                 android:hint="@string/text_courseNumber"
-                android:inputType="text"
+                android:inputType="number"
                 android:maxLength="50"
                 android:singleLine="true" />
 
@@ -55,17 +56,17 @@
             android:orientation="horizontal">
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/prefix_layout_textbox"
+                android:id="@+id/inputLayoutPrefix"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="50">
+                android:layout_weight="50"
+                android:textColorHint="#ffffff">
 
                 <EditText
-                    android:id="@+id/prefix_textbox"
+                    android:id="@+id/inputPrefix"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_below="@+id/classname_textbox"
                     android:hint="@string/text_prefix"
                     android:inputType="text"
                     android:maxLength="20"
@@ -75,19 +76,19 @@
 
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/section_layout_textbox"
+                android:id="@+id/inputLayoutSection"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="50">
+                android:layout_weight="50"
+                android:textColorHint="#ffffff">
 
                 <EditText
-                    android:id="@+id/section_textbox"
+                    android:id="@+id/inputSection"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_below="@+id/classname_textbox"
                     android:hint="@string/text_section"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:maxLength="20"
                     android:singleLine="true" />
 
@@ -101,7 +102,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginTop="20dp"
-            android:gravity="center"
+            android:gravity="left|center_vertical"
             android:text="Grade Distrubtion"
             android:textSize="@dimen/font_size_medium" />
 
@@ -111,38 +112,38 @@
             android:orientation="horizontal">
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/exam_layout_textbox"
-                android:layout_width="wrap_content"
+                android:id="@+id/inputLayoutExam"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="50">
+                android:layout_weight="50"
+                android:textColorHint="#ffffff">
 
                 <EditText
-                    android:id="@+id/exam_textbox"
+                    android:id="@+id/inputExam"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_below="@+id/classname_textbox"
                     android:hint="@string/text_exam"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:maxLength="20"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/project_layout_textbox"
-                android:layout_width="wrap_content"
+                android:id="@+id/inputLayoutProject"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="50">
+                android:layout_weight="50"
+                android:textColorHint="#ffffff">
 
                 <EditText
-                    android:id="@+id/project_textbox"
+                    android:id="@+id/inputProject"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_below="@+id/classname_textbox"
                     android:hint="@string/text_project"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:maxLength="20"
                     android:singleLine="true" />
 
@@ -156,38 +157,38 @@
             android:orientation="horizontal">
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/quiz_layout_textbox"
-                android:layout_width="wrap_content"
+                android:id="@+id/inputLayoutQuiz"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="50">
+                android:layout_weight="50"
+                android:textColorHint="#ffffff">
 
                 <EditText
-                    android:id="@+id/quiz_textbox"
+                    android:id="@+id/inputQuiz"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_below="@+id/classname_textbox"
                     android:hint="@string/text_quiz"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:maxLength="20"
                     android:singleLine="true" />
 
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
-                android:id="@+id/homework_layout_textbox"
-                android:layout_width="wrap_content"
+                android:id="@+id/inputLayoutHomework"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="50">
+                android:layout_weight="50"
+                android:textColorHint="#ffffff">
 
                 <EditText
-                    android:id="@+id/homework_textbox"
+                    android:id="@+id/inputHomework"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:layout_below="@+id/classname_textbox"
                     android:hint="@string/text_homework"
-                    android:inputType="text"
+                    android:inputType="number"
                     android:maxLength="20"
                     android:singleLine="true" />
 
@@ -195,31 +196,24 @@
 
         </LinearLayout>
 
-        <LinearLayout
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/inputLayoutOther"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_weight="50"
+            android:textColorHint="#ffffff">
 
-            <android.support.design.widget.TextInputLayout
-                android:id="@+id/other_layout_textbox"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/inputOther"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="50">
+                android:layout_alignParentStart="true"
+                android:hint="@string/text_other"
+                android:inputType="number"
+                android:maxLength="20"
+                android:singleLine="true" />
 
-                <EditText
-                    android:id="@+id/other_textbox"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_below="@+id/classname_textbox"
-                    android:hint="@string/text_other"
-                    android:inputType="text"
-                    android:maxLength="20"
-                    android:singleLine="true" />
-
-            </android.support.design.widget.TextInputLayout>
-
-        </LinearLayout>
+        </android.support.design.widget.TextInputLayout>
 
         <Button
             android:id="@+id/create_class_btn"
@@ -227,11 +221,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
-
             android:onClick="onClick"
             android:text="Create" />
-
-
     </LinearLayout>
 
 </ScrollView>
