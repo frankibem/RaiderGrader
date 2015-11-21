@@ -10,6 +10,7 @@ import android.app.rgs.com.raidergrader.models.ControllerCallback;
 import android.app.rgs.com.raidergrader.models.EnrollmentModel;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -17,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -26,6 +28,7 @@ public class StudentClassListActivity extends AppCompatActivity
         implements ControllerCallback<List<EnrollmentModel>> {
     ListView listView;
     EnrollmentController controller;
+    TextView emptyText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +40,8 @@ public class StudentClassListActivity extends AppCompatActivity
         controller = new EnrollmentController(this, this);
 
         listView = (ListView) findViewById(R.id.listView);
+        emptyText = (TextView) findViewById(R.id.text_empty);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -71,6 +76,15 @@ public class StudentClassListActivity extends AppCompatActivity
 
     @Override
     public void DisplayResult(List<EnrollmentModel> result) {
+        if (result.isEmpty()) {
+            emptyText.setVisibility(View.VISIBLE);
+            listView.setVisibility(View.GONE);
+            return;
+        }
+
+        emptyText.setVisibility(View.GONE);
+        listView.setVisibility(View.VISIBLE);
+
         // Sort such that pending enrollments come first
         Collections.sort(result, PendingEnrollmentComparator);
 

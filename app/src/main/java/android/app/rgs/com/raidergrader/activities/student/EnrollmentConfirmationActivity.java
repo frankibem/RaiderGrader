@@ -53,7 +53,6 @@ public class EnrollmentConfirmationActivity extends AppCompatActivity
         controller.RequestEnrollmentForStudent(model);
     }
 
-
     // Controller shows toast. Simply finish the activity
     @Override
     public void DisplayResult(Object result) {

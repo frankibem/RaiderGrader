@@ -63,6 +63,7 @@ public class EnrollmentController {
                 }
 
                 Toast.makeText(activity, "Enrollment has been requested", Toast.LENGTH_SHORT).show();
+                controllerCallback.DisplayResult(null);
             }
 
             @Override

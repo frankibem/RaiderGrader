@@ -7,6 +7,8 @@ import android.app.rgs.com.raidergrader.models.WorkItemModel;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.List;
+
 /**
  * @author Frank Ibem
  */
@@ -25,6 +27,8 @@ public class Repository {
     private static WorkItemModel currentWorkItem;
     private static AnnouncementModel currentAnnouncement;
     private static StudentModel currentStudent;
+
+    private static List<ClassModel> classList = null;
 
     public static ClassModel getCurrentClass() {
         return currentClass;
@@ -56,6 +60,14 @@ public class Repository {
 
     public static void setCurrentStudent(StudentModel currentStudent) {
         Repository.currentStudent = currentStudent;
+    }
+
+    public static List<ClassModel> getClassList() {
+        return classList;
+    }
+
+    public static void setClassList(List<ClassModel> classList) {
+        Repository.classList = classList;
     }
 
     /**
