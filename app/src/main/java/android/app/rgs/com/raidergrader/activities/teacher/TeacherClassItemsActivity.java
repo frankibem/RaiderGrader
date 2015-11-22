@@ -87,7 +87,7 @@ public class TeacherClassItemsActivity extends AppCompatActivity
             };
 
             DeleteModelFragment deleteFragment = new DeleteModelFragment();
-            deleteFragment.setTitle(String.format("Delete %s?", currentClass.Title));
+            deleteFragment.setTitle(String.format("Delete \"%s\"?", currentClass.Title));
             deleteFragment.setBody("This will delete all data associated with this class including announcements" +
                     " and work items and cannot be undone. Continue?");
             deleteFragment.setDeleter(deleter);

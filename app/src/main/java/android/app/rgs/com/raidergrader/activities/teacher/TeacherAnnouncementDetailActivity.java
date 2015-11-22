@@ -81,7 +81,7 @@ public class TeacherAnnouncementDetailActivity extends AppCompatActivity
             };
 
             DeleteModelFragment deleteFragment = new DeleteModelFragment();
-            deleteFragment.setTitle(String.format("Delete %s?", currentAnnouncement.Title));
+            deleteFragment.setTitle(String.format("Delete \"%s\"?", currentAnnouncement.Title));
             deleteFragment.setBody("This action cannot be reverted. Continue?");
             deleteFragment.setDeleter(deleter);
 
