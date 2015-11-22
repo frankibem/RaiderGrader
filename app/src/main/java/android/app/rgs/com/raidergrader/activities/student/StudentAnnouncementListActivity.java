@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class StudentAnnouncementListActivity extends AppCompatActivity
         implements ControllerCallback<List<AnnouncementModel>> {
     private ListView listView;
     private StudentAnnouncementListActivity activity;
+    private TextView emptyText;
     private List<AnnouncementModel> announcements;
 
     private AnnouncementController controller;
@@ -36,9 +38,9 @@ public class StudentAnnouncementListActivity extends AppCompatActivity
         setContentView(R.layout.student_announcement_list);
         activity = this;
 
+        emptyText = (TextView) findViewById(R.id.text_empty);
         listView = (ListView) findViewById(R.id.listView);
         controller = new AnnouncementController(this, this);
-        fetchData();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -50,15 +52,40 @@ public class StudentAnnouncementListActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
+        fetchData();
     }
 
     private void fetchData() {
-        controller.GetAnnouncementsForClass(Repository.getCurrentClass().Id);
+        List<AnnouncementModel> announcements = Repository.getAnnouncementList();
+        if (announcements == null) {
+            controller.GetAnnouncementsForClass(Repository.getCurrentClass().Id);
+        } else {
+            DisplayResult(announcements);
+        }
+    }
+
+    @Override
+    public void DisplayResult(List<AnnouncementModel> result) {
+        // Cache list of announcements
+        Repository.setAnnouncementList(result);
+        if (result.isEmpty()) {
+            emptyText.setVisibility(View.VISIBLE);
+            listView.setVisibility(View.GONE);
+            return;
+        }
+
+        announcements = result;
+        StudentAnnouncementListAdapter adapter = new StudentAnnouncementListAdapter(this, result);
+        listView.setAdapter(adapter);
+
+        emptyText.setVisibility(View.GONE);
+        listView.setVisibility(View.VISIBLE);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.refresh_logout_menu, menu);
         return true;
     }
 
@@ -71,16 +98,11 @@ public class StudentAnnouncementListActivity extends AppCompatActivity
             AccountController accountController = new AccountController(this, null);
             accountController.LogUserOut();
             return true;
+        } else if (id == R.id.menu_refresh) {
+            Repository.setAnnouncementList(null);
+            fetchData();
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void DisplayResult(List<AnnouncementModel> result) {
-        announcements = result;
-
-        StudentAnnouncementListAdapter adapter = new StudentAnnouncementListAdapter(this, result);
-        listView.setAdapter(adapter);
     }
 }

@@ -50,7 +50,7 @@ public class EnrollmentActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.logout_menu, menu);
         return true;
     }
 
@@ -73,12 +73,13 @@ public class EnrollmentActivity extends AppCompatActivity
         Repository.setCurrentClass(classModel);
 
         Intent intent = new Intent(this, EnrollmentConfirmationActivity.class);
-        startActivityForResult(intent, 0);
+        startActivityForResult(intent, 1);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == 0) {
+        if (resultCode == 1) {
+            setResult(1);
             finish();
         }
     }

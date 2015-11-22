@@ -9,24 +9,30 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="android.app.rgs.com.raidergrader.activities.student.StudentAnnouncementListActivity">
 
+    <TextView
+        android:id="@+id/text_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="You have no announcments for this class."
+        android:visibility="gone" />
+
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="60sp">
-
-    </ListView>
+        android:visibility="gone" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/listView"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="bottom|end"
-        android:onClick="createAnnouncement"
-        android:src="@drawable/add"
         android:layout_marginLeft="@dimen/fab_margin"
         android:layout_marginRight="@dimen/fab_margin"
-        android:layout_alignParentBottom="true"
-        android:layout_alignEnd="@+id/listView" />
+        android:onClick="createAnnouncement"
+        android:src="@drawable/add" />
 
 </RelativeLayout>

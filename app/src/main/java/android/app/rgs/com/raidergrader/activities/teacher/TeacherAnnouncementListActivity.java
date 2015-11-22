@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -23,8 +24,9 @@ import java.util.List;
  */
 
 public class TeacherAnnouncementListActivity extends AppCompatActivity
-implements ControllerCallback<List<AnnouncementModel>> {
+        implements ControllerCallback<List<AnnouncementModel>> {
     private ListView listView;
+    private TextView emptyText;
     private TeacherAnnouncementListActivity activity;
     private List<AnnouncementModel> announcments;
 
@@ -37,8 +39,8 @@ implements ControllerCallback<List<AnnouncementModel>> {
         activity = this;
 
         listView = (ListView) findViewById(R.id.listView);
+        emptyText = (TextView) findViewById(R.id.text_empty);
         controller = new AnnouncementController(this, this);
-        fetchData();
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -50,20 +52,44 @@ implements ControllerCallback<List<AnnouncementModel>> {
                 startActivity(intent);
             }
         });
+
+        fetchData();
     }
 
-    public void createAnnouncement(View view){
+    public void createAnnouncement(View view) {
         Intent intent = new Intent(getApplicationContext(), TeacherCreateAnnouncementActivity.class);
         startActivity(intent);
     }
 
-    private void fetchData(){
-        controller.GetAnnouncementsForClass(Repository.getCurrentClass().Id);
+    private void fetchData() {
+        List<AnnouncementModel> announcements = Repository.getAnnouncementList();
+        if (announcements == null) {
+            controller.GetAnnouncementsForClass(Repository.getCurrentClass().Id);
+        } else {
+            DisplayResult(announcements);
+        }
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+    public void DisplayResult(List<AnnouncementModel> result) {
+        Repository.setAnnouncementList(result);
+        if (result.isEmpty()) {
+            emptyText.setVisibility(View.VISIBLE);
+            listView.setVisibility(View.GONE);
+            return;
+        }
+
+        announcments = result;
+        TeacherAnnouncementListAdapter adapter = new TeacherAnnouncementListAdapter(this, result);
+        listView.setAdapter(adapter);
+
+        emptyText.setVisibility(View.GONE);
+        listView.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.refresh_logout_menu, menu);
         return true;
     }
 
@@ -76,16 +102,11 @@ implements ControllerCallback<List<AnnouncementModel>> {
             AccountController accountController = new AccountController(this, null);
             accountController.LogUserOut();
             return true;
+        } else if (id == R.id.menu_refresh) {
+            Repository.setAnnouncementList(null);
+            fetchData();
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void DisplayResult(List<AnnouncementModel> result){
-        announcments = result;
-
-        TeacherAnnouncementListAdapter adapter = new TeacherAnnouncementListAdapter(this, result);
-        listView.setAdapter(adapter);
     }
 }

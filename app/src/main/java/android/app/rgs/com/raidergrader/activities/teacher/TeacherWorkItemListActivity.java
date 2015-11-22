@@ -1,7 +1,6 @@
 package android.app.rgs.com.raidergrader.activities.teacher;
 
 import android.app.rgs.com.raidergrader.R;
-import android.app.rgs.com.raidergrader.activities.student.StudentWorkItemDetailActivity;
 import android.app.rgs.com.raidergrader.adapters.TeacherWorkItemListAdapter;
 import android.app.rgs.com.raidergrader.controllers.AccountController;
 import android.app.rgs.com.raidergrader.controllers.WorkItemController;
@@ -17,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.List;
 
@@ -27,19 +27,21 @@ import java.util.List;
 public class TeacherWorkItemListActivity extends AppCompatActivity
         implements ControllerCallback<List<WorkItemModel>> {
 
+    private TextView emptyText;
     private ListView listView;
+    private FloatingActionButton fab;
     private WorkItemController controller = new WorkItemController(this, this);
 
     private TeacherWorkItemListAdapter adapter;
     private List<WorkItemModel> workItems;
 
-    private FloatingActionButton fab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.teacher_work_item_list);
 
+        emptyText = (TextView) findViewById(R.id.text_empty);
         listView = (ListView) findViewById(R.id.listView);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -52,7 +54,7 @@ public class TeacherWorkItemListActivity extends AppCompatActivity
             }
         });
 
-        fab = (FloatingActionButton)findViewById(R.id.fab);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,22 +62,39 @@ public class TeacherWorkItemListActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
         fetchData();
     }
 
     private void fetchData() {
-        controller.GetWorkItemsForClass(Repository.getCurrentClass().Id);
+        List<WorkItemModel> workItems = Repository.getWorkItemList();
+        if (workItems == null) {
+            controller.GetWorkItemsForClass(Repository.getCurrentClass().Id);
+        } else {
+            DisplayResult(workItems);
+        }
     }
 
     @Override
     public void DisplayResult(List<WorkItemModel> result) {
+        Repository.setWorkItemList(result);
+        if (result.isEmpty()) {
+            emptyText.setVisibility(View.VISIBLE);
+            listView.setVisibility(View.GONE);
+            return;
+        }
+
         workItems = result;
         adapter = new TeacherWorkItemListAdapter(this, result);
         listView.setAdapter(adapter);
+
+        emptyText.setVisibility(View.GONE);
+        listView.setVisibility(View.VISIBLE);
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.refresh_logout_menu, menu);
         return true;
     }
 
@@ -88,6 +107,9 @@ public class TeacherWorkItemListActivity extends AppCompatActivity
             AccountController accountController = new AccountController(this, null);
             accountController.LogUserOut();
             return true;
+        } else if (id == R.id.menu_refresh) {
+            Repository.setWorkItemList(null);
+            fetchData();
         }
 
         return super.onOptionsItemSelected(item);

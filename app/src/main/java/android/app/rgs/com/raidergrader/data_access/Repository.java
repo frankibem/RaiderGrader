@@ -2,6 +2,7 @@ package android.app.rgs.com.raidergrader.data_access;
 
 import android.app.rgs.com.raidergrader.models.AnnouncementModel;
 import android.app.rgs.com.raidergrader.models.ClassModel;
+import android.app.rgs.com.raidergrader.models.EnrollmentModel;
 import android.app.rgs.com.raidergrader.models.StudentModel;
 import android.app.rgs.com.raidergrader.models.WorkItemModel;
 import android.content.Context;
@@ -29,6 +30,9 @@ public class Repository {
     private static StudentModel currentStudent;
 
     private static List<ClassModel> classList = null;
+    private static List<WorkItemModel> workItemList = null;
+    private static List<AnnouncementModel> announcementList = null;
+    private static List<EnrollmentModel> studentEnrollmentList = null;
 
     public static ClassModel getCurrentClass() {
         return currentClass;
@@ -68,6 +72,45 @@ public class Repository {
 
     public static void setClassList(List<ClassModel> classList) {
         Repository.classList = classList;
+    }
+
+    public static List<WorkItemModel> getWorkItemList() {
+        return workItemList;
+    }
+
+    public static void setWorkItemList(List<WorkItemModel> workItemList) {
+        Repository.workItemList = workItemList;
+    }
+
+    public static List<AnnouncementModel> getAnnouncementList() {
+        return announcementList;
+    }
+
+    public static void setAnnouncementList(List<AnnouncementModel> announcementList) {
+        Repository.announcementList = announcementList;
+    }
+
+    public static List<EnrollmentModel> getStudentEnrollmentList() {
+        return studentEnrollmentList;
+    }
+
+    public static void setStudentEnrollmentList(List<EnrollmentModel> studentEnrollmentList) {
+        Repository.studentEnrollmentList = studentEnrollmentList;
+    }
+
+    /**
+     * Clears all cached data
+     */
+    public static void clearData() {
+        setCurrentClass(null);
+        setCurrentAnnouncement(null);
+        setCurrentStudent(null);
+        setCurrentWorkItem(null);
+
+        setAnnouncementList(null);
+        setClassList(null);
+        setStudentEnrollmentList(null);
+        setWorkItemList(null);
     }
 
     /**
