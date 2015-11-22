@@ -52,36 +52,36 @@ public class TeacherUpdateClassActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.teacher_update_class);
 
-        controller= new ClassController(this,this);
+        controller = new ClassController(this, this);
 
         LoadReference();
         SetValidators();
         ValidateFields();
     }
 
-    private void LoadReference(){
+    private void LoadReference() {
 
-        courseInputLayout=(TextInputLayout)findViewById(R.id.courseNumber_layout_textbox);
-        titleInputLayout=(TextInputLayout) findViewById(R.id.classname_layout_textbox);
-        prefixInputLayout=(TextInputLayout) findViewById(R.id.prefix_layout_textbox);
-        sectionInputLayout=(TextInputLayout) findViewById(R.id.section_layout_textbox);
-        examInputLayout=(TextInputLayout) findViewById(R.id.exam_layout_textbox);
-        projectInputLayout=(TextInputLayout) findViewById(R.id.project_layout_textbox);
-        quizInputLayout=(TextInputLayout) findViewById(R.id.quiz_layout_textbox);
-        homeworkInputLayout=(TextInputLayout) findViewById(R.id.homework_layout_textbox);
-        otherInputLayout=(TextInputLayout) findViewById(R.id.other_layout_textbox);
+        courseInputLayout = (TextInputLayout) findViewById(R.id.courseNumber_layout_textbox);
+        titleInputLayout = (TextInputLayout) findViewById(R.id.classname_layout_textbox);
+        prefixInputLayout = (TextInputLayout) findViewById(R.id.prefix_layout_textbox);
+        sectionInputLayout = (TextInputLayout) findViewById(R.id.section_layout_textbox);
+        examInputLayout = (TextInputLayout) findViewById(R.id.exam_layout_textbox);
+        projectInputLayout = (TextInputLayout) findViewById(R.id.project_layout_textbox);
+        quizInputLayout = (TextInputLayout) findViewById(R.id.quiz_layout_textbox);
+        homeworkInputLayout = (TextInputLayout) findViewById(R.id.homework_layout_textbox);
+        otherInputLayout = (TextInputLayout) findViewById(R.id.other_layout_textbox);
 
-        inputTitle=(EditText) findViewById(R.id.classname_textbox);
-        inputCourseNumber =(EditText) findViewById(R.id.courseNumber_textbox);
-        inputPrefix=(EditText) findViewById(R.id.prefix_textbox);
-        inputSection=(EditText) findViewById(R.id.section_textbox);
-        inputExam=(EditText) findViewById(R.id.exam_textbox);
-        inputProject=(EditText) findViewById(R.id.project_textbox);
-        inputQuiz=(EditText) findViewById(R.id.quiz_textbox);
-        inputHomework=(EditText)findViewById(R.id.homework_textbox);
-        inputOther=(EditText) findViewById(R.id.other_textbox);
+        inputTitle = (EditText) findViewById(R.id.classname_textbox);
+        inputCourseNumber = (EditText) findViewById(R.id.courseNumber_textbox);
+        inputPrefix = (EditText) findViewById(R.id.prefix_textbox);
+        inputSection = (EditText) findViewById(R.id.section_textbox);
+        inputExam = (EditText) findViewById(R.id.exam_textbox);
+        inputProject = (EditText) findViewById(R.id.project_textbox);
+        inputQuiz = (EditText) findViewById(R.id.quiz_textbox);
+        inputHomework = (EditText) findViewById(R.id.homework_textbox);
+        inputOther = (EditText) findViewById(R.id.other_textbox);
 
-        update_classBtn=(Button) findViewById(R.id.update_class_btn);
+        update_classBtn = (Button) findViewById(R.id.update_class_btn);
     }
 
     private void SetValidators() {
@@ -95,7 +95,7 @@ public class TeacherUpdateClassActivity extends AppCompatActivity
                 sectionInputLayout, ValidateConstant.INTEGER));
         inputExam.addTextChangedListener(new RgsTextWatcher(getWindow(), inputExam,
                 examInputLayout, ValidateConstant.FLOAT));
-        inputProject.addTextChangedListener(new RgsTextWatcher(getWindow(),inputProject,
+        inputProject.addTextChangedListener(new RgsTextWatcher(getWindow(), inputProject,
                 projectInputLayout, ValidateConstant.FLOAT));
         inputQuiz.addTextChangedListener(new RgsTextWatcher(getWindow(), inputQuiz,
                 quizInputLayout, ValidateConstant.FLOAT));
@@ -149,7 +149,7 @@ public class TeacherUpdateClassActivity extends AppCompatActivity
         return noErrors;
     }
 
-    public void onClickUpdate(View v){
+    public void onClickUpdate(View v) {
         if (!ValidateFields()) {
             Toast.makeText(this, "Review your input", Toast.LENGTH_SHORT).show();
             return;
@@ -161,14 +161,14 @@ public class TeacherUpdateClassActivity extends AppCompatActivity
         updateClassModel.Prefix = inputPrefix.getText().toString();
         updateClassModel.Section = Integer.parseInt(inputSection.getText().toString());
 
-        GradeDistribution gradeDistribution= new GradeDistribution();
+        GradeDistribution gradeDistribution = new GradeDistribution();
         gradeDistribution.Exam = Float.parseFloat(inputExam.getText().toString());
-        gradeDistribution.Project=Float.parseFloat(inputProject.getText().toString());
+        gradeDistribution.Project = Float.parseFloat(inputProject.getText().toString());
         gradeDistribution.Homework = Float.parseFloat(inputHomework.getText().toString());
-        gradeDistribution.Quiz=Float.parseFloat(inputQuiz.getText().toString());
-        gradeDistribution.Other=Float.parseFloat(inputOther.getText().toString());
+        gradeDistribution.Quiz = Float.parseFloat(inputQuiz.getText().toString());
+        gradeDistribution.Other = Float.parseFloat(inputOther.getText().toString());
 
-        updateClassModel.GradeDistribution=gradeDistribution;
+        updateClassModel.GradeDistribution = gradeDistribution;
         controller.UpdateClass(updateClassModel);
     }
 
