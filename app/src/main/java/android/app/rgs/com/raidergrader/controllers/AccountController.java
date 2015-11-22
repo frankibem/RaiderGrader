@@ -219,6 +219,7 @@ public class AccountController {
      * Logs the user out of the application and deletes his/her credentials
      */
     public void LogUserOut() {
+        Repository.clearData();
         Repository.clearUserCredentials(activity);
         Toast.makeText(activity, "You've been logged out", Toast.LENGTH_SHORT).show();
 

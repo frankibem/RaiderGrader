@@ -72,9 +72,9 @@
         <activity android:name=".activities.teacher.TeacherWorkItemDetailActivity"
             android:label="@string/title_activity_student_work_item_detail"/>
         <activity android:name=".activities.teacher.TeacherUpdateWorkItemActivity"
-            android:label="@string/title_activity_teacter_update_work_item"/>
+            android:label="@string/title_activity_teacher_update_work_item"/>
         <activity android:name=".activities.teacher.TeacherGradeWorkItemActivity"
-            android:label="@string/title_activity_teacter_grade_work_item"/>
+            android:label="@string/title_activity_teacher_grade_work_item"/>
         <activity android:name=".activities.teacher.TeacherAnnouncementListActivity"
             android:label="@string/title_activity_teacher_announcement"/>
         <activity android:name=".activities.teacher.TeacherCreateAnnouncementActivity"

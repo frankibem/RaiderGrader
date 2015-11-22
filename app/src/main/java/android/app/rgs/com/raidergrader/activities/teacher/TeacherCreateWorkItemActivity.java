@@ -1,6 +1,7 @@
 package android.app.rgs.com.raidergrader.activities.teacher;
 
 import android.app.rgs.com.raidergrader.R;
+import android.app.rgs.com.raidergrader.controllers.AccountController;
 import android.app.rgs.com.raidergrader.controllers.WorkItemController;
 import android.app.rgs.com.raidergrader.data_access.Repository;
 import android.app.rgs.com.raidergrader.dialogs.DatePickerFragment;
@@ -17,7 +18,8 @@ import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -189,7 +191,6 @@ public class TeacherCreateWorkItemActivity extends AppCompatActivity
         controller.CreateWorkItem(createWorkItemModel);
     }
 
-
     @Override
     public void DisplayResult(Object result) {
         Intent intent = new Intent(this, TeacherWorkItemListActivity.class);
@@ -213,5 +214,25 @@ public class TeacherCreateWorkItemActivity extends AppCompatActivity
         LocalDateTime dateTime = TimeUtils.LocalDateTimeFromComponents(YEAR, MONTH, DAY, HOUR, MINUTE);
         LocalTime time = new LocalTime(dateTime);
         btnTime.setText(time.toString("HH:mm a", Locale.getDefault()));
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.logout_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.menu_logout) {
+            AccountController accountController = new AccountController(this, null);
+            accountController.LogUserOut();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

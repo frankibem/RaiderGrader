@@ -1,16 +1,10 @@
 package android.app.rgs.com.raidergrader.activities.student;
 
-import android.app.ProgressDialog;
 import android.app.rgs.com.raidergrader.R;
 import android.app.rgs.com.raidergrader.controllers.AccountController;
 import android.app.rgs.com.raidergrader.controllers.ClassController;
-import android.app.rgs.com.raidergrader.data_access.HttpStatusCodes;
 import android.app.rgs.com.raidergrader.data_access.Repository;
-import android.app.rgs.com.raidergrader.data_access.RequestError;
-import android.app.rgs.com.raidergrader.data_access.RestTask;
-import android.app.rgs.com.raidergrader.data_access.RestUtil;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
-import android.app.rgs.com.raidergrader.utilities.GlobalHandling;
 import android.app.rgs.com.raidergrader.utilities.RgsTextWatcher;
 import android.app.rgs.com.raidergrader.utilities.ValidateConstant;
 import android.app.rgs.com.raidergrader.models.ClassModel;
@@ -22,12 +16,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-
-import com.google.gson.Gson;
-
-import java.io.IOException;
 
 public class EnrollmentActivity extends AppCompatActivity
         implements ControllerCallback<ClassModel> {
@@ -61,7 +50,7 @@ public class EnrollmentActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.logout_menu, menu);
         return true;
     }
 
@@ -70,7 +59,7 @@ public class EnrollmentActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.item_logout) {
+        if (id == R.id.menu_logout) {
             AccountController accountController = new AccountController(this, null);
             accountController.LogUserOut();
             return true;
@@ -84,12 +73,13 @@ public class EnrollmentActivity extends AppCompatActivity
         Repository.setCurrentClass(classModel);
 
         Intent intent = new Intent(this, EnrollmentConfirmationActivity.class);
-        startActivityForResult(intent, 0);
+        startActivityForResult(intent, 1);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == 0) {
+        if (resultCode == 1) {
+            setResult(1);
             finish();
         }
     }

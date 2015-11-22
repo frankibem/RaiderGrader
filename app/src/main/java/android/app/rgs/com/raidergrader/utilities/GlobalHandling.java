@@ -15,7 +15,7 @@ public class GlobalHandling {
      * Creates and displays a Toast with the given text
      *
      * @param context
-     * @param text Text to be displayed in toast
+     * @param text    Text to be displayed in toast
      */
     public static void makeShortToast(Context context, String text) {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
@@ -27,19 +27,10 @@ public class GlobalHandling {
      * @param context
      */
     public static void authorizationError(Context context) {
-        makeShortToast(context, "Your login has expired");
+        makeShortToast(context, "Please log in again");
 
         Intent intent = new Intent(context, LoginActivity.class);
         context.startActivity(intent);
-    }
-
-    /**
-     * Display a Toast if an unknown error occurs.
-     *
-     * @param context
-     */
-    public static void unknownError(Context context) {
-        makeShortToast(context, "An unknown error occurred. Please try again later");
     }
 
     /**
@@ -52,14 +43,12 @@ public class GlobalHandling {
     }
 
     public static void generalError(Context context, RequestError error) {
-        if (error.getStatusCode() == HttpStatusCodes.BadRequest) {
-            badRequest(context);
+        if (error.getStatusCode() == HttpStatusCodes.Unauthorized) {
+            authorizationError(context);
         } else if (error.getStatusCode() == HttpStatusCodes.Incomplete) {
             connectionError(context);
-        } else if (error.getStatusCode() == HttpStatusCodes.Unauthorized) {
-            authorizationError(context);
         } else {
-            unknownError(context);
+            badRequest(context);
         }
     }
 
@@ -69,6 +58,6 @@ public class GlobalHandling {
      * @param context
      */
     public static void badRequest(Context context) {
-        makeShortToast(context, "An error occurred while fetching your data");
+        makeShortToast(context, "An error occurred while loading your data. Please try again later");
     }
 }

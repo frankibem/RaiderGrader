@@ -1,6 +1,6 @@
 <resources>
-    <string name="app_name">RaiderGrader</string>
-    <string name="title_activity_login">Login to RaiderGrader</string>
+    <string name="app_name">Raider Grader</string>
+    <string name="title_activity_login">Raider Grader</string>
     <string name="title_activity_enrollment">Enroll in a class</string>
     <string name="title_activity_registration">Register a new account</string>
     <string name="title_activity_student_class_list">My classes</string>
@@ -13,10 +13,10 @@
     <string name="title_activity_teacher_class_waitlist">Class wait list</string>
     <string name="title_activity_teacher_class_accepted_student">Current students</string>
     <string name="title_activity_teacher_work_item">Class work items</string>
-    <string name="title_activity_teacher_create_work_item">Create a new work items</string>
-    <string name="title_activity_teacter_work_item_detail">Work item details</string>
-    <string name="title_activity_teacter_update_work_item">Update work items</string>
-    <string name="title_activity_teacter_grade_work_item">Update student grades</string>
+    <string name="title_activity_teacher_create_work_item">Create a new work item</string>
+    <string name="title_activity_teacher_work_item_detail">Work item details</string>
+    <string name="title_activity_teacher_update_work_item">Update work item</string>
+    <string name="title_activity_teacher_grade_work_item">Update student grades</string>
     <string name="title_activity_teacher_announcement">Class announcements</string>
     <string name="title_activity_teacher_create_announcement">Create a new announcement</string>
     <string name="title_activity_teacher_announcement_detail">Announcement details</string>
@@ -27,6 +27,7 @@
     <string name="title_activity_student_work_item_detail">Work item details</string>
     <string name="title_activity_student_work_item">My work items</string>
     <string name="title_activity_student_class_item">Class items</string>
+    <string name="title_activity_activity_teacher_work_item_list">Your work items</string>
 
     <!-- Login Page-->
     <string name="hint_email">Email</string>
@@ -58,11 +59,6 @@
     <string name="invalid_nonEmptyText">Value must not be empty</string>
     <string name="invalid_integer">Enter a valid integer</string>
 
-    <string name="action_settings">Settings</string>
-    <string name="title_activity_activity_teacher_create_work_item">
-        activity_teacher_create_workItem
-    </string>
-
     <string name="text_title">Title</string>
     <string name="text_prefix">Prefix</string>
     <string name="text_section">Section</string>
@@ -78,15 +74,9 @@
     <string name="btn_cancel">Cancel</string>
     <string name="btn_done">Done</string>
 
-    <string name="btn_create"> Create</string>
-
-    <string name="title_activity_activity_teacher_work_item_list">activity_teacher_workItem_list
-    </string>
-
+    <string name="btn_create">Create</string>
 
     <!-- Menu -->
     <string name="menu_logout">Log out</string>
-
-<!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="menu_refresh">Refresh</string>
 </resources>

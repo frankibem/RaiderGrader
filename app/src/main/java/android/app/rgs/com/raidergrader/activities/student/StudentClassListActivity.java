@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -24,8 +25,9 @@ import java.util.List;
 
 public class StudentClassListActivity extends AppCompatActivity
         implements ControllerCallback<List<EnrollmentModel>> {
-    ListView listView;
-    EnrollmentController controller;
+    private ListView listView;
+    private EnrollmentController controller;
+    private TextView emptyText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +37,9 @@ public class StudentClassListActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         controller = new EnrollmentController(this, this);
-
         listView = (ListView) findViewById(R.id.listView);
+        emptyText = (TextView) findViewById(R.id.text_empty);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -53,11 +56,6 @@ public class StudentClassListActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
 
         fetchData();
     }
@@ -66,11 +64,29 @@ public class StudentClassListActivity extends AppCompatActivity
      * Retrieves the list of enrollments for the student
      */
     private void fetchData() {
-        controller.GetStudentEnrollments(Repository.USERNAME);
+        List<EnrollmentModel> enrollments = Repository.getStudentEnrollmentList();
+
+        if (enrollments == null) {
+            controller.GetStudentEnrollments(Repository.USERNAME);
+        } else {
+            DisplayResult(enrollments);
+        }
     }
 
     @Override
     public void DisplayResult(List<EnrollmentModel> result) {
+        // Cache enrollment list
+        Repository.setStudentEnrollmentList(result);
+
+        if (result.isEmpty()) {
+            emptyText.setVisibility(View.VISIBLE);
+            listView.setVisibility(View.GONE);
+            return;
+        }
+
+        emptyText.setVisibility(View.GONE);
+        listView.setVisibility(View.VISIBLE);
+
         // Sort such that pending enrollments come first
         Collections.sort(result, PendingEnrollmentComparator);
 
@@ -85,7 +101,15 @@ public class StudentClassListActivity extends AppCompatActivity
      */
     public void requestEnrollment(View view) {
         Intent intent = new Intent(getApplicationContext(), EnrollmentActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == 1) {
+            Repository.setStudentEnrollmentList(null);
+            fetchData();
+        }
     }
 
     /**
@@ -106,7 +130,7 @@ public class StudentClassListActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.refresh_logout_menu, menu);
         return true;
     }
 
@@ -115,10 +139,13 @@ public class StudentClassListActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.item_logout) {
+        if (id == R.id.menu_logout) {
             AccountController accountController = new AccountController(this, null);
             accountController.LogUserOut();
             return true;
+        } else if (id == R.id.menu_refresh) {
+            Repository.setStudentEnrollmentList(null);
+            fetchData();
         }
 
         return super.onOptionsItemSelected(item);

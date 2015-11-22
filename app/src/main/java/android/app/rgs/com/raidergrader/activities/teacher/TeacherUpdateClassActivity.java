@@ -1,6 +1,7 @@
 package android.app.rgs.com.raidergrader.activities.teacher;
 
 import android.app.rgs.com.raidergrader.R;
+import android.app.rgs.com.raidergrader.controllers.AccountController;
 import android.app.rgs.com.raidergrader.controllers.ClassController;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
 import android.app.rgs.com.raidergrader.models.GradeDistribution;
@@ -11,6 +12,8 @@ import android.app.rgs.com.raidergrader.utilities.Validators;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,25 +61,25 @@ public class TeacherUpdateClassActivity extends AppCompatActivity
 
     private void LoadReference(){
 
-        courseInputLayout=(TextInputLayout)findViewById(R.id.courseNumber_layout_textbox);
-        titleInputLayout=(TextInputLayout) findViewById(R.id.classname_layout_textbox);
-        prefixInputLayout=(TextInputLayout) findViewById(R.id.prefix_layout_textbox);
-        sectionInputLayout=(TextInputLayout) findViewById(R.id.section_layout_textbox);
-        examInputLayout=(TextInputLayout) findViewById(R.id.exam_layout_textbox);
-        projectInputLayout=(TextInputLayout) findViewById(R.id.project_layout_textbox);
-        quizInputLayout=(TextInputLayout) findViewById(R.id.quiz_layout_textbox);
-        homeworkInputLayout=(TextInputLayout) findViewById(R.id.homework_layout_textbox);
-        otherInputLayout=(TextInputLayout) findViewById(R.id.other_layout_textbox);
+        courseInputLayout=(TextInputLayout)findViewById(R.id.inputLayoutCourseNumber);
+        titleInputLayout=(TextInputLayout) findViewById(R.id.inputLayoutTitle);
+        prefixInputLayout=(TextInputLayout) findViewById(R.id.inputLayoutPrefix);
+        sectionInputLayout=(TextInputLayout) findViewById(R.id.inputLayoutSection);
+        examInputLayout=(TextInputLayout) findViewById(R.id.inputLayoutExam);
+        projectInputLayout=(TextInputLayout) findViewById(R.id.inputLayoutProject);
+        quizInputLayout=(TextInputLayout) findViewById(R.id.inputLayoutQuiz);
+        homeworkInputLayout=(TextInputLayout) findViewById(R.id.inputLayoutHomework);
+        otherInputLayout=(TextInputLayout) findViewById(R.id.inputLayoutOther);
 
-        inputTitle=(EditText) findViewById(R.id.classname_textbox);
-        inputCourseNumber =(EditText) findViewById(R.id.courseNumber_textbox);
-        inputPrefix=(EditText) findViewById(R.id.prefix_textbox);
-        inputSection=(EditText) findViewById(R.id.section_textbox);
-        inputExam=(EditText) findViewById(R.id.exam_textbox);
-        inputProject=(EditText) findViewById(R.id.project_textbox);
-        inputQuiz=(EditText) findViewById(R.id.quiz_textbox);
-        inputHomework=(EditText)findViewById(R.id.homework_textbox);
-        inputOther=(EditText) findViewById(R.id.other_textbox);
+        inputTitle=(EditText) findViewById(R.id.inputTitle);
+        inputCourseNumber =(EditText) findViewById(R.id.inputCourseNumber);
+        inputPrefix=(EditText) findViewById(R.id.inputPrefix);
+        inputSection=(EditText) findViewById(R.id.inputSection);
+        inputExam=(EditText) findViewById(R.id.inputExam);
+        inputProject=(EditText) findViewById(R.id.inputProject);
+        inputQuiz=(EditText) findViewById(R.id.inputQuiz);
+        inputHomework=(EditText)findViewById(R.id.inputHomework);
+        inputOther=(EditText) findViewById(R.id.inputOther);
 
         update_classBtn=(Button) findViewById(R.id.update_class_btn);
     }
@@ -88,20 +91,18 @@ public class TeacherUpdateClassActivity extends AppCompatActivity
                 courseInputLayout, ValidateConstant.INTEGER));
         inputPrefix.addTextChangedListener(new RgsTextWatcher(getWindow(), inputPrefix,
                 prefixInputLayout, ValidateConstant.NON_EMPTY_TEXT));
-        inputSection.addTextChangedListener(new RgsTextWatcher(getWindow(),inputSection,
+        inputSection.addTextChangedListener(new RgsTextWatcher(getWindow(), inputSection,
                 sectionInputLayout, ValidateConstant.INTEGER));
-        inputExam.addTextChangedListener(new RgsTextWatcher(getWindow(),inputExam,
+        inputExam.addTextChangedListener(new RgsTextWatcher(getWindow(), inputExam,
                 examInputLayout, ValidateConstant.FLOAT));
         inputProject.addTextChangedListener(new RgsTextWatcher(getWindow(),inputProject,
                 projectInputLayout, ValidateConstant.FLOAT));
-        inputQuiz.addTextChangedListener(new RgsTextWatcher(getWindow(),inputQuiz,
+        inputQuiz.addTextChangedListener(new RgsTextWatcher(getWindow(), inputQuiz,
                 quizInputLayout, ValidateConstant.FLOAT));
-        inputHomework.addTextChangedListener(new RgsTextWatcher(getWindow(),inputHomework,
+        inputHomework.addTextChangedListener(new RgsTextWatcher(getWindow(), inputHomework,
                 homeworkInputLayout, ValidateConstant.FLOAT));
-        inputOther.addTextChangedListener(new RgsTextWatcher(getWindow(),inputOther,
+        inputOther.addTextChangedListener(new RgsTextWatcher(getWindow(), inputOther,
                 otherInputLayout, ValidateConstant.FLOAT));
-
-
     }
 
     private boolean ValidateFields() {
@@ -169,11 +170,28 @@ public class TeacherUpdateClassActivity extends AppCompatActivity
 
         updateClassModel.GradeDistribution=gradeDistribution;
         controller.UpdateClass(updateClassModel);
-
     }
 
     @Override
     public void DisplayResult(UpdateClassModel result) {
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.logout_menu, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.menu_logout) {
+            AccountController accountController = new AccountController(this, null);
+            accountController.LogUserOut();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }
