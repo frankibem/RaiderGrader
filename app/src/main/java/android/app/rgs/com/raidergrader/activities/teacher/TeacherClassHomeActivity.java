@@ -1,5 +1,6 @@
 package android.app.rgs.com.raidergrader.activities.teacher;
 
+import android.app.Activity;
 import android.app.rgs.com.raidergrader.R;
 import android.app.rgs.com.raidergrader.adapters.TeacherClassListAdapter;
 import android.app.rgs.com.raidergrader.controllers.AccountController;
@@ -37,6 +38,8 @@ public class TeacherClassHomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.teacher_class_home);
 
+        final Activity activity = this;
+
         emptyText = (TextView) findViewById(R.id.text_empty);
         listView = (ListView) findViewById(R.id.listView);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -46,7 +49,7 @@ public class TeacherClassHomeActivity extends AppCompatActivity
                 Repository.setCurrentClass(item);
 
                 Intent intent = new Intent(getApplicationContext(), TeacherClassItemsActivity.class);
-                startActivity(intent);
+                activity.startActivityForResult(intent, 2);
             }
         });
 
@@ -74,7 +77,7 @@ public class TeacherClassHomeActivity extends AppCompatActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         // New class was created - refresh data
-        if (resultCode == 1) {
+        if (resultCode == 1 || resultCode == 2) {
             Repository.setClassList(null);
             fetchData();
         }

@@ -72,7 +72,7 @@ public class TeacherClassItemsActivity extends AppCompatActivity
             AccountController accountController = new AccountController(this, null);
             accountController.LogUserOut();
             return true;
-        }else if(id == R.id.menu_edit){
+        } else if (id == R.id.menu_edit) {
             // Navigate to activity for editing class
             Intent intent = new Intent(this, TeacherUpdateClassActivity.class);
             startActivity(intent);
@@ -102,6 +102,7 @@ public class TeacherClassItemsActivity extends AppCompatActivity
 
     @Override
     public void DisplayResult(Object result) {
+        setResult(2);
         finish();
     }
 }
