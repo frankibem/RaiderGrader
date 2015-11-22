@@ -6,6 +6,12 @@ package android.app.rgs.com.raidergrader.activities.teacher;
 
 import android.app.rgs.com.raidergrader.R;
 import android.app.rgs.com.raidergrader.controllers.AccountController;
+import android.app.rgs.com.raidergrader.controllers.ClassController;
+import android.app.rgs.com.raidergrader.data_access.Repository;
+import android.app.rgs.com.raidergrader.dialogs.DeleteModelFragment;
+import android.app.rgs.com.raidergrader.models.ClassModel;
+import android.app.rgs.com.raidergrader.models.ControllerCallback;
+import android.app.rgs.com.raidergrader.models.DeleteModelInterface;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,9 +21,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.content.Intent;
 
-public class TeacherClassItemsActivity extends AppCompatActivity {
+public class TeacherClassItemsActivity extends AppCompatActivity
+        implements ControllerCallback {
     String[] data = {"Students", "Work items", "Announcements"};
     ListView listView;
 
@@ -71,10 +77,31 @@ public class TeacherClassItemsActivity extends AppCompatActivity {
             Intent intent = new Intent(this, TeacherUpdateClassActivity.class);
             startActivity(intent);
 
-        }else if(id == R.id.menu_delete){
-            // Place code to delete class here
+        } else if (id == R.id.menu_delete) {
+            final ClassModel currentClass = Repository.getCurrentClass();
+            final ClassController controller = new ClassController(this, this);
+
+            DeleteModelInterface deleter = new DeleteModelInterface() {
+                @Override
+                public void Delete() {
+                    controller.DeleteClass(currentClass.Id);
+                }
+            };
+
+            DeleteModelFragment deleteFragment = new DeleteModelFragment();
+            deleteFragment.setTitle(String.format("Delete \"%s\"?", currentClass.Title));
+            deleteFragment.setBody("This will delete all data associated with this class including announcements" +
+                    " and work items and cannot be undone. Continue?");
+            deleteFragment.setDeleter(deleter);
+
+            deleteFragment.show(getSupportFragmentManager(), "delete_class");
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void DisplayResult(Object result) {
+        finish();
     }
 }

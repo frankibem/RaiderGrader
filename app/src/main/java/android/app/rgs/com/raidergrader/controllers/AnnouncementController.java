@@ -41,9 +41,9 @@ public class AnnouncementController {
     }
 
     /**
-    * Lauren Joness
-    * Creates a new announcement in a class
-    * */
+     * Lauren Joness
+     * Creates a new announcement in a class
+     */
     public void CreateAnnouncement(CreateAnnouncementModel model) {
         Gson gson = JsonHelpers.getGson();
         String request = gson.toJson(model);
@@ -93,10 +93,11 @@ public class AnnouncementController {
     }
 
     /**
-    * Lauren Joness
-    * Deletes an announcement
-    * @param announcementId ID of the announcement to delete
-    */
+     * Lauren Joness
+     * Deletes an announcement
+     *
+     * @param announcementId ID of the announcement to delete
+     */
 
     public void DeleteAnnouncement(int announcementId) {
         RestTask.ResponseCallback responseCallback = new RestTask.ResponseCallback() {
@@ -106,7 +107,7 @@ public class AnnouncementController {
                     mProgress.dismiss();
                 }
 
-                Toast.makeText(activity, "Announcement deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "Announcement successfully deleted", Toast.LENGTH_SHORT).show();
                 controllerCallback.DisplayResult(null);
             }
 
