@@ -3,12 +3,15 @@ package android.app.rgs.com.raidergrader.activities.teacher;
 import android.app.rgs.com.raidergrader.R;
 import android.app.rgs.com.raidergrader.controllers.AccountController;
 import android.app.rgs.com.raidergrader.controllers.ClassController;
+import android.app.rgs.com.raidergrader.data_access.Repository;
+import android.app.rgs.com.raidergrader.models.ClassModel;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
 import android.app.rgs.com.raidergrader.models.GradeDistribution;
 import android.app.rgs.com.raidergrader.models.UpdateClassModel;
 import android.app.rgs.com.raidergrader.utilities.RgsTextWatcher;
 import android.app.rgs.com.raidergrader.utilities.ValidateConstant;
 import android.app.rgs.com.raidergrader.utilities.Validators;
+import android.content.Intent;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -46,7 +49,9 @@ public class TeacherUpdateClassActivity extends AppCompatActivity
 
     private ClassController controller;
 
-
+    /***
+     * @author: Claire Gray
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,8 +62,21 @@ public class TeacherUpdateClassActivity extends AppCompatActivity
         LoadReference();
         SetValidators();
         ValidateFields();
+        setFields();
     }
 
+    private void setFields(){
+        ClassModel currentClass = Repository.getCurrentClass();
+        inputTitle.setText(currentClass.Title);
+        inputCourseNumber.setText(Integer.toString(currentClass.CourseNumber));
+        inputPrefix.setText(currentClass.Prefix);
+        inputSection.setText(Integer.toString(currentClass.Section));
+        inputExam.setText(Float.toString(currentClass.GradeDistribution.Exam));
+        inputProject.setText(Float.toString(currentClass.GradeDistribution.Project));
+        inputQuiz.setText(Float.toString(currentClass.GradeDistribution.Quiz));
+        inputHomework.setText(Float.toString(currentClass.GradeDistribution.Homework));
+        inputOther.setText(Float.toString(currentClass.GradeDistribution.Other));
+    }
     private void LoadReference(){
 
         courseInputLayout=(TextInputLayout)findViewById(R.id.inputLayoutCourseNumber);
@@ -160,6 +178,7 @@ public class TeacherUpdateClassActivity extends AppCompatActivity
         updateClassModel.CourseNumber = Integer.parseInt(inputCourseNumber.getText().toString());
         updateClassModel.Prefix = inputPrefix.getText().toString();
         updateClassModel.Section = Integer.parseInt(inputSection.getText().toString());
+        updateClassModel.Id = Repository.getCurrentClass().Id;
 
         GradeDistribution gradeDistribution= new GradeDistribution();
         gradeDistribution.Exam = Float.parseFloat(inputExam.getText().toString());
@@ -174,6 +193,9 @@ public class TeacherUpdateClassActivity extends AppCompatActivity
 
     @Override
     public void DisplayResult(UpdateClassModel result) {
+        Intent intent = new Intent(this, TeacherClassItemsActivity.class);
+        startActivity(intent);
+        finish();
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
