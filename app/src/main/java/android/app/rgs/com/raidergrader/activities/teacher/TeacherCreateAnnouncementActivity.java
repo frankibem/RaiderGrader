@@ -42,7 +42,6 @@ public class TeacherCreateAnnouncementActivity extends AppCompatActivity impleme
         inputDescription = (EditText) findViewById(R.id.input_Description);
         inputLayoutTitle = (TextInputLayout) findViewById(R.id.input_layout_Title);
         inputLayoutDescription = (TextInputLayout) findViewById(R.id.input_layout_Description);
-
     }
 
     private void SetValidators() {
