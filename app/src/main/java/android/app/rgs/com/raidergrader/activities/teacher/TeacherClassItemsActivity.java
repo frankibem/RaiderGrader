@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.content.Intent;
 
 public class TeacherClassItemsActivity extends AppCompatActivity {
     String[] data = {"Students", "Work items", "Announcements"};
@@ -66,7 +67,9 @@ public class TeacherClassItemsActivity extends AppCompatActivity {
             accountController.LogUserOut();
             return true;
         }else if(id == R.id.menu_edit){
-            // Navigate to activity for deleting class
+            // Navigate to activity for editing class
+            Intent intent = new Intent(this, TeacherUpdateClassActivity.class);
+            startActivity(intent);
 
         }else if(id == R.id.menu_delete){
             // Place code to delete class here

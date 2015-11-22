@@ -51,7 +51,6 @@ public class TeacherUpdateClassActivity extends AppCompatActivity
 
     /***
      * @author: Claire Gray
-     *
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,9 +68,9 @@ public class TeacherUpdateClassActivity extends AppCompatActivity
     private void setFields(){
         ClassModel currentClass = Repository.getCurrentClass();
         inputTitle.setText(currentClass.Title);
-        inputCourseNumber.setText(currentClass.CourseNumber);
+        inputCourseNumber.setText(Integer.toString(currentClass.CourseNumber));
         inputPrefix.setText(currentClass.Prefix);
-        inputSection.setText(currentClass.Section);
+        inputSection.setText(Integer.toString(currentClass.Section));
         inputExam.setText(Float.toString(currentClass.GradeDistribution.Exam));
         inputProject.setText(Float.toString(currentClass.GradeDistribution.Project));
         inputQuiz.setText(Float.toString(currentClass.GradeDistribution.Quiz));
