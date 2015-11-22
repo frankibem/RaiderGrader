@@ -163,7 +163,7 @@ public class ClassController {
                     mProgress.dismiss();
                 }
 
-                Toast.makeText(activity, "Class Deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "Class successfully deleted", Toast.LENGTH_SHORT).show();
                 controllerCallback.DisplayResult(null);
             }
 
