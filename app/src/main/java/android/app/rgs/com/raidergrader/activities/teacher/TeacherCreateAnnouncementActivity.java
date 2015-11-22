@@ -86,7 +86,7 @@ public class TeacherCreateAnnouncementActivity extends AppCompatActivity impleme
     }
 
     public void DisplayResult(Object result) {
-        Intent intent = new Intent(this, TeacherAnnouncementListActivity.class);
-        startActivity(intent);
+        setResult(1);
+        finish();
     }
 }

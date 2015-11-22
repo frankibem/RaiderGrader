@@ -58,7 +58,16 @@ public class TeacherAnnouncementListActivity extends AppCompatActivity
 
     public void createAnnouncement(View view) {
         Intent intent = new Intent(getApplicationContext(), TeacherCreateAnnouncementActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, 1);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // New announcement was created - refresh data
+        if (resultCode == 1) {
+            Repository.setAnnouncementList(null);
+            fetchData();
+        }
     }
 
     private void fetchData() {
