@@ -9,10 +9,11 @@ import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 
 /**
- * @author lauren
+ * @author Lauren Joness
  */
 public class DeleteModelFragment extends DialogFragment {
     private String title, body;
+    private DeleteModelInterface deleter;
 
     public DeleteModelInterface getDeleter() {
         return deleter;
@@ -21,8 +22,6 @@ public class DeleteModelFragment extends DialogFragment {
     public void setDeleter(DeleteModelInterface deleter) {
         this.deleter = deleter;
     }
-
-    private DeleteModelInterface deleter;
 
     public String getTitle() {
         return title;
@@ -55,7 +54,6 @@ public class DeleteModelFragment extends DialogFragment {
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-
             }
         });
         return builder.create();

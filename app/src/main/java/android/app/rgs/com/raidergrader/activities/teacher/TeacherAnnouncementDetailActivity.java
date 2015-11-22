@@ -26,7 +26,7 @@ import java.util.Locale;
  */
 
 public class TeacherAnnouncementDetailActivity extends AppCompatActivity
-implements ControllerCallback{
+        implements ControllerCallback {
 
     private AnnouncementModel announcement;
 
@@ -65,24 +65,27 @@ implements ControllerCallback{
             AccountController accountController = new AccountController(this, null);
             accountController.LogUserOut();
             return true;
-        }else if(id == R.id.menu_edit){
-            // Navigate to activity for deleting work item
+        } else if (id == R.id.menu_edit) {
             Intent intent = new Intent(this, TeacherUpdateAnnouncementActivity.class);
             startActivity(intent);
             finish();
-        }else if(id == R.id.menu_delete){
-            // Delete work item
-            TeacherAnnouncementDetailActivity activity = this;
-            DeleteModelFragment deleteFragment = new DeleteModelFragment();
-            deleteFragment.setTitle("Delete?");
-            deleteFragment.setBody(String.format("You are about to delete \"%s\". This process cannot be reversed. Continue?"));
-            deleteFragment.setDeleter(new DeleteModelInterface() {
+        } else if (id == R.id.menu_delete) {
+            final AnnouncementModel currentAnnouncement = Repository.getCurrentAnnouncement();
+            final AnnouncementController controller = new AnnouncementController(this, this);
+
+            DeleteModelInterface deleter = new DeleteModelInterface() {
                 @Override
                 public void Delete() {
-//                    AnnouncementController controller = new AnnouncementController(activity, activity);
-//                    controller.DeleteAnnouncement(Repository.getCurrentAnnouncement().Id);
+                    controller.DeleteAnnouncement(currentAnnouncement.Id);
                 }
-            });
+            };
+
+            DeleteModelFragment deleteFragment = new DeleteModelFragment();
+            deleteFragment.setTitle(String.format("Delete %s?", currentAnnouncement.Title));
+            deleteFragment.setBody("This action cannot be reverted. Continue?");
+            deleteFragment.setDeleter(deleter);
+
+            deleteFragment.show(getSupportFragmentManager(), "delete_class");
         }
 
         return super.onOptionsItemSelected(item);
@@ -90,6 +93,6 @@ implements ControllerCallback{
 
     @Override
     public void DisplayResult(Object result) {
-
+        finish();
     }
 }
