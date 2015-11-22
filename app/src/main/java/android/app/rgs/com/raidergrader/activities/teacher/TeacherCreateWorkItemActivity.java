@@ -68,6 +68,7 @@ public class TeacherCreateWorkItemActivity extends AppCompatActivity
         LoadReferences();
         SetValidators();
         setDateTime();
+        ValidateFields();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item, types);
