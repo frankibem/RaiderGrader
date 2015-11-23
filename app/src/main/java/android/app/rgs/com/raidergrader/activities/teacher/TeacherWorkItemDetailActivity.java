@@ -109,6 +109,8 @@ public class TeacherWorkItemDetailActivity extends AppCompatActivity
             return true;
         }else if(id == R.id.menu_edit){
             // Navigate to activity for deleting work item
+            Intent intent = new Intent(this, TeacherUpdateWorkItemActivity.class);
+            startActivity(intent);
 
         }else if(id == R.id.menu_delete){
             // Place code to delete work item here

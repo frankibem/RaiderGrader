@@ -66,12 +66,19 @@ public class TeacherUpdateWorkItemActivity extends AppCompatActivity
         LoadReference();
         SetValidators();
         setDateTime();
-        ValidateFields();
         setFields();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_dropdown_item, types);
         spinnerType.setAdapter(adapter);
+    }
+
+    private void setFields(){
+        WorkItemModel currentWorkItem = Repository.getCurrentWorkItem();
+        inputTitle.setText(currentWorkItem.Title);
+        inputDescription.setText(currentWorkItem.Description);
+        inputMaxPoints.setText(Float.toString(currentWorkItem.MaxPoints));
+        spinnerType.setSelection(currentWorkItem.Type);
     }
 
     private void setDateTime() {
@@ -124,20 +131,12 @@ public class TeacherUpdateWorkItemActivity extends AppCompatActivity
             inputLayoutDescription.setError("Description should not be empty");
         }
 
-        if (!Validators.validateInteger(inputMaxPoints.getText().toString())) {
+        if (!Validators.validateFloat(inputMaxPoints.getText().toString())) {
             noErrors = false;
-            inputLayoutmaxPoint.setError("Section should be filled with integers");
+            inputLayoutmaxPoint.setError("Max points should be a decimal number");
         }
 
         return noErrors;
-    }
-
-    private void setFields(){
-        WorkItemModel currentWorkItem = Repository.getCurrentWorkItem();
-        inputTitle.setText(currentWorkItem.Title);
-        inputDescription.setText(currentWorkItem.Description);
-        inputMaxPoints.setText(Float.toString(currentWorkItem.MaxPoints));
-        spinnerType.setSelection(currentWorkItem.Type);
     }
 
     public void onClickSetTime(View v) {
@@ -204,6 +203,13 @@ public class TeacherUpdateWorkItemActivity extends AppCompatActivity
     }
 
     @Override
+    public void DisplayResult(Object result) {
+        Intent intent = new Intent(this, TeacherWorkItemListActivity.class);
+        startActivity(intent);
+        finish();
+    }
+
+    @Override
     public void onDatePicked(int year, int month, int dayOfMonth) {
         YEAR = year;
         MONTH = month+1;
@@ -222,10 +228,5 @@ public class TeacherUpdateWorkItemActivity extends AppCompatActivity
         btnTime.setText(time.toString("HH:mm a", Locale.getDefault()));
     }
 
-    @Override
-    public void DisplayResult(Object result) {
-        Intent intent = new Intent(this, TeacherWorkItemListActivity.class);
-        startActivity(intent);
-        finish();
-    }
+
 }
