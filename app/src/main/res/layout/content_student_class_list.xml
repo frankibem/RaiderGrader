@@ -4,19 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:padding="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="android.app.rgs.com.raidergrader.activities.student.StudentClassListActivity"
     tools:showIn="@layout/activity_student_class_list">
+
+    <TextView
+        android:id="@+id/text_empty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="It's lonely in here. Enroll in a class."
+        android:visibility="gone" />
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:cacheColorHint="@android:color/white"
         android:textFilterEnabled="false"
-        android:cacheColorHint="@android:color/white"/>
+        android:visibility="gone" />
 
 </RelativeLayout>

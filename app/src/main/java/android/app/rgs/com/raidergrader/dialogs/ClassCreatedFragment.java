@@ -36,6 +36,7 @@ public class ClassCreatedFragment extends DialogFragment {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                getActivity().setResult(1);
                 getActivity().finish();
             }
         });

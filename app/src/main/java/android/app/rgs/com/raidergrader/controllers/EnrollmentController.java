@@ -63,6 +63,7 @@ public class EnrollmentController {
                 }
 
                 Toast.makeText(activity, "Enrollment has been requested", Toast.LENGTH_SHORT).show();
+                controllerCallback.DisplayResult(null);
             }
 
             @Override
@@ -216,6 +217,7 @@ public class EnrollmentController {
                 }
 
                 Toast.makeText(activity, "Wait list updated", Toast.LENGTH_SHORT).show();
+                activity.finish();
             }
 
             @Override
@@ -224,7 +226,7 @@ public class EnrollmentController {
                     mProgress.dismiss();
                 }
                 if (error.getStatusCode() == HttpStatusCodes.Conflict) {
-                    GlobalHandling.makeShortToast(activity, "An error occured while updating");
+                    GlobalHandling.makeShortToast(activity, "An error occurred while updating");
                 } else {
                     GlobalHandling.generalError(activity, error);
                 }

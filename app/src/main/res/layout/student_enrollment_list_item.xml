@@ -13,7 +13,9 @@
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
         android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
         android:paddingStart="?android:attr/listPreferredItemPaddingStart"
-        android:textAppearance="?android:attr/textAppearanceListItemSmall" />
+        android:text="Sample class title"
+        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:textColor="@color/white" />
 
     <TextView
         android:id="@+id/state"
@@ -21,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="20"
         android:text="Pending"
-        android:textColor="@android:color/holo_red_dark"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@android:color/holo_red_dark" />
 
 </LinearLayout>

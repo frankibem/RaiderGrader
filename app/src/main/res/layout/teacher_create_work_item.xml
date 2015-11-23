@@ -36,9 +36,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="50"
-            android:text="@string/btn_time"
             android:onClick="onClickSetTime"
-            android:textColor="#ffffff"/>
+            android:text="@string/btn_time"
+            android:textColor="#ffffff" />
 
         <Button
             android:id="@+id/btn_setDate"
@@ -46,9 +46,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="50"
-            android:text="@string/btn_date"
             android:onClick="onClickSetDate"
-            android:textColor="#ffffff"/>
+            android:text="@string/btn_date"
+            android:textColor="#ffffff" />
     </LinearLayout>
 
     <LinearLayout
@@ -69,15 +69,15 @@
                 android:layout_height="wrap_content"
                 android:hint="Max Points"
                 android:inputType="numberDecimal"
-                android:textColorHint="#ffffff"/>
+                android:textColorHint="#ffffff" />
         </android.support.design.widget.TextInputLayout>
 
         <Spinner
             android:id="@+id/spinner_type"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="50"
-            android:layout_gravity="center_vertical">
+            android:layout_gravity="center_vertical"
+            android:layout_weight="50">
 
         </Spinner>
 
@@ -109,16 +109,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="10"
-            android:text="@string/btn_cancel"
-            android:onClick="onClickCancel"/>
+            android:onClick="onClickCancel"
+            android:text="@string/btn_cancel" />
 
         <Button
             android:id="@+id/btn_done"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="10"
-            android:text="@string/btn_done"
-            android:onClick="onClickDone"/>
+            android:onClick="onClickDone"
+            android:text="@string/btn_done" />
 
     </LinearLayout>
 

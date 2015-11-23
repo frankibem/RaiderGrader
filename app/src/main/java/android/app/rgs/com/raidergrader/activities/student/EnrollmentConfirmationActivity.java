@@ -17,7 +17,9 @@ import android.widget.TextView;
 public class EnrollmentConfirmationActivity extends AppCompatActivity
         implements ControllerCallback {
 
-    TextView className, courseNumber, teacherName;
+    private TextView className,
+            courseNumber,
+            teacherName;
 
     private ClassModel classModel;
     private EnrollmentController controller;
@@ -53,17 +55,16 @@ public class EnrollmentConfirmationActivity extends AppCompatActivity
         controller.RequestEnrollmentForStudent(model);
     }
 
-
     // Controller shows toast. Simply finish the activity
     @Override
     public void DisplayResult(Object result) {
-        setResult(0);
+        setResult(1);
         finish();
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.logout_menu, menu);
         return true;
     }
 

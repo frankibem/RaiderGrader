@@ -3,6 +3,7 @@ package android.app.rgs.com.raidergrader.activities.teacher;
 import android.app.rgs.com.raidergrader.R;
 import android.app.rgs.com.raidergrader.controllers.AccountController;
 import android.app.rgs.com.raidergrader.controllers.ClassController;
+import android.app.rgs.com.raidergrader.data_access.Repository;
 import android.app.rgs.com.raidergrader.dialogs.ClassCreatedFragment;
 import android.app.rgs.com.raidergrader.models.ClassModel;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
@@ -17,7 +18,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -53,34 +53,31 @@ public class TeacherCreateClassActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.teacher_create_class);
 
-        controller = new ClassController(this, this);
-
-        LoadReference();
+        LoadReferences();
         SetValidators();
-        ValidateFields();
+        controller = new ClassController(this, this);
     }
 
-    private void LoadReference() {
+    private void LoadReferences() {
+        courseInputLayout = (TextInputLayout) findViewById(R.id.inputLayoutCourseNumber);
+        titleInputLayout = (TextInputLayout) findViewById(R.id.inputLayoutTitle);
+        prefixInputLayout = (TextInputLayout) findViewById(R.id.inputLayoutPrefix);
+        sectionInputLayout = (TextInputLayout) findViewById(R.id.inputLayoutSection);
+        examInputLayout = (TextInputLayout) findViewById(R.id.inputLayoutExam);
+        projectInputLayout = (TextInputLayout) findViewById(R.id.inputLayoutProject);
+        quizInputLayout = (TextInputLayout) findViewById(R.id.inputLayoutQuiz);
+        homeworkInputLayout = (TextInputLayout) findViewById(R.id.inputLayoutHomework);
+        otherInputLayout = (TextInputLayout) findViewById(R.id.inputLayoutOther);
 
-        courseInputLayout = (TextInputLayout) findViewById(R.id.courseNumber_layout_textbox);
-        titleInputLayout = (TextInputLayout) findViewById(R.id.classname_layout_textbox);
-        prefixInputLayout = (TextInputLayout) findViewById(R.id.prefix_layout_textbox);
-        sectionInputLayout = (TextInputLayout) findViewById(R.id.section_layout_textbox);
-        examInputLayout = (TextInputLayout) findViewById(R.id.exam_layout_textbox);
-        projectInputLayout = (TextInputLayout) findViewById(R.id.project_layout_textbox);
-        quizInputLayout = (TextInputLayout) findViewById(R.id.quiz_layout_textbox);
-        homeworkInputLayout = (TextInputLayout) findViewById(R.id.homework_layout_textbox);
-        otherInputLayout = (TextInputLayout) findViewById(R.id.other_layout_textbox);
-
-        inputTitle = (EditText) findViewById(R.id.classname_textbox);
-        inputCourseNumber = (EditText) findViewById(R.id.courseNumber_textbox);
-        inputPrefix = (EditText) findViewById(R.id.prefix_textbox);
-        inputSection = (EditText) findViewById(R.id.section_textbox);
-        inputExam = (EditText) findViewById(R.id.exam_textbox);
-        inputProject = (EditText) findViewById(R.id.project_textbox);
-        inputQuiz = (EditText) findViewById(R.id.quiz_textbox);
-        inputHomework = (EditText) findViewById(R.id.homework_textbox);
-        inputOther = (EditText) findViewById(R.id.other_textbox);
+        inputTitle = (EditText) findViewById(R.id.inputTitle);
+        inputCourseNumber = (EditText) findViewById(R.id.inputCourseNumber);
+        inputPrefix = (EditText) findViewById(R.id.inputPrefix);
+        inputSection = (EditText) findViewById(R.id.inputSection);
+        inputExam = (EditText) findViewById(R.id.inputExam);
+        inputProject = (EditText) findViewById(R.id.inputProject);
+        inputQuiz = (EditText) findViewById(R.id.inputQuiz);
+        inputHomework = (EditText) findViewById(R.id.inputHomework);
+        inputOther = (EditText) findViewById(R.id.inputOther);
     }
 
     private void SetValidators() {
@@ -104,6 +101,10 @@ public class TeacherCreateClassActivity extends AppCompatActivity
                 otherInputLayout, ValidateConstant.FLOAT));
     }
 
+    /**
+     * Returns true if all field values validate successfully, otherwise false.
+     * @return
+     */
     private boolean ValidateFields() {
         boolean noErrors = true;
 
@@ -113,7 +114,7 @@ public class TeacherCreateClassActivity extends AppCompatActivity
         }
         if (!Validators.validateInteger(inputCourseNumber.getText().toString())) {
             noErrors = false;
-            courseInputLayout.setError("Coursenumber should be filled with integers");
+            courseInputLayout.setError("Course number should be filled with integers");
         }
         if (!Validators.validateNonEmptyText(inputPrefix.getText().toString())) {
             noErrors = false;
@@ -154,12 +155,6 @@ public class TeacherCreateClassActivity extends AppCompatActivity
             return;
         }
 
-        CreateClassModel createClassModel = new CreateClassModel();
-        createClassModel.Title = inputTitle.getText().toString();
-        createClassModel.CourseNumber = Integer.parseInt(inputCourseNumber.getText().toString());
-        createClassModel.Prefix = inputPrefix.getText().toString();
-        createClassModel.Section = Integer.parseInt(inputSection.getText().toString());
-
         GradeDistribution gradeDistribution = new GradeDistribution();
         gradeDistribution.Exam = Float.parseFloat(inputExam.getText().toString());
         gradeDistribution.Project = Float.parseFloat(inputProject.getText().toString());
@@ -167,9 +162,15 @@ public class TeacherCreateClassActivity extends AppCompatActivity
         gradeDistribution.Quiz = Float.parseFloat(inputQuiz.getText().toString());
         gradeDistribution.Other = Float.parseFloat(inputOther.getText().toString());
 
+        CreateClassModel createClassModel = new CreateClassModel();
+        createClassModel.Title = inputTitle.getText().toString();
+        createClassModel.CourseNumber = Integer.parseInt(inputCourseNumber.getText().toString());
+        createClassModel.Prefix = inputPrefix.getText().toString();
+        createClassModel.Section = Integer.parseInt(inputSection.getText().toString());
+        createClassModel.TeacherUserName = Repository.USERNAME;
         createClassModel.GradeDistribution = gradeDistribution;
-        controller.CreateClass(createClassModel);
 
+        controller.CreateClass(createClassModel);
     }
 
     @Override
@@ -181,7 +182,7 @@ public class TeacherCreateClassActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
+        getMenuInflater().inflate(R.menu.edit_delete_menu, menu);
         return true;
     }
 
@@ -194,6 +195,11 @@ public class TeacherCreateClassActivity extends AppCompatActivity
             AccountController accountController = new AccountController(this, null);
             accountController.LogUserOut();
             return true;
+        } else if (id == R.id.menu_edit) {
+            // Navigate to activity for deleting work item
+
+        } else if (id == R.id.menu_delete) {
+            // Place code to delete work item here
         }
 
         return super.onOptionsItemSelected(item);

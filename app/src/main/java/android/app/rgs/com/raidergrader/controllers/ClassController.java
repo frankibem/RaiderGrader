@@ -114,7 +114,10 @@ public class ClassController {
                 }
 
                 Toast.makeText(activity, "Class successfully created", Toast.LENGTH_SHORT).show();
-                controllerCallback.DisplayResult(null);
+
+                Gson gson = JsonHelpers.getGson();
+                ClassModel createdClass = gson.fromJson(response, ClassModel.class);
+                controllerCallback.DisplayResult(createdClass);
             }
 
             @Override
@@ -163,7 +166,7 @@ public class ClassController {
                     mProgress.dismiss();
                 }
 
-                Toast.makeText(activity, "Class Deleted", Toast.LENGTH_SHORT).show();
+                Toast.makeText(activity, "Class successfully deleted", Toast.LENGTH_SHORT).show();
                 controllerCallback.DisplayResult(null);
             }
 
