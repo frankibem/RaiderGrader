@@ -19,11 +19,10 @@ import android.widget.ListView;
 
 public class TeacherWorkItemDetailActivity extends AppCompatActivity
         implements ControllerCallback {
-    private static final String UPDATE = "Update work-item";
     private static final String GRADE = "Assign Grades";
     private static final String DELETE = "Delete";
 
-    private static String[] items = {UPDATE, GRADE, DELETE};
+    private static String[] items = {GRADE, DELETE};
     private ListView listView;
     private TeacherWorkItemDetailActivity activity;
 
@@ -46,9 +45,6 @@ public class TeacherWorkItemDetailActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = null;
                 switch ((String) parent.getSelectedItem()) {
-                    case UPDATE:
-                        intent = new Intent(getApplicationContext(), TeacherUpdateWorkItemActivity.class);
-                        break;
                     case GRADE:
                         intent = new Intent(getApplicationContext(), TeacherGradeWorkItemActivity.class);
                         break;
@@ -109,6 +105,8 @@ public class TeacherWorkItemDetailActivity extends AppCompatActivity
             return true;
         }else if(id == R.id.menu_edit){
             // Navigate to activity for deleting work item
+            Intent intent = new Intent(this, TeacherUpdateWorkItemActivity.class);
+            startActivity(intent);
 
         }else if(id == R.id.menu_delete){
             // Place code to delete work item here
