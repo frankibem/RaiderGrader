@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:text="It's lonely in here. Enroll in a class."
+        android:text="You are not enrolled in any classes yet."
         android:visibility="gone" />
 
     <ListView
