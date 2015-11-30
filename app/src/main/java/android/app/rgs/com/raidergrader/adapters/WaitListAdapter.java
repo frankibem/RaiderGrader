@@ -3,6 +3,7 @@ package android.app.rgs.com.raidergrader.adapters;
 import android.app.rgs.com.raidergrader.R;
 import android.app.rgs.com.raidergrader.activities.teacher.TeacherClassWaitlistActivity;
 import android.app.rgs.com.raidergrader.models.EnrollmentState;
+import android.app.rgs.com.raidergrader.models.WaitListItem;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,15 +22,15 @@ import java.util.List;
  * Adapter for wait-list activity
  */
 public class WaitListAdapter
-        extends ArrayAdapter<TeacherClassWaitlistActivity.AcceptEnrollmentViewModel> {
+        extends ArrayAdapter<WaitListItem> {
     private Context context;
-    private List<TeacherClassWaitlistActivity.AcceptEnrollmentViewModel> viewModels;
+    private List<WaitListItem> viewModels;
     private LayoutInflater inflater;
 
     /**
      * Returns the data associated with the adapter
      */
-    public List<TeacherClassWaitlistActivity.AcceptEnrollmentViewModel> getViewModels() {
+    public List<WaitListItem> getViewModels() {
         return viewModels;
     }
 
@@ -40,7 +41,7 @@ public class WaitListAdapter
      * @param enrollmentViewModels List of view-models to populate list with
      */
     public WaitListAdapter(Context context,
-                           List<TeacherClassWaitlistActivity.AcceptEnrollmentViewModel> enrollmentViewModels) {
+                           List<WaitListItem> enrollmentViewModels) {
         super(context, -1, enrollmentViewModels);
         this.context = context;
         this.viewModels = enrollmentViewModels;
@@ -49,7 +50,7 @@ public class WaitListAdapter
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        TeacherClassWaitlistActivity.AcceptEnrollmentViewModel item = viewModels.get(position);
+        WaitListItem item = viewModels.get(position);
         View rowView = inflater.inflate(R.layout.accept_enrollment_list_item, parent, false);
 
         TextView name = (TextView) rowView.findViewById(R.id.name);
@@ -63,12 +64,10 @@ public class WaitListAdapter
         // Set color
         switch (item.State) {
             case ACCEPT:
-                //rowView.setBackgroundResource(R.color.lightGreen);
                 acceptImage.setImageResource(R.drawable.accept_selected);
                 rejectImage.setImageResource(R.drawable.reject);
                 break;
             case REJECT:
-                //rowView.setBackgroundResource(R.color.paleRed);
                 acceptImage.setImageResource(R.drawable.accept);
                 rejectImage.setImageResource(R.drawable.reject_selected);
                 break;
@@ -88,7 +87,7 @@ public class WaitListAdapter
         @Override
         public void onClick(View v) {
             View listItem = (View) v.getParent();
-            TeacherClassWaitlistActivity.AcceptEnrollmentViewModel model = (TeacherClassWaitlistActivity.AcceptEnrollmentViewModel) listItem.getTag();
+            WaitListItem model = (WaitListItem) listItem.getTag();
 
             // Mark item for acceptance and update background color
             ImageView acceptImage = (ImageView) listItem.findViewById(R.id.accept);
@@ -96,8 +95,6 @@ public class WaitListAdapter
             acceptImage.setImageResource(R.drawable.accept_selected);
             rejectImage.setImageResource(R.drawable.reject);
 
-            //listItem.setBackgroundResource(R.color.lightGreen);
-            model.Accept = true;
             model.State = EnrollmentState.ACCEPT;
         }
     };
@@ -106,7 +103,7 @@ public class WaitListAdapter
         @Override
         public void onClick(View v) {
             View listItem = (View) v.getParent();
-            TeacherClassWaitlistActivity.AcceptEnrollmentViewModel model = (TeacherClassWaitlistActivity.AcceptEnrollmentViewModel) listItem.getTag();
+            WaitListItem model = (WaitListItem) listItem.getTag();
 
             // Mark item for rejection and update background color
             ImageView acceptImage = (ImageView) listItem.findViewById(R.id.accept);
@@ -114,8 +111,6 @@ public class WaitListAdapter
             acceptImage.setImageResource(R.drawable.accept);
             rejectImage.setImageResource(R.drawable.reject_selected);
 
-//            listItem.setBackgroundResource(R.color.paleRed);
-            model.Accept = false;
             model.State = EnrollmentState.REJECT;
         }
     };

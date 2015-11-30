@@ -28,7 +28,7 @@ public class TeacherAnnouncementListActivity extends AppCompatActivity
     private ListView listView;
     private TextView emptyText;
     private TeacherAnnouncementListActivity activity;
-    private List<AnnouncementModel> announcments;
+    private List<AnnouncementModel> _announcements;
 
     private AnnouncementController controller;
 
@@ -45,7 +45,7 @@ public class TeacherAnnouncementListActivity extends AppCompatActivity
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                AnnouncementModel announce = announcments.get(position);
+                AnnouncementModel announce = _announcements.get(position);
                 Repository.setCurrentAnnouncement(announce);
 
                 Intent intent = new Intent(activity, TeacherAnnouncementDetailActivity.class);
@@ -88,12 +88,12 @@ public class TeacherAnnouncementListActivity extends AppCompatActivity
             return;
         }
 
-        announcments = result;
-        TeacherAnnouncementListAdapter adapter = new TeacherAnnouncementListAdapter(this, result);
-        listView.setAdapter(adapter);
-
         emptyText.setVisibility(View.GONE);
         listView.setVisibility(View.VISIBLE);
+
+        _announcements = result;
+        TeacherAnnouncementListAdapter adapter = new TeacherAnnouncementListAdapter(this, result);
+        listView.setAdapter(adapter);
     }
 
     @Override
