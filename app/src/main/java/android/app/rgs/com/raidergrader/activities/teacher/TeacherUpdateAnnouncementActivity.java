@@ -6,6 +6,7 @@ import android.app.rgs.com.raidergrader.controllers.AnnouncementController;
 import android.app.rgs.com.raidergrader.data_access.Repository;
 import android.app.rgs.com.raidergrader.models.AnnouncementModel;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
+import android.app.rgs.com.raidergrader.models.CreateAnnouncementModel;
 import android.app.rgs.com.raidergrader.models.UpdateAnnouncementModel;
 import android.app.rgs.com.raidergrader.utilities.RgsTextWatcher;
 import android.app.rgs.com.raidergrader.utilities.ValidateConstant;
@@ -21,94 +22,82 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class TeacherUpdateAnnouncementActivity extends AppCompatActivity
-        implements ControllerCallback<UpdateAnnouncementModel> {
-    private EditText inputTitle, inputDescription;
+        implements ControllerCallback {
+    private EditText inputTitle,
+            inputDescription;
 
-    private TextInputLayout titleInputLayout, descriptionInputLayout;
-
-    private Button updateButton;
+    private TextInputLayout inputLayoutTitle,
+            inputLayoutDescription;
 
     private AnnouncementController controller;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.teacher_update_announcement);
+        setContentView(R.layout.teacher_create_announcement);
 
         controller = new AnnouncementController(this, this);
-
-        LoadReference();
+        LoadReferences();
         SetValidators();
-        ValidateFields();
+        setFields();
     }
 
-    private void LoadReference() {
-        titleInputLayout = (TextInputLayout) findViewById(R.id.announcement_title_layout_textbox);
-        descriptionInputLayout = (TextInputLayout) findViewById(R.id.announcement_description_layout_textbox);
-
-        inputTitle = (EditText) findViewById(R.id.announcement_title_textbox);
-        inputDescription = (EditText) findViewById(R.id.announcement_description_textbox);
-
-        updateButton = (Button) findViewById(R.id.update_announcement_button);
+    private void LoadReferences() {
+        inputTitle = (EditText) findViewById(R.id.input_Title);
+        inputDescription = (EditText) findViewById(R.id.input_Description);
+        inputLayoutTitle = (TextInputLayout) findViewById(R.id.input_layout_Title);
+        inputLayoutDescription = (TextInputLayout) findViewById(R.id.input_layout_Description);
     }
 
     private void SetValidators() {
-        inputTitle.addTextChangedListener(new RgsTextWatcher(getWindow(), inputTitle, titleInputLayout, ValidateConstant.NON_EMPTY_TEXT));
-        inputDescription.addTextChangedListener(new RgsTextWatcher(getWindow(), inputDescription, descriptionInputLayout, ValidateConstant.NON_EMPTY_TEXT));
-
+        inputTitle.addTextChangedListener(new RgsTextWatcher(getWindow(), inputTitle,
+                inputLayoutTitle, ValidateConstant.NON_EMPTY_TEXT));
+        inputDescription.addTextChangedListener(new RgsTextWatcher(getWindow(), inputDescription,
+                inputLayoutDescription, ValidateConstant.NON_EMPTY_TEXT));
     }
 
+    private void setFields() {
+        AnnouncementModel announcementModel = Repository.getCurrentAnnouncement();
+        inputTitle.setText(announcementModel.Title);
+        inputDescription.setText(announcementModel.Description);
+    }
+
+    /**
+     * Returns true if all input fields pass validation
+     */
     private boolean ValidateFields() {
         boolean noErrors = true;
 
-        if (!Validators.validateNonEmptyText(inputTitle.getText().toString())){
+        if (!Validators.validateNonEmptyText(inputTitle.getText().toString())) {
             noErrors = false;
-            titleInputLayout.setError("Title cannot be empty.");
+            inputLayoutTitle.setError("Title should not be empty");
         }
-
-        if (!Validators.validateNonEmptyText(inputDescription.getText().toString())){
+        if (!Validators.validateNonEmptyText(inputDescription.getText().toString())) {
             noErrors = false;
-            descriptionInputLayout.setError("Description cannot be empty.");
+            inputLayoutDescription.setError("Description should not be empty");
         }
-
         return noErrors;
     }
 
-    public void onClickUpdate(View v){
+    public void onClickCancel(View v) {
+        finish();
+    }
+
+    public void onClickDone(View v) {
         if (!ValidateFields()) {
             Toast.makeText(this, "Review your input", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        UpdateAnnouncementModel model = new UpdateAnnouncementModel();
-        model.Title = inputTitle.getText().toString();
-        model.Description = inputDescription.getText().toString();
+        UpdateAnnouncementModel updateAnnouncementModel = new UpdateAnnouncementModel();
+        updateAnnouncementModel.Title = inputTitle.getText().toString();
+        updateAnnouncementModel.Description = inputDescription.getText().toString();
+        updateAnnouncementModel.Id = Repository.getCurrentAnnouncement().Id;
 
-        controller.UpdateAnnouncement(model);
+        controller.UpdateAnnouncement(updateAnnouncementModel);
     }
 
-    @Override
-    public void DisplayResult(UpdateAnnouncementModel result){
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.logout_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.item_logout) {
-            AccountController accountController = new AccountController(this, null);
-            accountController.LogUserOut();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    public void DisplayResult(Object result) {
+        finish();
     }
 }
