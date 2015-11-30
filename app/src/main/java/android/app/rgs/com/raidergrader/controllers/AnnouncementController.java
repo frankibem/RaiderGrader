@@ -187,7 +187,7 @@ public class AnnouncementController {
         };
 
         try {
-            RestTask task = RestUtil.obtainJSONPutTask(Repository.baseUrl + "api/Announcement", request);
+            RestTask task = RestUtil.obtainJSONPutTask(Repository.baseUrl + "api/Announcements", request);
             task.setProgressCallback(progressCallback);
             task.setResponseCallback(responseCallback);
             task.execute();

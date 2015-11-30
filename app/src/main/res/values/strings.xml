@@ -75,7 +75,8 @@
     <string name="btn_done">Done</string>
     <string name="btn_update">Update</string>
 
-    <string name="btn_create">Create</string>
+    <string name="btn_create"> Create</string>
+    <string name="btn_update">Update</string>
 
     <!-- Menu -->
     <string name="menu_logout">Log out</string>
