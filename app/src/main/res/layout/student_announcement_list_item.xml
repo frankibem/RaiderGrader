@@ -42,11 +42,6 @@
 
     </RelativeLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray" />
-
     <TextView
         android:id="@+id/description"
         android:layout_width="match_parent"
@@ -60,5 +55,10 @@
         android:paddingStart="?android:attr/listPreferredItemPaddingStart"
         android:text="Loren ipsum, verdana. Loren ipsum verdana. some more verdana. Even more ipsum and some lorem and them some more"
         android:textAppearance="?android:attr/textAppearanceListItemSmall" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray" />
 
 </LinearLayout>

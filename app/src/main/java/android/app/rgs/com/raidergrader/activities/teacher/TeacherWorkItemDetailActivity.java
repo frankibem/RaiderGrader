@@ -2,9 +2,14 @@ package android.app.rgs.com.raidergrader.activities.teacher;
 
 import android.app.rgs.com.raidergrader.R;
 import android.app.rgs.com.raidergrader.controllers.AccountController;
+import android.app.rgs.com.raidergrader.controllers.AnnouncementController;
 import android.app.rgs.com.raidergrader.controllers.WorkItemController;
 import android.app.rgs.com.raidergrader.data_access.Repository;
+import android.app.rgs.com.raidergrader.dialogs.DeleteModelFragment;
+import android.app.rgs.com.raidergrader.models.AnnouncementModel;
 import android.app.rgs.com.raidergrader.models.ControllerCallback;
+import android.app.rgs.com.raidergrader.models.DeleteModelInterface;
+import android.app.rgs.com.raidergrader.models.WorkItemModel;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.AlertDialog;
@@ -19,11 +24,6 @@ import android.widget.ListView;
 
 public class TeacherWorkItemDetailActivity extends AppCompatActivity
         implements ControllerCallback {
-    private static final String GRADE = "Assign Grades";
-    private static final String DELETE = "Delete";
-
-    private static String[] items = {GRADE, DELETE};
-    private ListView listView;
     private TeacherWorkItemDetailActivity activity;
 
     private WorkItemController controller;
@@ -35,57 +35,13 @@ public class TeacherWorkItemDetailActivity extends AppCompatActivity
         activity = this;
 
         controller = new WorkItemController(this, this);
-
-        listView = (ListView) findViewById(R.id.listView);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, items);
-        listView.setAdapter(adapter);
-
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = null;
-                switch ((String) parent.getSelectedItem()) {
-                    case GRADE:
-                        intent = new Intent(getApplicationContext(), TeacherGradeWorkItemActivity.class);
-                        break;
-                    case DELETE: {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
-                        builder.setTitle(String.format("Delete \"%s\"", Repository.getCurrentWorkItem().Title));
-                        builder.setMessage("This will delete all related grades assigned" +
-                                "and cannot be undone. Continue?");
-                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // Delete current work-item
-                                controller.DeleteWorkItem(Repository.getCurrentWorkItem().Id);
-                            }
-                        });
-                        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                // Do nothing
-                            }
-                        });
-
-                        AlertDialog dialog = builder.create();
-                        dialog.show();
-                        return;
-                    }
-                }
-
-                if (intent != null) {
-                    startActivity(intent);
-                }
-            }
-        });
     }
 
     // Navigate to work-item list when deletion is successful
     @Override
     public void DisplayResult(Object result) {
         Repository.setCurrentWorkItem(null);
-        Intent intent = new Intent(this, TeacherWorkItemListActivity.class);
-        startActivity(intent);
+        finish();
     }
 
     @Override
@@ -109,7 +65,22 @@ public class TeacherWorkItemDetailActivity extends AppCompatActivity
             startActivity(intent);
 
         }else if(id == R.id.menu_delete){
-            // Place code to delete work item here
+            final WorkItemModel currentWorkItem = Repository.getCurrentWorkItem();
+            final WorkItemController controller = new WorkItemController(this, this);
+
+            DeleteModelInterface deleter = new DeleteModelInterface() {
+                @Override
+                public void Delete() {
+                    controller.DeleteWorkItem(currentWorkItem.Id);
+                }
+            };
+
+            DeleteModelFragment deleteFragment = new DeleteModelFragment();
+            deleteFragment.setTitle(String.format("Delete \"%s\"?", currentWorkItem.Title));
+            deleteFragment.setBody("This action cannot be reverted. Continue?");
+            deleteFragment.setDeleter(deleter);
+
+            deleteFragment.show(getSupportFragmentManager(), "delete_class");
         }
 
         return super.onOptionsItemSelected(item);

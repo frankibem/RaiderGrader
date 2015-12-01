@@ -193,8 +193,6 @@ public class TeacherUpdateClassActivity extends AppCompatActivity
 
     @Override
     public void DisplayResult(UpdateClassModel result) {
-        Intent intent = new Intent(this, TeacherClassItemsActivity.class);
-        startActivity(intent);
         finish();
     }
     @Override

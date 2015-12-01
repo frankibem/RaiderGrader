@@ -103,6 +103,11 @@ public class TeacherClassHomeActivity extends AppCompatActivity
     }
 
     @Override
+    public void onBackPressed() {
+        // Don't do anything when back button is pressed on this activity
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.logout_menu, menu);
         return true;

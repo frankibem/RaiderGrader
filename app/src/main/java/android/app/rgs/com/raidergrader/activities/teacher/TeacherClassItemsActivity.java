@@ -36,6 +36,8 @@ public class TeacherClassItemsActivity extends AppCompatActivity
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, data);
         listView.setAdapter(adapter);
 
+        setTitle(Repository.getCurrentClass().Title);
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

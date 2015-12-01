@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.Comparator;
@@ -127,6 +128,11 @@ public class StudentClassListActivity extends AppCompatActivity
             }
         }
     };
+
+    @Override
+    public void onBackPressed() {
+        // Don't do anything when back button is pressed on this activity
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

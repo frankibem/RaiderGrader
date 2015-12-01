@@ -193,8 +193,7 @@ public class TeacherCreateWorkItemActivity extends AppCompatActivity
 
     @Override
     public void DisplayResult(Object result) {
-        Intent intent = new Intent(this, TeacherWorkItemListActivity.class);
-        startActivity(intent);
+        finish();
     }
 
     @Override
