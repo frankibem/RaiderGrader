@@ -70,7 +70,7 @@ public class TeacherCreateWorkItemActivity extends AppCompatActivity
         setDateTime();
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_dropdown_item, types);
+                R.layout.spinner_item, types);
         spinnerType.setAdapter(adapter);
     }
 

@@ -52,7 +52,7 @@ public class RegistrationActivity extends AppCompatActivity
         LoadReferences();
         SetValidators();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, roles);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.spinner_item, roles);
         spinnerRole.setAdapter(adapter);
     }
 
